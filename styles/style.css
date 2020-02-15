@@ -15,6 +15,14 @@ body {
     align-items: center;
 }
 
+.hcenter{
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+}
+
 #header{
     background-color: lightgreen;
     width: 100%;
