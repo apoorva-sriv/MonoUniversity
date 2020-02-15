@@ -1,0 +1,45 @@
+/**
+ * CSS for the login page
+ */
+
+#login-box {
+    width: 40%;
+    min-width: 300px;
+    height: auto;
+    float: left;
+    margin: 50px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#loginheader {
+    height: 30px;
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px;
+    background: blue;
+    margin-bottom: 10px;
+}
+
+#login-box form{
+    margin: 20px;
+    padding: 10px;
+}
+
+#login-box form input{
+    margin-bottom: 20px;
+    margin-top: 5px;
+    height: 30px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid blue;
+}
+
+#login-box form button{
+    padding: 10px;
+    border: none;
+    margin: 5px;
+    background: skyblue;
+}
+#login-box form button:hover{
+    background: lightblue;
+}
