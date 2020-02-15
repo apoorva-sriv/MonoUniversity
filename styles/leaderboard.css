@@ -1,0 +1,24 @@
+#leaderboard {
+    margin: 20px;
+}
+
+#leaderboard table{
+    border: 1px solid lightgreen;
+}
+
+#leaderboard table th{
+    font-size: 30px;
+    background: lightgreen;
+}
+#leaderboard table td{
+    font-size: 20px;
+}
+
+#leaderboard table th, td{
+    padding: 5px 15px 5px 15px;
+}
+#leaderboard table td {
+    border-top: 1px solid lightgreen;
+    border-spacing: 0;
+    margin: -1px;
+}
