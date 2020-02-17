@@ -83,3 +83,13 @@ body {
     height: 100%;
     border-radius: 50%;
 }
+
+button{
+    padding: 15px;
+    border: none;
+    background: skyblue;
+}
+
+button:hover{
+    background: lightblue;
+}
