@@ -25,3 +25,7 @@
 #content-box form button:hover{
     background: lightblue;
 }
+
+#error {
+    color: red;
+}
