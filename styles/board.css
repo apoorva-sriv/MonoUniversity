@@ -425,6 +425,7 @@ body {
 	width: 20%;
 	height: 100%;
 	float: right;
+	writing-mode: vertical-rl;
 }
 
 .orangeHead {
@@ -432,6 +433,7 @@ body {
 	width: 20%;
 	height: 100%;
 	float: right;
+	writing-mode: vertical-rl;
 }
 
 .redHead {
@@ -453,6 +455,7 @@ body {
 	width: 20%;
 	height: 100%;
 	float: left;
+	writing-mode: vertical-lr;
 }
 
 .blueHead {
@@ -460,4 +463,5 @@ body {
 	width: 20%;
 	height: 100%;
 	float: left;
+	writing-mode: vertical-lr;
 }
