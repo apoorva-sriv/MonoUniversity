@@ -13,19 +13,73 @@
     height: 30px;
     width: 100%;
     border-radius: 5px;
-    border: 1px solid blue;
+    border: 1px solid rgb(3, 96, 156);
 }
 
 #content-box form button{
     padding: 10px;
     border: none;
     margin: 5px;
-    background: skyblue;
+    width: 100%;
+
 }
+
 #content-box form button:hover{
     background: lightblue;
 }
 
 #error {
     color: red;
+}
+
+.logo{
+    width: 100px;
+}
+
+#content-box.login-box{
+    position: relative;
+    float:right;
+    width: 96%;
+    background-color: white;
+    margin: 2%;
+}
+
+#login{
+    color: white;
+    background-color: rgb(3, 96, 156);
+    font-size: large;
+    
+}
+
+#signup{
+    color: white;
+    font-size: large;
+    background-color: rgb(94, 180, 229);
+}
+
+.left-box{
+    height: 90%;
+    width: 75%;
+    background-color: rgb(94, 180, 229);
+    float: left;
+    background-image: url("../img/UniversitySilhouette.png");
+    background-size: cover;
+}
+
+.right-box{
+    height: 90%;
+    width: 25%;
+    background-color: white;
+    float: left;
+}
+#banner-container{
+    margin:10%;
+    color:white;
+}
+#banner-text{
+    font-size: 600%;
+}
+
+.dark-blue{
+    color: rgb(3, 96, 156);
 }
