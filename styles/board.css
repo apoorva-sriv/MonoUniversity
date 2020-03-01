@@ -1,13 +1,13 @@
 body {
 	background-color: #5EB4E5;
 	margin-left: 20px;
-	font-family: "Helvetica Neue", Helvetica, sans-serif;
+	font-family: "Josefin Sans";
 }
 
 .board {
   height: 900px;
   width: 900px;
-  background-color: #C2E2BF;
+  background-color: #CEE6D0;
   display: block;
   position: relative;
   float: left;
@@ -93,7 +93,7 @@ body {
     position: absolute;
 	bottom: 0px;
 	right: 0px;
-	
+
 }
 .bottomRow1 {
 	height: 120px;
@@ -412,12 +412,28 @@ body {
 	background-color: purple;
 	width: 100%;
 	height: 20%;
+	text-align: center;
+}
+
+.purpleHeadText {
+	display: block;
+	position: relative;
+	top: 30px;
+	font-size: 15px;
 }
 
 .cyanHead {
 	background-color: cyan;
 	width: 100%;
 	height: 20%;
+	text-align: center;
+}
+
+.cyanHeadText {
+	display: block;
+	position: relative;
+	top: 30px;
+	font-size: 15px;
 }
 
 .pinkHead {
@@ -426,6 +442,14 @@ body {
 	height: 100%;
 	float: right;
 	writing-mode: vertical-rl;
+	text-align: center;
+}
+
+.pinkHeadText {
+	display: block;
+	position: relative;
+	right: 30px;
+	font-size: 15px;
 }
 
 .orangeHead {
@@ -434,6 +458,14 @@ body {
 	height: 100%;
 	float: right;
 	writing-mode: vertical-rl;
+	text-align: center;
+}
+
+.orangeHeadText {
+	display: block;
+	position: relative;
+	right: 30px;
+	font-size: 15px;
 }
 
 .redHead {
@@ -441,6 +473,14 @@ body {
 	width: 100%;
 	height: 20%;
 	float: top;
+	text-align: center;
+}
+
+.redHeadText {
+	display: block;
+	position: relative;
+	top: 30px;
+	font-size: 15px;
 }
 
 .yellowHead {
@@ -448,6 +488,14 @@ body {
 	width: 100%;
 	height: 20%;
 	float: top;
+	text-align: center;
+}
+
+.yellowHeadText {
+	display: block;
+	position: relative;
+	top: 30px;
+	font-size: 15px;
 }
 
 .greenHead {
@@ -461,7 +509,9 @@ body {
 	transform: rotate(-90deg);
 	display: block;
 	position: relative;
-	top: 40px;
+	top: 42px;
+	left: 30px;
+	font-size: 15px;
 }
 
 .blueHead {
@@ -475,5 +525,7 @@ body {
 	transform: rotate(-90deg);
 	display: block;
 	position: relative;
-	top: 40px;
+	top: 42px;
+	left: 30px;
+	font-size: 15px;
 }
