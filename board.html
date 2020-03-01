@@ -4,134 +4,134 @@
     <meta charset="utf-8">
     <title>Mono University - Game</title>
     <link rel="stylesheet" type="text/css" href="styles/board.css">
-	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
     <script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
-<div class="board">
-    <img src="img/center_logo.png" class="centerImage"></img>
-    <div class="cornerTileSE" onclick="parseInfo(event)">
+<div id="board">
+    <img src="img/center_logo.png" id="centerImage"></img>
+    <div id="cornerTileSE" onclick="parseInfo(event)">
         GO
     </div>
-    <div class="bottomRow1" onclick="parseInfo(event)">
+    <div id="bottomRow1" onclick="parseInfo(event)">
         <div class="purpleHead"><span class="purpleHeadText">EMPTY</span></div>
     </div>
-    <div class="bottomRow2" onclick="parseInfo(event)">
-        COMMUNITY
+    <div id="bottomRow2" onclick="parseInfo(event)">
+        <span id="bottomRow2Text">COMMUNITY</span>
     </div>
-    <div class="bottomRow3" onclick="parseInfo(event)">
+    <div id="bottomRow3" onclick="parseInfo(event)">
         <div class="purpleHead"><span class="purpleHeadText">EMPTY</span></div>
     </div>
-    <div class="bottomRow4" onclick="parseInfo(event)">
-        INCOME TAX
+    <div id="bottomRow4" onclick="parseInfo(event)">
+        <span id="bottomRow4Text">INCOME TAX</span>
     </div>
-    <div class="bottomRow5" onclick="parseInfo(event)">
-        TTC
+    <div id="bottomRow5" onclick="parseInfo(event)">
+        <span id="bottomRow5Text">TTC</span>
     </div>
-    <div class="bottomRow6" onclick="parseInfo(event)">
+    <div id="bottomRow6" onclick="parseInfo(event)">
         <div class="cyanHead"><span class="cyanHeadText">EMPTY</span></div>
     </div>
-    <div class="bottomRow7" onclick="parseInfo(event)">
-        CHANCE
+    <div id="bottomRow7" onclick="parseInfo(event)">
+        <span id="bottomRow7Text">CHANCE</span>
     </div>
-    <div class="bottomRow8" onclick="parseInfo(event)">
+    <div id="bottomRow8" onclick="parseInfo(event)">
         <div class="cyanHead"><span class="cyanHeadText">EMPTY</span></div>
     </div>
-    <div class="bottomRow9" onclick="parseInfo(event)">
+    <div id="bottomRow9" onclick="parseInfo(event)">
         <div class="cyanHead"><span class="cyanHeadText">EMPTY</span></div>
     </div>
-    <div class="cornerTileSW" onclick="parseInfo(event)">
+    <div id="cornerTileSW" onclick="parseInfo(event)">
         JAIL
     </div>
-    <div class="leftCol1" onclick="parseInfo(event)">
+    <div id="leftCol1" onclick="parseInfo(event)">
         <div class="pinkHead"><span class="pinkHeadText">EMPTY</span></div>
     </div>
-    <div class="leftCol2" onclick="parseInfo(event)">
+    <div id="leftCol2" onclick="parseInfo(event)">
         RL
     </div>
-    <div class="leftCol3" onclick="parseInfo(event)">
+    <div id="leftCol3" onclick="parseInfo(event)">
         <div class="pinkHead"><span class="pinkHeadText">EMPTY</span></div>
     </div>
-    <div class="leftCol4" onclick="parseInfo(event)">
+    <div id="leftCol4" onclick="parseInfo(event)">
         <div class="pinkHead"><span class="pinkHeadText">EMPTY</span></div>
     </div>
-    <div class="leftCol5" onclick="parseInfo(event)">
+    <div id="leftCol5" onclick="parseInfo(event)">
         TTC
     </div>
-    <div class="leftCol6" onclick="parseInfo(event)">
+    <div id="leftCol6" onclick="parseInfo(event)">
         <div class="orangeHead"><span class="orangeHeadText">EMPTY</span></div>
     </div>
-    <div class="leftCol7" onclick="parseInfo(event)">
+    <div id="leftCol7" onclick="parseInfo(event)">
         COMMUNITY
     </div>
-    <div class="leftCol8" onclick="parseInfo(event)">
+    <div id="leftCol8" onclick="parseInfo(event)">
         <div class="orangeHead"><span class="orangeHeadText">EMPTY</span></div>
     </div>
-    <div class="leftCol9" onclick="parseInfo(event)">
+    <div id="leftCol9" onclick="parseInfo(event)">
         <div class="orangeHead"><span class="orangeHeadText">EMPTY</span></div>
     </div>
-    <div class="cornerTileNW" onclick="parseInfo(event)">
+    <div id="cornerTileNW" onclick="parseInfo(event)">
         QUEEN'S PARK
     </div>
-    <div class="topRow1" onclick="parseInfo(event)">
+    <div id="topRow1" onclick="parseInfo(event)">
         <div class="redHead"><span class="redHeadText">EMPTY</span></div>
     </div>
-    <div class="topRow2" onclick="parseInfo(event)">
-        CHANCE
+    <div id="topRow2" onclick="parseInfo(event)">
+        <span id="topRow2Text">CHANCE</span>
     </div>
-    <div class="topRow3" onclick="parseInfo(event)">
+    <div id="topRow3" onclick="parseInfo(event)">
         <div class="redHead"><span class="redHeadText">EMPTY</span></div>
     </div>
-    <div class="topRow4" onclick="parseInfo(event)">
+    <div id="topRow4" onclick="parseInfo(event)">
         <div class="redHead"><span class="redHeadText">EMPTY</span></div>
     </div>
-    <div class="topRow5" onclick="parseInfo(event)">
+    <div id="topRow5" onclick="parseInfo(event)">
         TTC
     </div>
-    <div class="topRow6" onclick="parseInfo(event)">
+    <div id="topRow6" onclick="parseInfo(event)">
         <div class="yellowHead"><span class="yellowHeadText">EMPTY</span></div>
     </div>
-    <div class="topRow7" onclick="parseInfo(event)">
+    <div id="topRow7" onclick="parseInfo(event)">
         <div class="yellowHead"><span class="yellowHeadText">EMPTY</span></div>
     </div>
-    <div class="topRow8" onclick="parseInfo(event)">
+    <div id="topRow8" onclick="parseInfo(event)">
         BL
     </div>
-    <div class="topRow9" onclick="parseInfo(event)">
+    <div id="topRow9" onclick="parseInfo(event)">
         <div class="yellowHead"><span class="yellowHeadText">EMPTY</span></div>
     </div>
-    <div class="cornerTileNE" onclick="parseInfo(event)">GENERIC</div>
-    <div class="rightCol1" onclick="parseInfo(event)">
+    <div id="cornerTileNE" onclick="parseInfo(event)">GENERIC</div>
+    <div id="rightCol1" onclick="parseInfo(event)">
         <div class="greenHead"><span class="greenHeadText">EMPTY</span></div>
     </div>
-    <div class="rightCol2" onclick="parseInfo(event)">
+    <div id="rightCol2" onclick="parseInfo(event)">
         <div class="greenHead"><span class="greenHeadText">EMPTY</span></div>
     </div>
-    <div class="rightCol3" onclick="parseInfo(event)">
+    <div id="rightCol3" onclick="parseInfo(event)">
         COMMUNITY
     </div>
-    <div class="rightCol4" onclick="parseInfo(event)">
+    <div id="rightCol4" onclick="parseInfo(event)">
         <div class="greenHead"><span class="greenHeadText">EMPTY</span></div>
     </div>
-    <div class="rightCol5" onclick="parseInfo(event)">
+    <div id="rightCol5" onclick="parseInfo(event)">
         TTC
     </div>
-    <div class="rightCol6" onclick="parseInfo(event)">
+    <div id="rightCol6" onclick="parseInfo(event)">
         CHANCE
     </div>
-    <div class="rightCol7" onclick="parseInfo(event)">
+    <div id="rightCol7" onclick="parseInfo(event)">
         <div class="blueHead"><span class="blueHeadText">EMPTY</span></div>
     </div>
-    <div class="rightCol8" onclick="parseInfo(event)">Luxury Tax</div>
-    <div class="rightCol9" onclick="parseInfo(event)">
+    <div id="rightCol8" onclick="parseInfo(event)">Luxury Tax</div>
+    <div id="rightCol9" onclick="parseInfo(event)">
         <div class="blueHead"><span class="blueHeadText">EMPTY</span></div>
     </div>
 </div>
-<div class="propertyInfo">GENERIC</div>
-<div class="playerList">PLAYERS</div>
-<div class="diceDisplay">INSERT DIE HERE</div>
-<button class="dice">RTD</button>
-<button class="buy">BUY</button>
-<button class="sell">SELL</button>
+<div id="propertyInfo">GENERIC</div>
+<div id="playerList">PLAYERS</div>
+<div id="diceDisplay">INSERT DIE HERE</div>
+<button id="dice">RTD</button>
+<button id="buy">BUY</button>
+<button id="sell">SELL</button>
 </body>
 </html>
