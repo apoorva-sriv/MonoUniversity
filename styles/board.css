@@ -1,5 +1,5 @@
 body {
-	background-color: #c5d2ea;
+	background-color: #5EB4E5;
 	margin-left: 20px;
 	font-family: "Helvetica Neue", Helvetica, sans-serif;
 }
@@ -7,7 +7,7 @@ body {
 .board {
   height: 900px;
   width: 900px;
-  background-color: white;
+  background-color: #C2E2BF;
   display: block;
   position: relative;
   float: left;
@@ -455,7 +455,13 @@ body {
 	width: 20%;
 	height: 100%;
 	float: left;
-	writing-mode: vertical-lr;
+}
+
+.greenHeadText {
+	transform: rotate(-90deg);
+	display: block;
+	position: relative;
+	top: 40px;
 }
 
 .blueHead {
@@ -463,5 +469,11 @@ body {
 	width: 20%;
 	height: 100%;
 	float: left;
-	writing-mode: vertical-lr;
+}
+
+.blueHeadText {
+	transform: rotate(-90deg);
+	display: block;
+	position: relative;
+	top: 40px;
 }
