@@ -1,6 +1,6 @@
 body {
     background-color: #5EB4E5;
-    font-family: "Josefin Sans", "Helvetica", sans-serif;
+    font-family: "Oswald", "Helvetica", sans-serif;
     margin-left: 20px;
     zoom: 80%; /* Added to fit the board vertically */
 }
@@ -106,6 +106,13 @@ body {
     width: calc(652px / 9);
 }
 
+#bottomRow1Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
 #bottomRow2 {
     border: 2px solid black;
     bottom: 0px;
@@ -113,6 +120,15 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) + 4px);
     width: calc(652px / 9 - 4px);
+}
+
+#bottomRow2Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
 }
 
 #bottomRow3 {
@@ -124,6 +140,13 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#bottomRow3Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
 #bottomRow4 {
     border: 2px solid black;
     bottom: 0px;
@@ -131,6 +154,15 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 3 + 4px);
     width: calc(652px / 9 - 4px);
+}
+
+#bottomRow4Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
 }
 
 #bottomRow5 {
@@ -142,6 +174,15 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#bottomRow5Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
+}
+
 #bottomRow6 {
     border: 2px solid black;
     bottom: 0px;
@@ -149,6 +190,13 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 5 + 4px);
     width: calc(652px / 9 - 4px);
+}
+
+#bottomRow6Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
 }
 
 #bottomRow7 {
@@ -160,6 +208,15 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#bottomRow7Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
+}
+
 #bottomRow8 {
     border: 2px solid black;
     bottom: 0px;
@@ -169,6 +226,13 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#bottomRow8Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
 #bottomRow9 {
     border: 2px solid black;
     bottom: 0px;
@@ -176,6 +240,13 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 8 + 4px);
     width: calc(652px / 9 - 4px);
+}
+
+#bottomRow9Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
 }
 
 #cornerTileSW {
@@ -196,6 +267,13 @@ body {
     width: 120px;
 }
 
+#leftCol1Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
+}
+
 #leftCol2 {
     border: 2px solid black;
     bottom: calc(0% + 124px + (652px / 9) + 4px);
@@ -207,7 +285,7 @@ body {
 
 #leftCol2Text {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     text-align: center;
     word-break: break-all;
@@ -225,6 +303,13 @@ body {
     width: 120px;
 }
 
+#leftCol3Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
+}
+
 #leftCol4 {
     border: 2px solid black;
     bottom: calc(0% + 124px + (652px / 9) * 3 + 4px);
@@ -232,6 +317,13 @@ body {
     left: 0px;
     position: absolute;
     width: 120px;
+}
+
+#leftCol4Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
 }
 
 #leftCol5 {
@@ -245,13 +337,13 @@ body {
 
 #leftCol5Text {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     text-align: center;
     word-break: break-all;
     writing-mode: vertical-rl;
     left: 100px;
-    top: 19px;
+    top: 22px;
 }
 
 #leftCol6 {
@@ -261,6 +353,13 @@ body {
     left: 0px;
     position: absolute;
     width: 120px;
+}
+
+#leftCol6Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
 }
 
 #leftCol7 {
@@ -274,13 +373,13 @@ body {
 
 #leftCol7Text {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     text-align: center;
     word-break: break-all;
     writing-mode: vertical-rl;
     left: 100px;
-    top: 8px;
+    top: 16px;
 }
 
 #leftCol8 {
@@ -292,6 +391,13 @@ body {
     width: 120px;
 }
 
+#leftCol8Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
+}
+
 #leftCol9 {
     border: 2px solid black;
     bottom: calc(0% + 124px + (652px / 9) * 8 + 4px);
@@ -299,6 +405,13 @@ body {
     left: 0px;
     position: absolute;
     width: 120px;
+}
+
+#leftCol9Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    right: 30px;
 }
 
 #cornerTileNW {
@@ -312,7 +425,7 @@ body {
 
 .horizontalRowNonColorCell {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     text-align: center;
     top: 5px;
@@ -328,6 +441,13 @@ body {
     width: calc(652px / 9);
 }
 
+#topRow1Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
 #topRow2 {
     border: 2px solid black;
     height: 120px;
@@ -335,6 +455,15 @@ body {
     position: absolute;
     top: 0px;
     width: calc(652px / 9 - 4px);
+}
+
+#topRow2Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
 }
 
 #topRow3 {
@@ -346,6 +475,13 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#topRow3Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
 #topRow4 {
     border: 2px solid black;
     height: 120px;
@@ -353,6 +489,13 @@ body {
     position: absolute;
     top: 0px;
     width: calc(652px / 9 - 4px);
+}
+
+#topRow4Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
 }
 
 #topRow5 {
@@ -364,6 +507,15 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#topRow5Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
+}
+
 #topRow6 {
     border: 2px solid black;
     height: 120px;
@@ -371,6 +523,13 @@ body {
     position: absolute;
     top: 0px;
     width: calc(652px / 9 - 4px);
+}
+
+#topRow6Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
 }
 
 #topRow7 {
@@ -382,6 +541,13 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#topRow7Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
+}
+
 #topRow8 {
     border: 2px solid black;
     height: 120px;
@@ -391,6 +557,15 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#topRow8Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
+}
+
 #topRow9 {
     border: 2px solid black;
     height: 120px;
@@ -398,6 +573,13 @@ body {
     position: absolute;
     top: 0px;
     width: calc(652px / 9 - 4px);
+}
+
+#topRow9Text {
+    display: block;
+    font-size: 14px;
+    position: relative;
+    top: 30px;
 }
 
 #cornerTileNE {
@@ -418,6 +600,15 @@ body {
     width: 120px;
 }
 
+#rightCol1Text {
+    display: block;
+    font-size: 14px;
+    left: 30px;
+    position: relative;
+    top: 29px;
+    transform: rotate(-90deg);
+}
+
 #rightCol2 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -425,6 +616,15 @@ body {
     right: 0px;
     top: calc(0% + 124px + (652px / 9) + 4px);
     width: 120px;
+}
+
+#rightCol2Text {
+    display: block;
+    font-size: 14px;
+    left: 30px;
+    position: relative;
+    top: 29px;
+    transform: rotate(-90deg);
 }
 
 #rightCol3 {
@@ -436,9 +636,13 @@ body {
     width: 120px;
 }
 
+#rightCol3Text {
+
+}
+
 .rightColNonColorCells {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     left: 5px;
     position: relative;
     text-align: center;
@@ -456,6 +660,15 @@ body {
     width: 120px;
 }
 
+#rightCol4Text {
+    display: block;
+    font-size: 14px;
+    left: 30px;
+    position: relative;
+    top: 29px;
+    transform: rotate(-90deg);
+}
+
 #rightCol5 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -467,7 +680,7 @@ body {
 
 #rightCol5Text {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     left: 5px;
     position: relative;
     text-align: center;
@@ -488,11 +701,11 @@ body {
 
 #rightCol6Text {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     left: 5px;
     position: relative;
     text-align: center;
-    top: 1px;
+    top: 12px;
     transform: rotate(180deg);
     word-break: break-all;
     writing-mode: vertical-rl;
@@ -507,6 +720,15 @@ body {
     width: 120px;
 }
 
+#rightCol7Text {
+    display: block;
+    font-size: 14px;
+    left: 30px;
+    position: relative;
+    top: 29px;
+    transform: rotate(-90deg);
+}
+
 #rightCol8 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -514,6 +736,10 @@ body {
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 7 + 4px);
     width: 120px;
+}
+
+#rightCol8Text {
+
 }
 
 #rightCol9 {
@@ -525,6 +751,15 @@ body {
     width: 120px;
 }
 
+#rightCol9Text {
+    display: block;
+    font-size: 14px;
+    left: 30px;
+    position: relative;
+    top: 29px;
+    transform: rotate(-90deg);
+}
+
 .purpleHead {
     background-color: purple;
     height: 20%;
@@ -534,7 +769,7 @@ body {
 
 .purpleHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     top: 30px;
 }
@@ -548,7 +783,7 @@ body {
 
 .cyanHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     top: 30px;
 }
@@ -564,7 +799,7 @@ body {
 
 .pinkHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     right: 30px;
 }
@@ -580,7 +815,7 @@ body {
 
 .orangeHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     right: 30px;
 }
@@ -595,7 +830,7 @@ body {
 
 .redHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     top: 30px;
 }
@@ -610,7 +845,7 @@ body {
 
 .yellowHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     position: relative;
     top: 30px;
 }
@@ -624,7 +859,7 @@ body {
 
 .greenHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     left: 30px;
     position: relative;
     top: 42px;
@@ -640,7 +875,7 @@ body {
 
 .blueHeadText {
     display: block;
-    font-size: 15px;
+    font-size: 14px;
     left: 30px;
     position: relative;
     top: 42px;

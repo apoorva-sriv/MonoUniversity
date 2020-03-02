@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Mono University - Game</title>
     <link rel="stylesheet" type="text/css" href="styles/board.css">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <script type="text/javascript" src="script/board.js"></script>
 </head>
 <body>
@@ -14,110 +14,142 @@
         GO
     </div>
     <div id="bottomRow1" onclick="parseInfo(event)">
-        <div class="purpleHead"><span class="purpleHeadText">EMPTY</span></div>
+        <div class="purpleHead"><span id="bottomRow1Text">EMPTY</span></div>
     </div>
     <div id="bottomRow2" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">COMMUNITY</span>
+        <span id="bottomRow2Text">COMMUNITY</span>
     </div>
     <div id="bottomRow3" onclick="parseInfo(event)">
-        <div class="purpleHead"><span class="purpleHeadText">EMPTY</span></div>
+        <div class="purpleHead">
+            <span id="bottomRow3Text">EMPTY</span>
+        </div>
     </div>
     <div id="bottomRow4" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">INCOME TAX</span>
+        <span id="bottomRow4Text">INCOME TAX</span>
     </div>
     <div id="bottomRow5" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">TTC</span>
+        <span id="bottomRow5Text">TTC</span>
     </div>
     <div id="bottomRow6" onclick="parseInfo(event)">
-        <div class="cyanHead"><span class="cyanHeadText">EMPTY</span></div>
+        <div class="cyanHead">
+            <span id="bottomRow6Text">EMPTY</span>
+        </div>
     </div>
     <div id="bottomRow7" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">CHANCE</span>
+        <span id="bottomRow7Text">CHANCE</span>
     </div>
     <div id="bottomRow8" onclick="parseInfo(event)">
-        <div class="cyanHead"><span class="cyanHeadText">EMPTY</span></div>
+        <div class="cyanHead">
+            <span id="bottomRow8Text">EMPTY</span>
+        </div>
     </div>
     <div id="bottomRow9" onclick="parseInfo(event)">
-        <div class="cyanHead"><span class="cyanHeadText">EMPTY</span></div>
+        <div class="cyanHead">
+            <span id="bottomRow9Text">EMPTY</span>
+        </div>
     </div>
     <div id="cornerTileSW" onclick="parseInfo(event)">
         JAIL
     </div>
     <div id="leftCol1" onclick="parseInfo(event)">
-        <div class="pinkHead"><span class="pinkHeadText">EMPTY</span></div>
+        <div class="pinkHead">
+            <span id="leftCol1Text">EMPTY</span>
+        </div>
     </div>
     <div id="leftCol2" onclick="parseInfo(event)">
         <span id="leftCol2Text">RL</span>
     </div>
     <div id="leftCol3" onclick="parseInfo(event)">
         <div class="pinkHead">
-            <span class="pinkHeadText">EMPTY</span>
+            <span id="leftCol3Text">EMPTY</span>
         </div>
     </div>
     <div id="leftCol4" onclick="parseInfo(event)">
         <div class="pinkHead">
-            <span class="pinkHeadText">EMPTY</span>
+            <span id="leftCol4Text">EMPTY</span>
         </div>
     </div>
     <div id="leftCol5" onclick="parseInfo(event)">
         <span id="leftCol5Text">TTC</span>
     </div>
     <div id="leftCol6" onclick="parseInfo(event)">
-        <div class="orangeHead"><span class="orangeHeadText">EMPTY</span></div>
+        <div class="orangeHead">
+            <span id="leftCol6Text">EMPTY</span>
+        </div>
     </div>
     <div id="leftCol7" onclick="parseInfo(event)">
         <span id="leftCol7Text">EMPTY</span>
     </div>
     <div id="leftCol8" onclick="parseInfo(event)">
-        <div class="orangeHead"><span class="orangeHeadText">EMPTY</span></div>
+        <div class="orangeHead">
+            <span id="leftCol8Text">EMPTY</span>
+        </div>
     </div>
     <div id="leftCol9" onclick="parseInfo(event)">
-        <div class="orangeHead"><span class="orangeHeadText">EMPTY</span></div>
+        <div class="orangeHead">
+            <span id="leftCol9Text">EMPTY</span>
+        </div>
     </div>
     <div id="cornerTileNW" onclick="parseInfo(event)">
         QUEEN'S PARK
     </div>
     <div id="topRow1" onclick="parseInfo(event)">
-        <div class="redHead"><span class="redHeadText">EMPTY</span></div>
+        <div class="redHead">
+            <span id="topRow1Text">EMPTY</span>
+        </div>
     </div>
     <div id="topRow2" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">CHANCE</span>
+        <span id="topRow2Text">CHANCE</span>
     </div>
     <div id="topRow3" onclick="parseInfo(event)">
-        <div class="redHead"><span class="redHeadText">EMPTY</span></div>
+        <div class="redHead">
+            <span id="topRow3Text">EMPTY</span>
+        </div>
     </div>
     <div id="topRow4" onclick="parseInfo(event)">
-        <div class="redHead"><span class="redHeadText">EMPTY</span></div>
+        <div class="redHead">
+            <span id="topRow4Text">EMPTY</span>
+        </div>
     </div>
     <div id="topRow5" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">TTC</span>
+        <span id="topRow5Text">TTC</span>
     </div>
     <div id="topRow6" onclick="parseInfo(event)">
-        <div class="yellowHead"><span class="yellowHeadText">EMPTY</span></div>
+        <div class="yellowHead">
+            <span id="topRow6Text">EMPTY</span>
+        </div>
     </div>
     <div id="topRow7" onclick="parseInfo(event)">
         <div class="yellowHead">
-            <span class="yellowHeadText">EMPTY</span>
+            <span id="topRow7Text">EMPTY</span>
         </div>
     </div>
     <div id="topRow8" onclick="parseInfo(event)">
-        <span class="horizontalRowNonColorCell">EMPTY</span>
+        <span id="topRow8Text">EMPTY</span>
     </div>
     <div id="topRow9" onclick="parseInfo(event)">
-        <div class="yellowHead"><span class="yellowHeadText">EMPTY</span></div>
+        <div class="yellowHead">
+            <span id="topRow9Text">EMPTY</span>
+        </div>
     </div>
     <div id="cornerTileNE" onclick="parseInfo(event)">GENERIC</div>
     <div id="rightCol1" onclick="parseInfo(event)">
-        <div class="greenHead"><span class="greenHeadText">EMPTY</span></div>
+        <div class="greenHead">
+            <span id="rightCol1Text">EMPTY</span>
+        </div>
     </div>
     <div id="rightCol2" onclick="parseInfo(event)">
-        <div class="greenHead"><span class="greenHeadText">EMPTY</span></div>
+        <div class="greenHead">
+            <span id="rightCol2Text">EMPTY</span>
+        </div>
     </div>
     <div id="rightCol3" onclick="parseInfo(event)">
-        <span class="rightColNonColorCells">COMMUNITY</span>
+        <span id="rightCol3Text">COMMUNITY</span>
     </div>
     <div id="rightCol4" onclick="parseInfo(event)">
-        <div class="greenHead"><span class="greenHeadText">EMPTY</span></div>
+        <div class="greenHead">
+            <span id="rightCol4Text">EMPTY</span>
+        </div>
     </div>
     <div id="rightCol5" onclick="parseInfo(event)">
         <span id="rightCol5Text">TTC</span>
@@ -126,13 +158,17 @@
         <span id="rightCol6Text">CHANCE</span>
     </div>
     <div id="rightCol7" onclick="parseInfo(event)">
-        <div class="blueHead"><span class="blueHeadText">EMPTY</span></div>
+        <div class="blueHead">
+            <span id="rightCol7Text">EMPTY</span>
+        </div>
     </div>
     <div id="rightCol8" onclick="parseInfo(event)">
-        <span class="rightColNonColorCells">LUXURY TAX</span>
+        <span id="rightCol8Text">LUXURY TAX</span>
     </div>
     <div id="rightCol9" onclick="parseInfo(event)">
-        <div class="blueHead"><span class="blueHeadText">EMPTY</span></div>
+        <div class="blueHead">
+            <span id="rightCol9Text">EMPTY</span>
+        </div>
     </div>
 </div>
 <div id="propertyInfo">GENERIC</div>
