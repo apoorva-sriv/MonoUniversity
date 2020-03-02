@@ -1,607 +1,648 @@
 body {
     background-color: #5EB4E5;
+    font-family: "Josefin Sans", "Helvetica", sans-serif;
     margin-left: 20px;
-    font-family: "Josefin Sans";
-    zoom: 80%;    /* Added to fit the board vertically */
+    zoom: 80%; /* Added to fit the board vertically */
 }
 
 #board {
-    height: 900px;
-    width: 900px;
     background-color: #CEE6D0;
     display: block;
-    position: relative;
     float: left;
+    height: 900px;
+    position: relative;
+    width: 900px;
 }
 
 #propertyInfo {
-    height: 400px;
-    width: 250px;
     border: 1px solid black;
-    position: relative;
     float: left;
+    height: 400px;
+    position: relative;
+    width: 250px;
 }
 
 #propertyInfoHeader {
-    height: 50px;
-    width: 200px;
     border: 1px solid black;
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 24px;
-    font-family: "Courier New", Courier, bold;
+    font-family: "Courier New", Courier, bold, sans-serif;
     font-size: larger;
-    text-align: center
+    height: 50px;
+    margin-left: 24px;
+    margin-top: 10px;
+    position: absolute;
+    text-align: center;
+    width: 200px;
 }
 
 #propertyInfoHeaderNoColor {
-    height: 50px;
-    width: 200px;
-    position: absolute;
-    margin-top: 10px;
-    margin-left: 24px;
-    font-family: "Courier New", Courier, bold;
+    font-family: "Courier New", Courier, bold, sans-serif;
     font-size: larger;
-    text-align: center
+    height: 50px;
+    margin-left: 24px;
+    margin-top: 10px;
+    position: absolute;
+    text-align: center;
+    width: 200px;
 }
 
 #propertyInfoImage {
-    height: 100px;
-    width: 175px;
     display: block;
+    height: 100px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 70px;
+    width: 175px;
 }
 
 #propertyInfoText {
-    margin-top: 10px;
     margin-left: 5px;
+    margin-top: 10px;
 }
 
 #playerList {
-    height: 900px;
-    width: 250px;
     border: 1px solid black;
-    position: relative;
     float: left;
+    height: 900px;
+    position: relative;
+    width: 250px;
 }
 
 #diceDisplay {
-    height: 100px;
-    width: 200px;
     border: 1px solid black;
-    position: relative;
     float: left;
+    height: 100px;
+    position: relative;
+    width: 200px;
 }
 
 #centerImage {
-    width: 225px;
-    height: 225px;
     background-position: center center;
     background-repeat: no-repeat;
+    height: 225px;
+    left: 37.5%;
+    opacity: 0.4;
+    overflow: hidden;
     position: absolute;
     top: 37.5%;
-    left: 37.5%;
-    overflow: hidden;
-    opacity: 0.4;
+    width: 225px;
 }
 
 #cornerTileSE {
-    height: 120px;
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: 0px;
+    width: 120px;
 
 }
 
 #bottomRow1 {
-    height: 120px;
-    width: calc(652px / 9);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px);
+    width: calc(652px / 9);
 }
 
 #bottomRow2 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) + 4px);
-}
-
-#bottomRow2Text {
-	text-align: center;
-	display: block;
-	word-break: break-all;
-	position: relative;
-	top: 5px;
-	font-size: 15px;
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow3 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 2 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow4 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 3 + 4px);
-}
-
-#bottomRow4Text {
-	text-align: center;
-	display: block;
-	word-break: break-all;
-	position: relative;
-	top: 5px;
-	font-size: 15px;
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow5 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 4 + 4px);
-}
-
-#bottomRow5Text {
-	text-align: center;
-	display: block;
-	word-break: break-all;
-	position: relative;
-	top: 5px;
-	font-size: 15px;
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow6 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 5 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow7 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 6 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow8 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 7 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #bottomRow9 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
+    position: absolute;
     right: calc(0% + 124px + (652px / 9) * 8 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #cornerTileSW {
-    height: 120px;
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
     bottom: 0px;
+    height: 120px;
     left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #leftCol1 {
-    height: calc(652px / 9);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px);
+    height: calc(652px / 9);
+    left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #leftCol2 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
+}
+
+#leftCol2Text {
+    display: block;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 100px;
+    top: 24px;
 }
 
 #leftCol3 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 2 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #leftCol4 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 3 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #leftCol5 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 4 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
+}
+
+#leftCol5Text {
+    display: block;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 100px;
+    top: 19px;
 }
 
 #leftCol6 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 5 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #leftCol7 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 6 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
+}
+
+#leftCol7Text {
+    display: block;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 100px;
+    top: 8px;
 }
 
 #leftCol8 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 7 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #leftCol9 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
-    position: absolute;
-    left: 0px;
     bottom: calc(0% + 124px + (652px / 9) * 8 + 4px);
+    height: calc(652px / 9 - 4px);
+    left: 0px;
+    position: absolute;
+    width: 120px;
 }
 
 #cornerTileNW {
-    height: 120px;
-    width: 120px;
     border: 2px solid black;
+    height: 120px;
+    left: 0px;
     position: absolute;
     top: 0px;
-    left: 0px;
+    width: 120px;
+}
+
+.horizontalRowNonColorCell {
+    display: block;
+    font-size: 15px;
+    position: relative;
+    text-align: center;
+    top: 5px;
+    word-break: break-all;
 }
 
 #topRow1 {
-    height: 120px;
-    width: calc(652px / 9);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px);
+    width: calc(652px / 9);
 }
 
 #topRow2 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) + 4px);
-}
-
-#topRow2Text {
-	text-align: center;
-	display: block;
-	word-break: break-all;
-	position: relative;
-	top: 5px;
-	font-size: 15px;
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow3 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 2 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 2 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow4 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 3 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 3 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow5 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 4 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 4 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow6 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 5 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 5 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow7 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 6 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 6 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow8 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 7 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 7 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #topRow9 {
-    height: 120px;
-    width: calc(652px / 9 - 4px);
     border: 2px solid black;
+    height: 120px;
+    left: calc(0% + 124px + (652px / 9) * 8 + 4px);
     position: absolute;
     top: 0px;
-    left: calc(0% + 124px + (652px / 9) * 8 + 4px);
+    width: calc(652px / 9 - 4px);
 }
 
 #cornerTileNE {
-    height: 120px;
-    width: 120px;
     border: 2px solid black;
+    height: 120px;
     position: absolute;
-    top: 0px;
     right: 0px;
+    top: 0px;
+    width: 120px;
 }
 
 #rightCol1 {
-    height: calc(652px / 9);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px);
+    width: 120px;
 }
 
 #rightCol2 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) + 4px);
+    width: 120px;
 }
 
 #rightCol3 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 2 + 4px);
+    width: 120px;
+}
+
+.rightColNonColorCells {
+    display: block;
+    font-size: 15px;
+    left: 5px;
+    position: relative;
+    text-align: center;
+    transform: rotate(180deg);
+    word-break: break-all;
+    writing-mode: vertical-rl;
 }
 
 #rightCol4 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 3 + 4px);
+    width: 120px;
 }
 
 #rightCol5 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 4 + 4px);
+    width: 120px;
+}
+
+#rightCol5Text {
+    display: block;
+    font-size: 15px;
+    left: 5px;
+    position: relative;
+    text-align: center;
+    top: 20px;
+    transform: rotate(180deg);
+    word-break: break-all;
+    writing-mode: vertical-rl;
 }
 
 #rightCol6 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 5 + 4px);
+    width: 120px;
+}
+
+#rightCol6Text {
+    display: block;
+    font-size: 15px;
+    left: 5px;
+    position: relative;
+    text-align: center;
+    top: 1px;
+    transform: rotate(180deg);
+    word-break: break-all;
+    writing-mode: vertical-rl;
 }
 
 #rightCol7 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 6 + 4px);
+    width: 120px;
 }
 
 #rightCol8 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 7 + 4px);
+    width: 120px;
 }
 
 #rightCol9 {
-    height: calc(652px / 9 - 4px);
-    width: 120px;
     border: 2px solid black;
+    height: calc(652px / 9 - 4px);
     position: absolute;
     right: 0px;
     top: calc(0% + 124px + (652px / 9) * 8 + 4px);
+    width: 120px;
 }
 
 .purpleHead {
     background-color: purple;
-    width: 100%;
     height: 20%;
     text-align: center;
+    width: 100%;
 }
 
 .purpleHeadText {
     display: block;
+    font-size: 15px;
     position: relative;
     top: 30px;
-    font-size: 15px;
 }
 
 .cyanHead {
     background-color: cyan;
-    width: 100%;
     height: 20%;
     text-align: center;
+    width: 100%;
 }
 
 .cyanHeadText {
     display: block;
+    font-size: 15px;
     position: relative;
     top: 30px;
-    font-size: 15px;
 }
 
 .pinkHead {
     background-color: pink;
-    width: 20%;
-    height: 100%;
     float: right;
-    writing-mode: vertical-rl;
+    height: 100%;
     text-align: center;
+    width: 20%;
+    writing-mode: vertical-rl;
 }
 
 .pinkHeadText {
     display: block;
+    font-size: 15px;
     position: relative;
     right: 30px;
-    font-size: 15px;
 }
 
 .orangeHead {
     background-color: orange;
-    width: 20%;
-    height: 100%;
     float: right;
-    writing-mode: vertical-rl;
+    height: 100%;
     text-align: center;
+    width: 20%;
+    writing-mode: vertical-rl;
 }
 
 .orangeHeadText {
     display: block;
+    font-size: 15px;
     position: relative;
     right: 30px;
-    font-size: 15px;
 }
 
 .redHead {
     background-color: red;
-    width: 100%;
-    height: 20%;
     float: top;
+    height: 20%;
     text-align: center;
+    width: 100%;
 }
 
 .redHeadText {
     display: block;
+    font-size: 15px;
     position: relative;
     top: 30px;
-    font-size: 15px;
 }
 
 .yellowHead {
     background-color: yellow;
-    width: 100%;
-    height: 20%;
     float: top;
+    height: 20%;
     text-align: center;
+    width: 100%;
 }
 
 .yellowHeadText {
     display: block;
+    font-size: 15px;
     position: relative;
     top: 30px;
-    font-size: 15px;
 }
 
 .greenHead {
     background-color: green;
-    width: 20%;
-    height: 100%;
     float: left;
+    height: 100%;
+    width: 20%;
 }
 
 .greenHeadText {
-    transform: rotate(-90deg);
     display: block;
+    font-size: 15px;
+    left: 30px;
     position: relative;
     top: 42px;
-    left: 30px;
-    font-size: 15px;
+    transform: rotate(-90deg);
 }
 
 .blueHead {
     background-color: blue;
-    width: 20%;
-    height: 100%;
     float: left;
+    height: 100%;
+    width: 20%;
 }
 
 .blueHeadText {
-    transform: rotate(-90deg);
     display: block;
+    font-size: 15px;
+    left: 30px;
     position: relative;
     top: 42px;
-    left: 30px;
-    font-size: 15px;
+    transform: rotate(-90deg);
 }
