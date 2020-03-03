@@ -6,10 +6,10 @@
 }
 
 .item {
-    width: 400px;
+    width: 29%;
     height: 400px;
     background: white;
-    margin: 10px;
+    margin: 2%; /* 3 items is horizaontal space taken */
     border-radius: 10px;
 }
 
@@ -35,6 +35,30 @@
     display: block;
     margin: auto;
     min-width: 60%;
-    font-size: 15px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
+.item-name{
+    font-size: 200%;
+    font-weight: bold;
+}
+
+#shop-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#leave-btn{
+    width: 40%;
+    height: 80px;
+    margin-bottom: 2%;
+    font-size: 200%;
+    background-color: rgb(3, 96, 156);
+    color: white;
+}
+
+#leave-btn:hover{
+    background-color: rgb(7, 137, 222);
+}

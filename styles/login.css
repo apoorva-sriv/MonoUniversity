@@ -32,10 +32,6 @@
     color: red;
 }
 
-.logo{
-    width: 100px;
-}
-
 #content-box.login-box{
     position: relative;
     float:right;

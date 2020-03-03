@@ -10,7 +10,8 @@ body {
     margin: 0;
     /* background-color: #4D5D53; */
     /* background-color: rgb(18, 231, 114); */
-    background-image: linear-gradient(to bottom left, rgb(12, 123, 194), rgb(94, 180, 229));
+    /* background-image: linear-gradient(to left, rgb(12, 123, 194), rgb(94, 180, 229)); */
+    background-color: rgb(94, 180, 229);
 }
 
 .vcenter{
@@ -27,6 +28,7 @@ body {
     display: -webkit-flex;
     display: flex;
     justify-content: center;
+    font-size: 150%;
 }
 
 #header{
@@ -78,12 +80,12 @@ body {
     padding-right: 10px;
     height: 100%;
     float: right;
-    background: lightblue;
+    background-color: lightblue;
 }
 
-#profile:hover {
+/* #profile:hover {
     background: blue;
-}
+} */
 
 #pfp {
     height: 100%;
@@ -102,4 +104,8 @@ button{
 
 button:hover{
     background: lightblue;
+}
+
+.logo{
+    width: 100px;
 }

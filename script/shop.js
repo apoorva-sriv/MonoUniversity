@@ -17,7 +17,7 @@ function addItem(item){
 
     const description = document.createElement('div');
     description.className = 'description';
-    description.innerHTML = '<strong>'+ item.name + '</strong><br />' +
+    description.innerHTML = '<span class="item-name">'+ item.name + '</span><br />' +
                 item.description;
     div.appendChild(description);
     div.appendChild(document.createElement('br'));
@@ -32,8 +32,13 @@ function addItem(item){
     buy.addEventListener('click', (e) => buyItem(e, div, item));
 }
 
+function item (){
+
+}
+
 function fetchItems(){
     //TODO fetch items from server
+
     return Array(6).fill({
         image: 'img/tenkai.png',
         name: 'Tenkai',
@@ -54,6 +59,11 @@ function buyItem(e, div, item){
     e.target.innerHTML = 'Bought';
     item.bought = true;
 }
+
+const leaveBtn = document.querySelector("#leave-btn")
+leaveBtn.addEventListener("click", (e)=>{
+    window.location.replace('./newgame.html');
+})
 
 clearItems();
 addItems(fetchItems());
