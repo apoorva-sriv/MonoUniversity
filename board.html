@@ -102,7 +102,7 @@
         <div id="leftCol6Price">PRICE $200</div>
     </div>
     <div id="leftCol7" onclick="parseInfo(event)">
-        <div id="leftCol7Text">EMPTY</div>
+        <div id="leftCol7Text">COMMUNITY</div>
         <div id="leftCol7ImageContainer">
             <img id="leftCol7Image" src="img/communityChest.gif" alt="Community Chest"/>
         </div>
@@ -220,11 +220,19 @@
         <div id="rightCol9Price">PRICE $200</div>
     </div>
 </div>
-<div id="propertyInfo">GENERIC</div>
-<div id="playerList">PLAYERS</div>
-<div id="diceDisplay">INSERT DIE HERE</div>
-<button id="dice" onclick="playerRollTheDice(event)">RTD</button>
-<button id="buy">BUY</button>
-<button id="sell">SELL</button>
+<div id="sidebar">
+	<div id="playerList">
+		PLAYERS
+		<div id="diceDisplay" onclick="playerRollTheDice(event)">
+			<img id="dice1" src="img/dice1.png"></img>
+			<img id="dice2" src="img/dice1.png"></img>
+		</div>
+	</div>
+	<div id="propertyInfo">GENERIC</div>
+</div>
+<div id="player0">M</div>
+<div id="player1">N</div>
+<div id="player2">Q</div>
+<div id="player3">S</div>
 </body>
 </html>
