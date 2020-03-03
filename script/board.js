@@ -54,6 +54,9 @@ const GAMESTATE_AI_ROLL = 32;
 const GAMESTATE_AI_MOVE = 64;
 const GAMESTATE_AI_DECISION = 128;
 
+// Player Colors
+const playerColors = [ "magenta", "blue", "green", "orange" ];
+
 // Building codes, building names and descriptions are stored here for convenience
 const tileNames = [ ["GO", "GO",],
 					["MB","Mining Building"],
@@ -334,6 +337,8 @@ function initializePlayerList(board)
 		playerSlot.setAttribute("id","playerSlot");
 		if (board.playerTurn == i)
 			playerSlot.setAttribute("style","color:red");
+		else
+			playerSlot.setAttribute("style","color:" + playerColors[actualPlayerId]);
 		const playerSlotText = document.createTextNode("Player " + actualPlayerId);
 		playerSlot.appendChild(playerSlotText);
 		
@@ -539,7 +544,7 @@ function nextTurn()
 	if (gameBoard.dice[0] != gameBoard.dice[1])
 	{
 		// Start off by turning the original player name back to black
-		playerListColor(gameBoard.playerTurn, "black");
+		playerListColor(gameBoard.playerTurn, playerColors[gameBoard.playerTurns[gameBoard.playerTurn]]);
 		
 		if (gameBoard.playerTurn + 1 >= gameBoard.players.length)
 			gameBoard.playerTurn = 0;
