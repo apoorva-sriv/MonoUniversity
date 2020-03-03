@@ -2,7 +2,16 @@
 
 'use strict';
 
+//==========================================================================
+// Global Variables needed
+//==========================================================================
+
 let login = null;
+let diceRolling = false;
+
+//==========================================================================
+// Elements that would normally be stored in an .h file
+//==========================================================================
 
 // Some constants needed to construct the board
 const maxTiles = 40;
@@ -80,13 +89,17 @@ const tileNames = [ ["GO", "GO",],
 					["CF","Cardinal Flahiff Building"],
 					["WH","Whitney Hall"],
 					["COMMUNITY","Community"],
-					["CH","Convocation Hall"],
+					["CO","Convocation Hall"],
 					["TTC EAST","TTC East"],
 					["CHANCE","Chance"],
 					["EX","Exam Center"],
-					["INCOME TAX","Income Tax"],
+					["IT","Income Tax"],
 					["AH","Alumni Hall"]
 ];
+
+//==========================================================================
+// 'Class' definitions
+//==========================================================================
 
 // General purpose user class
 function userClass(username, password, id)
@@ -148,6 +161,10 @@ function tileClass()
 	this.owner = null,
 	this.buildings = 0
 }
+
+//==========================================================================
+// Initializing and testing
+//==========================================================================
 
 window.addEventListener('load', readyBoard);
 
@@ -242,12 +259,12 @@ function initialzeBoard(board)
 		else if (utilityTiles.includes(i) || ttcTiles.includes(i) || taxTiles.includes(i))
 		{
 			boardHTMLTile.children[0].innerHTML = newTile.name;
-			boardHTMLTile.children[1].innerHTML = 'PRICE $' + newTile.price;
+			boardHTMLTile.children[1].innerHTML = '$' + newTile.price;
 		}
 		else
 		{
 			boardHTMLTile.children[1].innerHTML = newTile.name;
-			boardHTMLTile.children[2].innerHTML = 'PRICE $' + newTile.price;
+			boardHTMLTile.children[2].innerHTML = '$' + newTile.price;
 		}
 		
 		// Set the prices
@@ -280,6 +297,12 @@ function initializePlayers(board, numPlayers)
 		board.playerTurns.push(i);
 	}
 	
+	// Get the player pieces in position
+	for (let i = 0; i < numPlayers; i++)
+	{	
+		offsetPiece(i, 0);
+	}
+	
 	// Shuffle playing order
 	board.playerTurns.sort(() => Math.random() - 0.5);
 	console.log(board.playerTurns);
@@ -292,6 +315,7 @@ function initializePlayers(board, numPlayers)
 	else
 	{
 		board.gameState = GAMESTATE_PLAYER_TURN;
+		highlightDice();
 	}
 	
 	console.log('Player ' + board.playerTurns[board.playerTurn] + "'s turn ");
@@ -308,6 +332,8 @@ function initializePlayerList(board)
 		const actualPlayerId = board.playerTurns[i];
 		const playerSlot = document.createElement("div");
 		playerSlot.setAttribute("id","playerSlot");
+		if (board.playerTurn == i)
+			playerSlot.setAttribute("style","color:red");
 		const playerSlotText = document.createTextNode("Player " + actualPlayerId);
 		playerSlot.appendChild(playerSlotText);
 		
@@ -326,7 +352,7 @@ function initializePlayerList(board)
 			{
 				const playerKickButton = document.createElement("button");
 				playerKickButton.setAttribute("id","kickButton");
-				playerKickButton.setAttribute("onclick","playerKick(event)");
+				playerKickButton.setAttribute("onclick","playerKick(event, " + actualPlayerId + ")");
 				const playerKickButtonText = document.createTextNode("KICK");	
 				playerKickButton.appendChild(playerKickButtonText);
 				playerSlot.appendChild(playerKickButton);
@@ -451,7 +477,10 @@ function playerRollTheDice(e)
 		return;
 	
 	// Immediately roll the dice for the player
-	rollTheDice();
+	gameBoard.gameState = GAMESTATE_PLAYER_ROLL;
+	startDiceRoll();
+	lowlightDice();
+	setTimeout(rollTheDice, 2000);
 	
 }
 
@@ -463,27 +492,25 @@ function aiRollTheDice()
 		return;
 	
 	// Roll the dice
-	rollTheDice();
+	gameBoard.gameState = GAMESTATE_AI_ROLL;
+	startDiceRoll();
+	setTimeout(rollTheDice, 2000);
 }
 
 // Rolling the dice
 function rollTheDice()
 {
 	const currentPlayer = gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]];
-	
-	if (currentPlayer.user == null)
-		gameBoard.gameState = GAMESTATE_AI_ROLL;
-	else
-		gameBoard.gameState = GAMESTATE_PLAYER_ROLL;
-	
+		
 	// Dice rolling away
 	gameBoard.dice[0] = 1 + Math.floor(Math.random() * Math.floor(6));
 	gameBoard.dice[1] =  1 + Math.floor(Math.random() * Math.floor(6));
+	stopDiceRoll(gameBoard.dice[0], gameBoard.dice[1]);
 	
 	console.log('Player ' + gameBoard.playerTurns[gameBoard.playerTurn] + ' has rolled ' + gameBoard.dice[0] + ' ' + gameBoard.dice[1]);
 	
 	// Delay player movement
-	setTimeout(playerMove, 2000);
+	setTimeout(playerMove, 1000);
 }
 
 // Moving the player
@@ -498,6 +525,9 @@ function playerMove()
 	
 	console.log('Player ' + gameBoard.playerTurns[gameBoard.playerTurn] + ' is now at position ' + player.position);
 	
+	// Move physical piece for that player
+	offsetPiece(gameBoard.playerTurns[gameBoard.playerTurn], player.position);
+	
 	// Hand the turn to the next player
 	setTimeout(nextTurn, 2000);
 }
@@ -508,10 +538,16 @@ function nextTurn()
 	// Player keeps his turn if he lands double, so check before incrementing.
 	if (gameBoard.dice[0] != gameBoard.dice[1])
 	{
+		// Start off by turning the original player name back to black
+		playerListColor(gameBoard.playerTurn, "black");
+		
 		if (gameBoard.playerTurn + 1 >= gameBoard.players.length)
 			gameBoard.playerTurn = 0;
 		else
 			gameBoard.playerTurn += 1;
+		
+		// Turn the next player's name to red
+		playerListColor(gameBoard.playerTurn, "red");
 	}
 	
 	// Check whose turn it is
@@ -523,23 +559,136 @@ function nextTurn()
 	else
 	{
 		gameBoard.gameState = GAMESTATE_PLAYER_TURN
+		highlightDice();
 	}
 	console.log('Player ' + gameBoard.playerTurns[gameBoard.playerTurn] + "'s turn ");
 	
 }
 
-function playerKick(e)
+// Change color of player in player list. Used to indicate whose turn it is
+function playerListColor(playerIndex, color)
+{
+	const playerList = document.getElementById("playerList");
+	playerList.children[playerIndex + 1].setAttribute("style","color:" + color);
+}
+
+// Kick an AI player
+function playerKick(e, id)
 {
 	// Prevent default
 	e.preventDefault();
 	
-	console.log("Kick me.");
+	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
+		return;
+	
+	console.log("Kick " + id + ".");
 }
 
+// Client resign
 function playerResign(e)
 {
 	// Prevent default
 	e.preventDefault();
 	
+	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
+		return;
+		
 	console.log("Loser.");
+}
+
+//==========================================================================
+// Dice rolling animations functions
+//==========================================================================
+
+// Start rolling the dice
+function startDiceRoll()
+{
+	// Immediately start and set dice rolling flag to true
+	diceRolling = true;
+	loopDiceRoll();
+}
+
+// Loop through and keep setting it away
+function loopDiceRoll()
+{
+	// Only do this if the dice is rolling
+	if (diceRolling)
+	{
+		const diceSection = document.getElementById("diceDisplay");
+		const dice1 = diceSection.children[0];
+		const dice2 = diceSection.children[1];
+		
+		dice1.setAttribute("src", "img/dice" + (1 + Math.floor(Math.random() * Math.floor(6))) + ".png" );
+		dice2.setAttribute("src", "img/dice" + (1 + Math.floor(Math.random() * Math.floor(6))) + ".png" );
+		
+		// Do this every 10th of a second
+		setTimeout(loopDiceRoll, 100);
+	}
+}
+
+// Stop it, freeze with the die set to what the current player rolled
+function stopDiceRoll(dice1val, dice2val)
+{
+	diceRolling = false;
+	const diceSection = document.getElementById("diceDisplay");
+	const dice1 = diceSection.children[0];
+	const dice2 = diceSection.children[1];
+	
+	dice1.setAttribute("src", "img/dice" + dice1val + ".png" );
+	dice2.setAttribute("src", "img/dice" + dice2val + ".png" );
+}
+
+//==========================================================================
+// Border glowing shift for the Dice when it's the player's turn
+//==========================================================================
+
+// When it's the player's turn
+function highlightDice()
+{
+	const diceSection = document.getElementById("diceDisplay");
+	diceSection.style.border = "2px solid red";
+}
+
+// When it's no longer the player's turn
+function lowlightDice()
+{
+	const diceSection = document.getElementById("diceDisplay");
+	diceSection.style.border = "2px solid black";
+}
+
+
+//==========================================================================
+// Additional Helper functions
+//==========================================================================
+
+// From https://plainjs.com/javascript/styles/get-the-position-of-an-element-relative-to-the-document-24/
+// Returns the offset of input element
+function offset(el) {
+    var rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
+
+// Get offset for each of the player pieces
+function offsetPiece(playerNum, tile)
+{
+	const physicalBoard = document.getElementById("board");
+	const tilePlate = physicalBoard.children[tile + 1];
+	const tilePlateOffset = offset(tilePlate);
+	
+	let leftOffset = 0;
+	let topOffset = 0;
+	
+	switch(playerNum)
+	{
+		case 1: leftOffset = 40; topOffset = 0; break;
+		case 2: leftOffset = 0; topOffset = 40; break;
+		case 3: leftOffset = 40; topOffset = 40; break;
+		default: leftOffset = 0; topOffset = 0; break;
+	}
+		
+	const playerPiece = document.getElementById("player" + playerNum);
+	playerPiece.style.left = (tilePlateOffset.left + (tilePlate.style.width / 2) + leftOffset ) + "px";
+	playerPiece.style.top = (tilePlateOffset.top + (tilePlate.style.height / 2) + topOffset ) + "px";
 }
