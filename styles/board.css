@@ -793,6 +793,17 @@ body {
     word-break: break-all;
 }
 
+#rightCol1Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: 19px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
 #rightCol2 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -808,6 +819,17 @@ body {
     left: -20px;
     position: relative;
     top: 37px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
+#rightCol2Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: 19px;
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
@@ -834,6 +856,17 @@ body {
     top: 2px;
 }
 
+#rightCol3Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: -38px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
 #rightCol4 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -849,6 +882,17 @@ body {
     left: -20px;
     position: relative;
     top: 37px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
+#rightCol4Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: 18px;
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
@@ -873,6 +917,17 @@ body {
     transform: rotate(180deg);
     word-break: break-all;
     writing-mode: vertical-rl;
+}
+
+#rightCol5Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: 6px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
 }
 
 #rightCol6 {
@@ -916,6 +971,17 @@ body {
     word-break: break-all;
 }
 
+#rightCol7Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: 18px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
 #rightCol8 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -937,6 +1003,17 @@ body {
     top: 2px;
 }
 
+#rightCol8Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: -38px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
 #rightCol9 {
     border: 2px solid black;
     height: calc(652px / 9 - 4px);
@@ -952,6 +1029,17 @@ body {
     left: -20px;
     position: relative;
     top: 37px;
+    transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
+}
+
+#rightCol9Price {
+    display: block;
+    font-size: 12px;
+    left: 49px;
+    position: relative;
+    top: 16px;
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
