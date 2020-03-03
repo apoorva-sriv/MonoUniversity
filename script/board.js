@@ -48,12 +48,12 @@ const GAMESTATE_AI_DECISION = 128;
 // Building codes, building names and descriptions are stored here for convenience
 const tileNames = [ ["GO", "GO",],
 					["MB","Mining Building"],
-					["CM","Community"],
+					["COMMUNITY","Community"],
 					["PB","Pharmacy Building"],
 					["TF","Tuition Fees"],
 					["TTCS","TTC South"],
 					["BA","Bahen Center"],
-					["CH","Chance"],
+					["CHANCE","Chance"],
 					["ES","Earth Sciences"],
 					["SS","Sidney Smith"],
 					["AS","Academic Suspension"],
@@ -63,12 +63,12 @@ const tileNames = [ ["GO", "GO",],
 					["LB","Lassonde Building"],
 					["TTCW","TTC West"],
 					["RW","Ramsay Wright Labs"],
-					["CM","Community"],
+					["COMMUNITY","Community"],
 					["HH","Hart House"],
 					["MP","M-Physics Labs"],
 					["AB","Anthropology Building"],
 					["AC","Architecture Building"],
-					["CH","Chance"],
+					["CHANCE","Chance"],
 					["VC","Victoria College"],
 					["BC","Bancroft Building"],
 					["TTCN","TTC North"],
@@ -79,12 +79,12 @@ const tileNames = [ ["GO", "GO",],
 					["PO","Political Offense"],
 					["CF","Cardinal Flahiff Building"],
 					["WH","Whitney Hall"],
-					["CM","Community"],
+					["COMMUNITY","Community"],
 					["CO","Convocation Hall"],
 					["TTCE","TTC East"],
-					["CH","Chance"],
+					["CHANCE","Chance"],
 					["EX","Exam Center"],
-					["IT","Income Tax"],
+					["INCOME TAX","Income Tax"],
 					["AH","Alumni Hall"]
 ];
 
@@ -242,12 +242,12 @@ function initialzeBoard(board)
 		else if (utilityTiles.includes(i) || ttcTiles.includes(i) || taxTiles.includes(i))
 		{
 			boardHTMLTile.children[0].innerHTML = newTile.name;
-			boardHTMLTile.children[1].innerHTML = '$' + newTile.price;
+			boardHTMLTile.children[1].innerHTML = 'PRICE $' + newTile.price;
 		}
 		else
 		{
 			boardHTMLTile.children[1].innerHTML = newTile.name;
-			boardHTMLTile.children[2].innerHTML = '$' + newTile.price;
+			boardHTMLTile.children[2].innerHTML = 'PRICE $' + newTile.price;
 		}
 		
 		// Set the prices

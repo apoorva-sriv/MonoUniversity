@@ -139,12 +139,17 @@ body {
     word-break: break-all;
 }
 
-#bottomRow2Price {
-    font-size: 12px;
-    position: relative;
-    top: 81px;
+#bottomRow2ImageContainer {
+    height: 72%;
+    width: 100%;
     text-align: center;
-    word-break: break-all;
+    position: absolute;
+    bottom: -3px;
+}
+
+#bottomRow2Image {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 #bottomRow3 {
@@ -420,7 +425,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -33px;
+    top: -12px;
 }
 
 #leftCol4 {
@@ -449,7 +454,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -33px;
+    top: -14px;
 }
 
 #leftCol5 {
@@ -478,7 +483,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -17px;
+    top: -29px;
 }
 
 #leftCol6 {
@@ -497,7 +502,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     left: 72px;
-    top: 19px;
+    top: 25px;
 }
 
 #leftCol6Price {
@@ -507,7 +512,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -33px;
+    top: -17px;
 }
 
 #leftCol7 {
@@ -526,17 +531,27 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     left: 95px;
-    top: 16px;
+    top: 2px;
 }
 
-#leftCol7Price {
-    font-size: 12px;
-    position: relative;
-    text-align: center;
-    word-break: break-all;
-    writing-mode: vertical-rl;
+#leftCol7ImageContainer {
+    width: 100%;
     height: 100%;
-    top: -33px;
+}
+
+#leftCol7Image {
+
+    transform: rotate(90deg);
+
+    max-height: 100%;
+
+    max-width: 100%;
+
+    top: -65px;
+
+    position: relative;
+
+    left: 19px;
 }
 
 #leftCol8 {
@@ -565,7 +580,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -33px;
+    top: -16px;
 }
 
 #leftCol9 {
@@ -594,7 +609,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -33px;
+    top: -16px;
 }
 
 #cornerTileNW {
@@ -923,14 +938,24 @@ body {
     top: 2px;
 }
 
-#rightCol3Price {
-    font-size: 12px;
-    left: 49px;
-    position: relative;
-    top: -38px;
+#rightCol3ImageContainer {
+    width: 100%;
+    height: 100%;
+}
+
+#rightCol3Image {
+
     transform: rotate(-90deg);
-    text-align: center;
-    word-break: break-all;
+
+    max-height: 100%;
+
+    max-width: 100%;
+
+    top: -65px;
+
+    position: relative;
+
+    left: 31px;
 }
 
 #rightCol4 {
@@ -1022,7 +1047,7 @@ body {
 
 #rightCol6Image {
     transform: rotate(-90deg);
-    height: 176%;
+    height: 175%;
     width: 36%;
     position: relative;
     top: -24px;
@@ -1075,14 +1100,14 @@ body {
     transform: rotate(180deg);
     word-break: break-all;
     writing-mode: vertical-rl;
-    top: 2px;
+    top: 3.5px;
 }
 
 #rightCol8Price {
     font-size: 12px;
     left: 49px;
     position: relative;
-    top: -38px;
+    top: 35px;
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
@@ -1111,7 +1136,7 @@ body {
     font-size: 12px;
     left: 49px;
     position: relative;
-    top: 16px;
+    top: -54px;
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
