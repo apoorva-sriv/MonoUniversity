@@ -187,7 +187,7 @@ body {
 }
 
 #bottomRow4Text {
-    font-size: 14px;
+    font-size: 20px;
     position: relative;
     text-align: center;
     top: 5px;
@@ -197,9 +197,27 @@ body {
 #bottomRow4Price {
     font-size: 12px;
     position: relative;
-    top: 81px;
+    top: 42px;
     text-align: center;
     word-break: break-all;
+}
+
+#bottomRow4ImageContainer {
+    /* height: 35%; */
+    /* width: 92%; */
+    text-align: center;
+    position: absolute;
+    bottom: -15px;
+}
+
+#bottomRow4Image {
+    max-height: 100%;
+    max-width: 100%;
+    top: -23px;
+    position: relative;
+    height: 40px;
+    width: 42px;
+    left: 15px;
 }
 
 #bottomRow5 {
@@ -225,6 +243,19 @@ body {
     top: 81px;
     text-align: center;
     word-break: break-all;
+}
+
+#bottomRow5ImageContainer {
+    height: 72%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: -15px;
+}
+
+#bottomRow5Image {
+    max-height: 100%;
+    max-width: 100%;
 }
 
 #bottomRow6 {
@@ -399,6 +430,23 @@ body {
     top: -12px;
 }
 
+#leftCol2ImageContainer {
+    height: 72%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 3px;
+}
+
+#leftCol2Image {
+    transform: rotate(90deg);
+    height: 67.8125px;
+    width: 66.4375px;
+    position: relative;
+    top: -15px;
+    left: -3px;
+}
+
 #leftCol3 {
     border: 2px solid black;
     bottom: calc(0% + 124px + (652px / 9) * 2 + 4px);
@@ -484,6 +532,23 @@ body {
     writing-mode: vertical-rl;
     height: 100%;
     top: -49px;
+}
+
+#leftCol5ImageContainer {
+    height: 72%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 3px;
+}
+
+#leftCol5Image {
+    transform: rotate(90deg);
+    height: 26.8125px;
+    width: 68.4375px;
+    position: relative;
+    top: 5px;
+    left: 2px;
 }
 
 #leftCol6 {
@@ -743,6 +808,19 @@ body {
     word-break: break-all;
 }
 
+#topRow5ImageContainer {
+    height: 72%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: -15px;
+}
+
+#topRow5Image {
+    max-height: 100%;
+    max-width: 100%;
+}
+
 #topRow5Price {
     font-size: 12px;
     position: relative;
@@ -945,17 +1023,17 @@ body {
 
 #rightCol3Image {
 
-    transform: rotate(-90deg);
+transform: rotate(-90deg);
 
-    max-height: 100%;
+max-height: 100%;
 
-    max-width: 100%;
+max-width: 100%;
 
-    top: -65px;
+top: -63px;
 
-    position: relative;
+position: relative;
 
-    left: 31px;
+left: 31px;
 }
 
 #rightCol4 {
@@ -1015,6 +1093,23 @@ body {
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
+}
+
+#rightCol5ImageContainer {
+    height: 72%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 3px;
+}
+
+#rightCol5Image {
+    transform: rotate(-90deg);
+    height: 26.8125px;
+    width: 68.4375px;
+    position: relative;
+    top: 5px;
+    left: 2px;
 }
 
 #rightCol6 {
@@ -1093,14 +1188,13 @@ body {
 }
 
 #rightCol8Text {
-    font-size: 14px;
+    font-size: 20px;
     left: 5px;
     position: relative;
     text-align: center;
     transform: rotate(180deg);
     word-break: break-all;
     writing-mode: vertical-rl;
-    top: 3.5px;
 }
 
 #rightCol8Price {
@@ -1111,6 +1205,23 @@ body {
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
+}
+
+#rightCol8ImageContainer {
+    height: 72%;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 3px;
+}
+
+#rightCol8Image {
+    transform: rotate(-90deg);
+    height: 31%;
+    width: 12%;
+    position: relative;
+    top: 7px;
+    left: 19px;
 }
 
 #rightCol9 {
