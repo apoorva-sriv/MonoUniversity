@@ -1021,8 +1021,12 @@ body {
 }
 
 #rightCol6Image {
-    max-height: 100%;
-    max-width: 100%;
+    transform: rotate(-90deg);
+    height: 176%;
+    width: 36%;
+    position: relative;
+    top: -24px;
+    left: 12px;
 }
 
 #rightCol7 {
