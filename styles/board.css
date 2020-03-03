@@ -1,7 +1,7 @@
 body {
     background-color: #5EB4E5;
     font-family: "Oswald", "Helvetica", sans-serif;
-    margin-left: 20px;
+	margin-left: 20px;
     zoom: 80%; /* Added to fit the board vertically */
 }
 
@@ -15,8 +15,8 @@ body {
 
 #propertyInfo {
     border: 2px solid black;
-    float: left;
-    height: 400px;
+    float: bottom;
+    height: 442px;
     position: relative;
     width: 250px;
 }
@@ -46,7 +46,8 @@ body {
     width: 200px;
 }
 
-#propertyInfoImage {
+.propertyInfoImage {
+	display: block;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -57,22 +58,6 @@ body {
 #propertyInfoText {
     margin-left: 5px;
     margin-top: 10px;
-}
-
-#playerList {
-    border: 2px solid black;
-    float: left;
-    height: 900px;
-    position: relative;
-    width: 250px;
-}
-
-#diceDisplay {
-    border: 2px solid black;
-    float: left;
-    height: 100px;
-    position: relative;
-    width: 200px;
 }
 
 #centerImage {
@@ -1321,4 +1306,101 @@ left: 31px;
     height: 100%;
     width: 20%;
     border-right: 2px solid black;
+}
+
+#player0 {
+	position: absolute;
+    font-family: "Wingdings";
+    font-size: 40px;
+	text-align: center;
+	transition: all ease-in-out 1000ms;
+	color: red;
+}
+
+#player1 {
+	position: absolute;
+    font-family: "Wingdings";
+    font-size: 40px;
+	text-align: center;
+	transition: all ease-in-out 1000ms;
+	color: blue;
+}
+
+#player2 {
+	position: absolute;
+    font-family: "Wingdings";
+    font-size: 40px;
+	text-align: center;
+	transition: all ease-in-out 1000ms;
+	color: green;
+}
+
+#player3 {
+	position: absolute;
+    font-family: "Wingdings";
+    font-size: 40px;
+	text-align: center;
+	transition: all ease-in-out 1000ms;
+	color: gold;
+}
+
+#playerList {
+    border: 2px solid black;
+    float: top;
+    height: 450px;
+    position: relative;
+    width: 250px;
+	font-size: 20px;
+	text-align: center;
+}
+
+#playerSlot {
+	display: block;
+	position: relative;
+	margin-left: 30px;
+    margin-right: 30px;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#diceDisplay {
+  content: "";
+  clear: both;
+  display: table;
+  border: 2px solid black;
+  float: center;
+  position: relative;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#dice1 {
+	float: left;
+	width: 33.33%;
+	padding: 5px;
+	margin-left: 15px;
+}
+
+#dice2 {
+	float: left;
+	width: 33.33%;
+	padding: 5px;
+}
+
+#kickButton {
+	float: right;
+	margin-right: 20px;
+}
+
+#resignButton {
+	float: right;
+	margin-right: 20px;
+}
+
+#sidebar {
+	position: relative;
+	float: left;
+	background-color: #CEE6D0;
+	max-height: 900px;
 }
