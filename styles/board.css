@@ -473,7 +473,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     left: 95px;
-    top: 22px;
+    top: 11px;
 }
 
 #leftCol5Price {
@@ -483,7 +483,7 @@ body {
     word-break: break-all;
     writing-mode: vertical-rl;
     height: 100%;
-    top: -29px;
+    top: -49px;
 }
 
 #leftCol6 {
@@ -1001,7 +1001,7 @@ body {
     left: 5px;
     position: relative;
     text-align: center;
-    top: 20px;
+    top: 12px;
     transform: rotate(180deg);
     word-break: break-all;
     writing-mode: vertical-rl;
@@ -1011,7 +1011,7 @@ body {
     font-size: 12px;
     left: 49px;
     position: relative;
-    top: 6px;
+    top: -21px;
     transform: rotate(-90deg);
     text-align: center;
     word-break: break-all;
