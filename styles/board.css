@@ -278,15 +278,6 @@ body {
     word-break: break-all;
 }
 
-#bottomRow7Price {
-    display: block;
-    font-size: 12px;
-    position: relative;
-    top: 79px;
-    text-align: center;
-    word-break: break-all;
-}
-
 #bottomRow8 {
     border: 2px solid black;
     bottom: 0px;
@@ -581,15 +572,6 @@ body {
     position: relative;
     text-align: center;
     top: 5px;
-    word-break: break-all;
-}
-
-#topRow2Price {
-    display: block;
-    font-size: 12px;
-    position: relative;
-    top: 79px;
-    text-align: center;
     word-break: break-all;
 }
 
