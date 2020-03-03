@@ -31,6 +31,7 @@ body {
     margin-top: 10px;
     position: absolute;
     text-align: center;
+    word-break: break-all;
     width: 200px;
 }
 
@@ -42,6 +43,7 @@ body {
     margin-top: 10px;
     position: absolute;
     text-align: center;
+    word-break: break-all;
     width: 200px;
 }
 
@@ -94,7 +96,6 @@ body {
     position: absolute;
     right: 0px;
     width: 120px;
-
 }
 
 #bottomRow1 {
@@ -110,7 +111,18 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#bottomRow1Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #bottomRow2 {
@@ -131,6 +143,15 @@ body {
     word-break: break-all;
 }
 
+#bottomRow2Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #bottomRow3 {
     border: 2px solid black;
     bottom: 0px;
@@ -144,7 +165,18 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#bottomRow3Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #bottomRow4 {
@@ -162,6 +194,15 @@ body {
     position: relative;
     text-align: center;
     top: 5px;
+    word-break: break-all;
+}
+
+#bottomRow4Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
     word-break: break-all;
 }
 
@@ -183,6 +224,15 @@ body {
     word-break: break-all;
 }
 
+#bottomRow5Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #bottomRow6 {
     border: 2px solid black;
     bottom: 0px;
@@ -196,7 +246,18 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#bottomRow6Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #bottomRow7 {
@@ -217,6 +278,15 @@ body {
     word-break: break-all;
 }
 
+#bottomRow7Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #bottomRow8 {
     border: 2px solid black;
     bottom: 0px;
@@ -230,7 +300,18 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#bottomRow8Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #bottomRow9 {
@@ -246,7 +327,18 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#bottomRow9Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #cornerTileSW {
@@ -271,7 +363,11 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    right: 30px;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 72px;
+    top: 19px;
 }
 
 #leftCol2 {
@@ -290,7 +386,7 @@ body {
     text-align: center;
     word-break: break-all;
     writing-mode: vertical-rl;
-    left: 100px;
+    left: 95px;
     top: 24px;
 }
 
@@ -307,7 +403,11 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    right: 30px;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 72px;
+    top: 19px;
 }
 
 #leftCol4 {
@@ -323,7 +423,11 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    right: 30px;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 72px;
+    top: 19px;
 }
 
 #leftCol5 {
@@ -342,7 +446,7 @@ body {
     text-align: center;
     word-break: break-all;
     writing-mode: vertical-rl;
-    left: 100px;
+    left: 95px;
     top: 22px;
 }
 
@@ -359,7 +463,11 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    right: 30px;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 72px;
+    top: 19px;
 }
 
 #leftCol7 {
@@ -378,7 +486,7 @@ body {
     text-align: center;
     word-break: break-all;
     writing-mode: vertical-rl;
-    left: 100px;
+    left: 95px;
     top: 16px;
 }
 
@@ -395,7 +503,11 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    right: 30px;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 72px;
+    top: 19px;
 }
 
 #leftCol9 {
@@ -411,7 +523,11 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    right: 30px;
+    text-align: center;
+    word-break: break-all;
+    writing-mode: vertical-rl;
+    left: 72px;
+    top: 19px;
 }
 
 #cornerTileNW {
@@ -436,7 +552,9 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #topRow2 {
@@ -470,7 +588,9 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #topRow4 {
@@ -486,7 +606,9 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #topRow5 {
@@ -520,7 +642,9 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #topRow7 {
@@ -536,7 +660,9 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #topRow8 {
@@ -570,7 +696,9 @@ body {
     display: block;
     font-size: 14px;
     position: relative;
-    top: 30px;
+    top: 5px;
+    text-align: center;
+    word-break: break-all;
 }
 
 #cornerTileNE {
@@ -594,10 +722,12 @@ body {
 #rightCol1Text {
     display: block;
     font-size: 14px;
-    left: 30px;
+    left: -20px;
     position: relative;
-    top: 29px;
+    top: 37px;
     transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
 }
 
 #rightCol2 {
@@ -612,10 +742,12 @@ body {
 #rightCol2Text {
     display: block;
     font-size: 14px;
-    left: 30px;
+    left: -20px;
     position: relative;
-    top: 29px;
+    top: 37px;
     transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
 }
 
 #rightCol3 {
@@ -651,10 +783,12 @@ body {
 #rightCol4Text {
     display: block;
     font-size: 14px;
-    left: 30px;
+    left: -20px;
     position: relative;
-    top: 29px;
+    top: 37px;
     transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
 }
 
 #rightCol5 {
@@ -711,10 +845,12 @@ body {
 #rightCol7Text {
     display: block;
     font-size: 14px;
-    left: 30px;
+    left: -20px;
     position: relative;
-    top: 29px;
+    top: 37px;
     transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
 }
 
 #rightCol8 {
@@ -750,10 +886,12 @@ body {
 #rightCol9Text {
     display: block;
     font-size: 14px;
-    left: 30px;
+    left: -20px;
     position: relative;
-    top: 29px;
+    top: 37px;
     transform: rotate(-90deg);
+    text-align: center;
+    word-break: break-all;
 }
 
 .purpleHead {
