@@ -557,6 +557,15 @@ body {
     word-break: break-all;
 }
 
+#topRow1Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #topRow2 {
     border: 2px solid black;
     height: 120px;
@@ -575,6 +584,15 @@ body {
     word-break: break-all;
 }
 
+#topRow2Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #topRow3 {
     border: 2px solid black;
     height: 120px;
@@ -589,6 +607,15 @@ body {
     font-size: 14px;
     position: relative;
     top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#topRow3Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
     text-align: center;
     word-break: break-all;
 }
@@ -611,6 +638,15 @@ body {
     word-break: break-all;
 }
 
+#topRow4Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #topRow5 {
     border: 2px solid black;
     height: 120px;
@@ -629,6 +665,15 @@ body {
     word-break: break-all;
 }
 
+#topRow5Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #topRow6 {
     border: 2px solid black;
     height: 120px;
@@ -643,6 +688,15 @@ body {
     font-size: 14px;
     position: relative;
     top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#topRow6Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
     text-align: center;
     word-break: break-all;
 }
@@ -665,6 +719,15 @@ body {
     word-break: break-all;
 }
 
+#topRow7Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #topRow8 {
     border: 2px solid black;
     height: 120px;
@@ -683,6 +746,15 @@ body {
     word-break: break-all;
 }
 
+#topRow8Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 79px;
+    text-align: center;
+    word-break: break-all;
+}
+
 #topRow9 {
     border: 2px solid black;
     height: 120px;
@@ -697,6 +769,15 @@ body {
     font-size: 14px;
     position: relative;
     top: 5px;
+    text-align: center;
+    word-break: break-all;
+}
+
+#topRow9Price {
+    display: block;
+    font-size: 12px;
+    position: relative;
+    top: 55px;
     text-align: center;
     word-break: break-all;
 }
