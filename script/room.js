@@ -16,4 +16,23 @@ function replaceUserWithUserName()
     username[0].innerHTML = localStorage.getItem("username");
 }
 
+function addKickBtn(){
+    let allOtherUser = document.querySelectorAll(".cardRightContainer")
+
+    if (localStorage.getItem("username") == "admin"){
+        for (let i=0; i < allOtherUser.length; i ++ ){
+            const btn = document.createElement("button")
+            btn.classList.add("kickBtn")
+            btn.appendChild(document.createTextNode("Kick"))
+            btn.addEventListener("click", (e) => {
+                const toRemove = btn.parentElement.parentElement
+                btn.parentElement.parentElement.parentElement.removeChild(toRemove)
+            })
+            allOtherUser[i].appendChild(btn)
+        }
+    }
+}
+
+addKickBtn();
+
 replaceUserWithUserName();
