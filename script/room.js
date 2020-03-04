@@ -9,3 +9,11 @@ leaveBtn.addEventListener("click", () => {
 startBtn.addEventListener("click", () => {
     window.location.replace('./board.html');
 })
+
+function replaceUserWithUserName()
+{
+    const username = document.getElementsByTagName("h3"); 
+    username[0].innerHTML = localStorage.getItem("username");
+}
+
+replaceUserWithUserName();
