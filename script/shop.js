@@ -51,7 +51,10 @@ function addItems(items){
 function buyItem(e, div, item){
     //TODO make server request
     e.preventDefault();
-    if(item.bought) return;
+    
+    if(localStorage.getItem("username") === "user"){
+        if(item.bought) return;
+    }
     e.target.innerHTML = 'Bought';
     item.bought = true;
 }
