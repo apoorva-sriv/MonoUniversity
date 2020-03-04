@@ -11,7 +11,7 @@
 <div id="board">
     <img src="img/center_logo.png" id="centerImage" alt="Center logo"/>
     <div id="cornerTileSE" onclick="parseInfo(event)">
-        GO
+        <img id="cornerTileSEImage" src="img/GO.png" alt="GO"/>
     </div>
     <div id="bottomRow1" onclick="parseInfo(event)">
         <div class="purpleHead"></div>
@@ -65,7 +65,7 @@
         <div id="bottomRow9Price">PRICE $200</div>
     </div>
     <div id="cornerTileSW" onclick="parseInfo(event)">
-        JAIL
+        <img id="cornerTileSWImage" src="img/Jail.png" alt="Jail"/>
     </div>
     <div id="leftCol1" onclick="parseInfo(event)">
         <div class="pinkHead"></div>
@@ -118,7 +118,7 @@
         <div id="leftCol9Price">PRICE $200</div>
     </div>
     <div id="cornerTileNW" onclick="parseInfo(event)">
-        QUEEN'S PARK
+        <img id="cornerTileNWImage" src="img/freeParking.PNG" alt="Free Parking"/>
     </div>
     <div id="topRow1" onclick="parseInfo(event)">
         <div class="redHead"></div>
@@ -161,13 +161,18 @@
     <div id="topRow8" onclick="parseInfo(event)">
         <div id="topRow8Text">EMPTY</div>
         <div id="topRow8Price">PRICE $200</div>
+        <div id="topRow8ImageContainer" onclick="parseInfo(event)">
+            <img id="topRow8Image" src="img/ClaraBensonBuilding.jpg" alt="Clara Benson building"/>
+        </div>
     </div>
     <div id="topRow9" onclick="parseInfo(event)">
         <div class="yellowHead"></div>
         <div id="topRow9Text">EMPTY</div>
         <div id="topRow9Price">PRICE $200</div>
     </div>
-    <div id="cornerTileNE" onclick="parseInfo(event)">GENERIC</div>
+    <div id="cornerTileNE" onclick="parseInfo(event)">
+        <img id="cornerTileNEImage" src="img/goToJail.PNG" alt="Go to Jail"/>
+    </div>
     <div id="rightCol1" onclick="parseInfo(event)">
         <div class="greenHead"></div>
         <div id="rightCol1Text">EMPTY</div>

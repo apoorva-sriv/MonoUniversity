@@ -81,6 +81,14 @@ body {
     width: 120px;
 }
 
+#cornerTileSEImage {
+    position: relative;
+    top: 5px;
+    left: 5px;
+    height: 113px;
+    width: 113px;
+}
+
 #bottomRow1 {
     border: 2px solid black;
     bottom: 0;
@@ -355,6 +363,14 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+}
+
+#cornerTileSWImage {
+    position: relative;
+    height: 112px;
+    width: 112px;
+    top: 0px;
+    left: 6px;
 }
 
 #leftCol1 {
@@ -671,6 +687,12 @@ body {
     width: 120px;
 }
 
+#cornerTileNWImage {
+    position: relative;
+    top: 14px;
+    left: 9px;
+}
+
 #topRow1 {
     border: 2px solid black;
     height: 120px;
@@ -889,6 +911,18 @@ body {
     word-break: break-all;
 }
 
+#topRow8ImageContainer {
+    text-align: center;
+}
+
+#topRow8Image {
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+    height: 59px;
+    bottom: 3px;
+}
+
 #topRow9 {
     border: 2px solid black;
     height: 120px;
@@ -921,6 +955,12 @@ body {
     right: 0;
     top: 0;
     width: 120px;
+}
+
+#cornerTileNEImage {
+    position: relative;
+    top: 5px;
+    left: 5px;
 }
 
 #rightCol1 {

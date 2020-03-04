@@ -96,7 +96,7 @@ const tileNames = [ ["GO", "GO",],
 					["TTC EAST","TTC East"],
 					["CHANCE","Chance"],
 					["EX","Exam Center"],
-					["IT","Income Tax"],
+					["INCOME TAX","Income Tax"],
 					["AH","Alumni Hall"]
 ];
 
@@ -253,7 +253,7 @@ function initialzeBoard(board)
 		const boardHTMLTile = boardHTML.children[i + 1];
 		if (cornerTiles.includes(i))
 		{
-			boardHTMLTile.innerHTML = newTile.name;
+			//boardHTMLTile.innerHTML = newTile.name;    // Deleted because the corner tiles have images now, not text (See board.html.)
 		}
 		else if (communityTiles.includes(i) || chanceTiles.includes(i))
 		{
