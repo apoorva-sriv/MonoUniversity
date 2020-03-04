@@ -3,6 +3,7 @@ body {
     font-family: "Oswald", "Helvetica", sans-serif;
 	margin-left: 20px;
     zoom: 80%; /* Added to fit the board vertically */
+    overflow-y: hidden;
 }
 
 #gameZone {
@@ -1463,7 +1464,7 @@ left: 31px;
 #communityChestCards {
     position: relative;
     bottom: 759px;
-    left: 350px;
+    left: 370px;
     width: 228px;
     height: 215px;
 }
@@ -1480,4 +1481,13 @@ left: 31px;
     left: 900px;
     height: 215px;
     width: 228px;
+}
+
+#name {
+    cursor: pointer;
+    position: relative;
+    height: 150px;
+    width: 150px;
+    bottom: 1600px;
+    left: 100px;
 }
