@@ -1486,8 +1486,8 @@ left: 31px;
 #name {
     cursor: pointer;
     position: relative;
-    height: 150px;
-    width: 150px;
-    bottom: 1600px;
+    height: 130px;
+    width: 180px;
+    bottom: 1615px;
     left: 100px;
 }
