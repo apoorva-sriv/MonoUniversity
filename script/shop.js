@@ -32,10 +32,6 @@ function addItem(item){
     buy.addEventListener('click', (e) => buyItem(e, div, item));
 }
 
-function item (){
-
-}
-
 function fetchItems(){
     //TODO fetch items from server
 
