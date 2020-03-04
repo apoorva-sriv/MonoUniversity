@@ -5,6 +5,17 @@ body {
     zoom: 80%; /* Added to fit the board vertically */
 }
 
+#gameZone {
+	display: table;
+	height: auto;
+	width: auto;
+	overflow: auto;
+	float: center;
+	position: relative;
+	margin: auto;
+	margin-top: auto;
+}
+
 #board {
     background-color: #CEE6D0;
     float: left;
@@ -693,6 +704,7 @@ body {
     left: 9px;
 }
 
+
 #topRow1 {
     border: 2px solid black;
     height: 120px;
@@ -895,6 +907,18 @@ body {
     width: calc(652px / 9 - 4px);
 }
 
+#topRow8ImageContainer {
+    text-align: center;
+}
+
+#topRow8Image {
+    max-height: 100%;
+    max-width: 100%;
+    position: relative;
+    height: 59px;
+    bottom: 3px;
+}
+
 #topRow8Text {
     font-size: 14px;
     position: relative;
@@ -909,18 +933,6 @@ body {
     top: 81px;
     text-align: center;
     word-break: break-all;
-}
-
-#topRow8ImageContainer {
-    text-align: center;
-}
-
-#topRow8Image {
-    max-height: 100%;
-    max-width: 100%;
-    position: relative;
-    height: 59px;
-    bottom: 3px;
 }
 
 #topRow9 {
