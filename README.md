@@ -50,7 +50,7 @@ The price system for users has yet to be implemented.
 The button on the bottom will allow to return back to the MAIN PAGE.
 
 // Leader Board
-Here we list out players and the number of wins.
+Here we list out players and their number of wins.
 No difference for user or admin.
 Click the top left logo to leave this page back to main screen
 
@@ -110,7 +110,7 @@ Roll a few dices with the AI players and click on the resign button when you've 
 
 12)Click on SHOP
 
-13)Click on all buttons, all with change.
+13)Click on all buy buttons, all buy buttons will change and indicate the item is bought for admin.
 
 14)Leave the SHOP.
 
