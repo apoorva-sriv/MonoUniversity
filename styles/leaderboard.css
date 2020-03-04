@@ -17,6 +17,7 @@
 #leaderboard table th, td{
     padding: 5px 15px 5px 15px;
 }
+
 #leaderboard table td {
     border-top: 1px solid rgb(12, 123, 194);
     border-spacing: 0;
