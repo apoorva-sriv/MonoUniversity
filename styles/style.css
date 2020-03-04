@@ -109,3 +109,7 @@ button:hover{
 .logo{
     width: 100px;
 }
+
+#name {
+    cursor: pointer;
+}
