@@ -6,7 +6,21 @@
 // Global Variables needed
 //==========================================================================
 
-let login = null;
+// General purpose user class
+function userClass(username, password, id)
+{
+	this.username = username,
+	this.password = password,
+	this.id = id,
+	this.fullname = null,
+	this.email = null,
+	this.ownedPieces = [],
+	this.isAdmin = false
+};
+
+let login = new userClass(localStorage.getItem("username"), localStorage.getItem("username"), "0");
+login.isAdmin = (/true/i).test(localStorage.getItem("admin"));
+
 let diceRolling = false;
 
 //==========================================================================
@@ -96,25 +110,13 @@ const tileNames = [ ["GO", "GO",],
 					["TTC EAST","TTC East"],
 					["CHANCE","Chance"],
 					["EX","Exam Center"],
-					["INCOME TAX","Income Tax"],
+					["IT","Income Tax"],
 					["AH","Alumni Hall"]
 ];
 
 //==========================================================================
 // 'Class' definitions
 //==========================================================================
-
-// General purpose user class
-function userClass(username, password, id)
-{
-	this.username = username,
-	this.password = password,
-	this.id = id,
-	this.fullname = null,
-	this.email = null,
-	this.ownedPieces = [],
-	this.isAdmin = false
-};
 
 // Placeholder for piece class
 function pieceClass(id, name, description)
@@ -253,7 +255,7 @@ function initialzeBoard(board)
 		const boardHTMLTile = boardHTML.children[i + 1];
 		if (cornerTiles.includes(i))
 		{
-			//boardHTMLTile.innerHTML = newTile.name;    // Deleted because the corner tiles have images now, not text (See board.html.)
+			//boardHTMLTile.innerHTML = newTile.name;
 		}
 		else if (communityTiles.includes(i) || chanceTiles.includes(i))
 		{
@@ -335,12 +337,22 @@ function initializePlayerList(board)
 		const actualPlayerId = board.playerTurns[i];
 		const playerSlot = document.createElement("div");
 		playerSlot.setAttribute("id","playerSlot");
+		
 		if (board.playerTurn == i)
 			playerSlot.setAttribute("style","color:red");
 		else
 			playerSlot.setAttribute("style","color:" + playerColors[actualPlayerId]);
-		const playerSlotText = document.createTextNode("Player " + actualPlayerId);
-		playerSlot.appendChild(playerSlotText);
+		
+		if (board.players[actualPlayerId].user)
+		{
+			const playerSlotText = document.createTextNode(board.players[actualPlayerId].user.username);
+			playerSlot.appendChild(playerSlotText);
+		}
+		else
+		{
+			const playerSlotText = document.createTextNode("AI " + actualPlayerId);
+			playerSlot.appendChild(playerSlotText);			
+		}
 		
 		if (actualPlayerId == 0)
 		{
@@ -367,12 +379,6 @@ function initializePlayerList(board)
 		playerList.appendChild(playerSlot);
 	}
 }
-
-// Test to initialize users
-const testUser = new userClass("admin", "admin", 1);
-testUser.isAdmin = true;
-const testUser2 = new userClass("user", "user", 2);
-login = testUser;
 
 // Create an instance of the gameboard, this is essentially where most of the game takes place and where most of the vital information is also kept
 const gameBoard = new boardClass();
@@ -595,10 +601,10 @@ function playerResign(e)
 	// Prevent default
 	e.preventDefault();
 	
-	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
-		return;
+	//if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
+	//	return;
 		
-	console.log("Loser.");
+	window.location.replace('./newgame.html');
 }
 
 //==========================================================================
