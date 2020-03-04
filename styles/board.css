@@ -10,10 +10,8 @@ body {
 	height: auto;
 	width: auto;
 	overflow: auto;
-	float: center;
 	position: relative;
 	margin: auto;
-	margin-top: auto;
 }
 
 #board {
@@ -1421,7 +1419,6 @@ left: 31px;
   clear: both;
   display: table;
   border: 2px solid black;
-  float: center;
   position: relative;
   margin: auto;
   margin-top: 20px;
@@ -1455,4 +1452,32 @@ left: 31px;
 	float: left;
 	background-color: #CEE6D0;
 	max-height: 900px;
+}
+
+#communityChestCardsContainer {
+    text-align: center;
+    width: 500px;
+    height: 500px;
+}
+
+#communityChestCards {
+    position: relative;
+    bottom: 759px;
+    left: 350px;
+    width: 228px;
+    height: 215px;
+}
+
+#chanceCardsContainer {
+    text-align: center;
+    height:  215px;
+    width: 228px;
+}
+
+#chanceCards {
+    position: relative;
+    bottom: 853px;
+    left: 900px;
+    height: 215px;
+    width: 228px;
 }

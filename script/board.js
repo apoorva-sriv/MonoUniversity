@@ -110,7 +110,7 @@ const tileNames = [ ["GO", "GO",],
 					["TTC EAST","TTC East"],
 					["CHANCE","Chance"],
 					["EX","Exam Center"],
-					["IT","Income Tax"],
+					["INCOME TAX","Income Tax"],
 					["AH","Alumni Hall"]
 ];
 
