@@ -1,10 +1,10 @@
 #waitingRoom {
     border: 1px solid rgb(3, 96, 156);
     width: 40%;
-    height: 80%;
+    height: 85%;
     position: relative;
     /* float: center; */
-    margin: 2%;
+    margin: 1%;
     left: 28%;
 }
 
@@ -68,7 +68,9 @@
     width: 80%;
     height: 85%;
     border-radius: 10%;
-    background-color: rgb(237, 43, 43)
+    background-color: rgb(237, 43, 43);
+    font-size: 150%;
+    font-weight: bold;
 }
 
 #roomFooter{
@@ -86,9 +88,18 @@
     /* horizontal centering */
 }
 
-#leaveBtn{
+.footer-btn{
     width: 30%;
     height: 50px;
     font-weight: bold;
     font-size: 20px;
+    margin: 1%;
+}
+
+.start-btn{
+    background-color: lightgreen;
+}
+
+.leave-btn{
+    background-color: rgb(237, 43, 43);
 }
