@@ -110,7 +110,7 @@ Roll a few dices with the AI players and click on the resign button when you've 
 
 12)Click on SHOP
 
-13)Click on all buy buttons, all buy buttons will change and indicate the item is bought for admin.
+13)Click on all buy buttons, all buy buttons will change and indicate the item is bought.
 
 14)Leave the SHOP.
 
