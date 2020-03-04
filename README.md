@@ -31,6 +31,7 @@ upgraded to admins by the admins on the yet to be implemented admin board later 
 Once you're logged in, you will have access to the main page. A simple menu will give you
 three options. CREATE GAME, SHOP, JOIN GAME and LOGOUT. The profile icon on the top right
 has yet to be implemented and will allow for a user to change information about himself.
+Clicking on the logo on any of the other pages will redirect you to this main page.
 
 // CREATE GAME
 Clicking here will lead you a menu that gives you the option of either going back to the
