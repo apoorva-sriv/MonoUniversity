@@ -29,6 +29,8 @@ body {
     height: 442px;
     position: relative;
     width: 250px;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 #propertyInfoHeader {
@@ -65,9 +67,10 @@ body {
     width: 175px;
 }
 
-#propertyInfoText {
+.propertyInfoText {
     margin-left: 5px;
     margin-top: 10px;
+    overflow-wrap: break-word;
 }
 
 #centerImage {
@@ -1467,6 +1470,7 @@ left: 31px;
     left: 370px;
     width: 228px;
     height: 215px;
+    z-index: 0;
 }
 
 #chanceCardsContainer {
