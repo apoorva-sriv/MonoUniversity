@@ -23,3 +23,7 @@
     border-spacing: 0;
     margin: -1px;
 }
+
+#name {
+    cursor: pointer;
+}

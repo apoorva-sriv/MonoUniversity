@@ -104,3 +104,7 @@
 .leave-btn{
     background-color: rgb(237, 43, 43);
 }
+
+#name {
+    cursor: pointer;
+}
