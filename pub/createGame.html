@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mono University - Room</title>
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/room.css" />
+    </head>
+    <body>
+
+        <div id="header"> 
+            <div id="name" class="vcenter" onclick="window.location='./newgame.html';">
+                <img class="logo" src="img/logo.PNG">
+                <h1>Mono University</h1>
+            </div>
+            <div id="rightbar" >
+                <div id="pfp"><img src="img/tenkai.png" /></div>
+                <div id="profile" class="vcenter hcenter">Profile</div>
+            </div>
+        </div>
+
+        <div id="waitingRoom">
+
+            <div id="roomHeading">
+                Room Number: <span class="roomNum">1234567</span>
+                <!-- roomNum is randomly generated -->
+            </div>
+
+            <div class="playerCard">
+                <div class="cardContainers cardLeftContainer">
+                    <img class="cardProfilePic" src="img/tenkai.png"/>
+                </div>
+                 
+                <div class="cardContainers cardCenterContainer">
+                    <h3>user</h3>
+                    <h4>Number of Wins: 0</h4>
+                </div>
+            </div>
+
+            <div id="roomFooter">
+                <button class="footer-btn start-btn">Start Game</button>
+                <button class="footer-btn leave-btn"> Leave </button>
+            </div>
+        </div>
+        <script src="script/room.js"></script>
+    </body>
+</html>
