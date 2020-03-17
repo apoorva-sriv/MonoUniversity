@@ -1,0 +1,24 @@
+{
+  "name": "final",
+  "version": "1.0.0",
+  "description": "CSC309 Final Project",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csc309-winter-2020/team03.git"
+  },
+  "author": "Henry Lam, Hans Shi, Badis Limam, Apoorva Srivastava",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/csc309-winter-2020/team03/issues"
+  },
+  "homepage": "https://github.com/csc309-winter-2020/team03#readme"
+}
