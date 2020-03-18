@@ -3,7 +3,11 @@
 const log = console.log;
 const express = require('express');
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
 const { userSchema } = require('./schemas.js');
+
+const saltRounds = 10;
 
 const dbpath = process.env.DB_PATH || 'mongodb://localhost:27017/test';
 mongoose.connect(dbpath);
@@ -36,7 +40,8 @@ app.post('/api/signup', async (req, res) => {
         res.status(400).send("Username is already taken.");
         return;
     }
-    const user = new User({ user: body.user, password: body.password, games: []});
+    const hashed = await bcrypt.hash(body.password, saltRounds);
+    const user = new User({ user: body.user, password: hashed, games: []});
     await user.save();
     res.sendStatus(200);
 });
@@ -53,11 +58,16 @@ app.post('/api/login', async (req, res) => {
     }
 
     const docs = await User.find({user : body.user}).exec();
-    if(docs.length !== 0 || docs[0].password !== body.password){
+    if(docs.length === 0){
         res.status(400).send("Invalid username or password");
         return;
     }
-    res.status(200).jsonp(docs[0]);
+    const matches = await bcrypt.compare(body.password, docs[0].password);
+    if(!matches){
+        res.status(400).send("Invalid username or password");
+    }else{
+        res.status(200).json(docs[0]);
+    }
 });
 
 const port = process.env.PORT || 5000;
