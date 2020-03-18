@@ -1,36 +1,14 @@
 /* board js */
 'use strict';
 
-// Global variables that will be used for storage
-let login = null;
-let users = [];
-
-// General purpose user class
-function userClass(username, password, id)
-{
-	this.username = username,
-	this.password = password,
-	this.id = id,
-	this.fullname = null,
-	this.email = null,
-	this.ownedPieces = [],
-	this.isAdmin = false
-};
-
-// Test to initialize users
-const testUser = new userClass("admin", "admin", 1);
-testUser.isAdmin = true;
-const testUser2 = new userClass("user", "user", 2);
-users.push(testUser);
-users.push(testUser2);
-
 const loginButton = document.getElementById('login');
 const signupButton = document.getElementById('signup');
 const error = document.getElementById('error');
 
 loginButton.addEventListener('click', attemptLogin);
 signupButton.addEventListener('click', (e) => {
-    window.location.replace('./signup.html');
+    e.preventDefault();
+	window.location.replace('./signup.html');
 });
 
 function attemptLogin(e){

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mono University - Login</title>
+        <link rel="stylesheet" type="text/css" href="styles/style.css" />
+        <link rel="stylesheet" type="text/css" href="styles/login.css" />
+    </head>
+    <body>
+        <!--Header should be its own component-->
+        <div id="header"> 
+            <div id="name" class="vcenter">
+                <img class="logo" src="img/logo.png">
+                <h1>Mono University</h1>
+            </div>
+        </div>
+
+        <div class="left-box">
+            <div id="banner-container">
+                <span id="banner-text">Can you Monopolize the University Market?</span>
+            </div>
+        </div>
+
+        <div class="right-box">
+            <div id="content-box" class="login-box">
+                <div id="contentheader" class="vcenter"><h1>Login</h1></div>
+                <form>
+                    <span class="dark-blue">Username</span> <br/>
+                    <input id="username" type="text" value=""> <br/>
+                    <span class="dark-blue">Password</span> <br/>
+                    <input id="password" type="password" value=""><br/>
+                    <span class="dark-blue">Confirm Password</span> <br/>
+                    <input id="confirmPassword" type="password" value=""><br/>
+                    <span id="error"></span> <br/>
+                    <button id="signup">Sign Up</button>
+                </form>
+           </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="script/signup.js"></script>
+    </body>
+</html>
