@@ -20,29 +20,15 @@ function attemptLogin(e){
         return
     }
 
-    if(authenticate(user, pass)){
-		localStorage.setItem('username', login.username);
-		localStorage.setItem('admin', login.isAdmin);
+    authenticate(user, pass).done(() => {
 		window.location.replace('./newgame.html');
-    } else {
+    }).fail(() => {
         errorMessage('Invalid username or password');
-    }
+    });
 }
 
 function authenticate(user, pass){
-    //TODO make request to backend
-	for (let i = 0; i < users.length; i++)
-	{
-		if (users[i].username == user)
-		{
-			if (users[i].password == pass)
-			{
-				login = users[i];
-				return true;
-			}
-		}
-	}
-	return false;
+	return $.post("api/login", {user: user, password: pass});
 }
 
 function errorMessage(m){

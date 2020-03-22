@@ -13,12 +13,11 @@ mongoose.connect(dbpath);
 
 const app = express();
 
-
 app.use(express.static(__dirname + '/pub'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(session({
-    secret: crypto.randomBytes(16),
+    secret: crypto.randomBytes(16).toString(),
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -52,10 +51,22 @@ app.post('/api/signup', existsUserPass, async (req, res) => {
 
 app.post('/api/login', existsUserPass, async (req, res) => {
     try {
-        res.status(200).json(await User.authenticate(req.body.user, req.body.password));
+        const user = await User.authenticate(req.body.user, req.body.password);
+        req.session.username = user.user;
+        res.sendStatus(200);
     } catch(e) {
         res.status(400).send("Invalid username or password");
     }
+});
+
+app.get('/api/logout', async (req, res) => {
+   req.session.destroy((error) => {
+      if(error){
+          res.sendStatus(500);
+      } else {
+          res.redirect('/');
+      }
+   });
 });
 
 const port = process.env.PORT || 5000;

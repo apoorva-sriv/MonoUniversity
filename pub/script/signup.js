@@ -16,12 +16,11 @@ function attemptSignup(e){
         errorMessage("Passwords do not match");
         return;
     }
-    $.post("api/signup", {user: user, password: pass})
-        .done(() => {
-            window.location.replace('./index.html');
-        }).fail((message) => {
-            errorMessage(message.responseText);
-        });
+    $.post("api/signup", {user: user, password: pass}).done(() => {
+        window.location.replace('./index.html');
+    }).fail((message) => {
+        errorMessage(message.responseText);
+    });
 
 }
 
