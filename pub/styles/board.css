@@ -68,9 +68,9 @@ body {
 }
 
 .propertyInfoText {
-    margin-left: 5px;
-    margin-top: 10px;
-    overflow-wrap: break-word;
+    border: 1px solid #000000;
+    margin: 5px;
+    word-wrap: normal;
 }
 
 #centerImage {
@@ -1362,39 +1362,27 @@ left: 31px;
     border-right: 2px solid black;
 }
 
-#player0 {
+.player {
 	position: absolute;
     font-family: "Wingdings";
     font-size: 40px;
 	text-align: center;
 	transition: all ease-in-out 1000ms;
+}
+
+#player0 {
 	color: magenta;
 }
 
 #player1 {
-	position: absolute;
-    font-family: "Wingdings";
-    font-size: 40px;
-	text-align: center;
-	transition: all ease-in-out 1000ms;
 	color: blue;
 }
 
 #player2 {
-	position: absolute;
-    font-family: "Wingdings";
-    font-size: 40px;
-	text-align: center;
-	transition: all ease-in-out 1000ms;
 	color: green;
 }
 
 #player3 {
-	position: absolute;
-    font-family: "Wingdings";
-    font-size: 40px;
-	text-align: center;
-	transition: all ease-in-out 1000ms;
 	color: orange;
 }
 
@@ -1459,30 +1447,27 @@ left: 31px;
 }
 
 #communityChestCardsContainer {
+    position: absolute;
     text-align: center;
-    width: 500px;
-    height: 500px;
+    top: 150px;
+    left: 150px;
 }
 
 #communityChestCards {
     position: relative;
-    bottom: 759px;
-    left: 370px;
     width: 228px;
     height: 215px;
-    z-index: 0;
 }
 
 #chanceCardsContainer {
+    position: absolute;
     text-align: center;
-    height:  215px;
-    width: 228px;
+    bottom: 150px;
+    right: 150px;
 }
 
 #chanceCards {
     position: relative;
-    bottom: 853px;
-    left: 900px;
     height: 215px;
     width: 228px;
 }

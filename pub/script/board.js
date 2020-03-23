@@ -405,7 +405,7 @@ function getTileInfo(tile)
 		case TILE_FLAG_TAX: return "Pay your taxes! $" + tile.price; break;
 		case TILE_FLAG_UTILITY: return "Pay the number you rolled times 10% the price of this place. Doubled if the owner has both utilities."; break;
 		case TILE_FLAG_TTC: return "Free transportation to the next or previous TTC if owned. Otherwise, pay $25 times the number of TTCs controlled by the owner."; break;
-		default: return "Price: $" + tile.price + "\n Rent: 10% + 10% * number of houses or 60% if hotel is built. \n Each house costs 15 of the tile price and a hotel costs 50% to build."; break;
+		default: return "Price: $" + tile.price + "<br /> Rent: 10% + 10% * number of houses or 60% if hotel is built. <br /> Each house costs 15 of the tile price and a hotel costs 50% to build."; break;
 	}
 	return "";
 }
@@ -468,10 +468,9 @@ function parseInfo(e)
 		
 		// Set the information
 		const infoTileText = document.createElement("div")
-		infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
+		//infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
 		infoTileText.className = "propertyInfoText"
-		const infoTileTextContent = document.createTextNode(getTileInfo(tileInfo));
-		infoTileText.appendChild(infoTileTextContent)
+		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
 		
 	}
@@ -687,7 +686,10 @@ function offsetPiece(playerNum, tile)
 	const physicalBoard = document.getElementById("board");
 	const tilePlate = physicalBoard.children[tile + 1];
 	const tilePlateOffset = offset(tilePlate);
-	
+	const boardOffset = offset(physicalBoard);
+    tilePlateOffset.top -= boardOffset.top;
+    tilePlateOffset.left -= boardOffset.left;
+
 	let leftOffset = 0;
 	let topOffset = 0;
 	
