@@ -13,19 +13,9 @@ const userSchema = new Schema({
     games: [String],
     isAdmin: Boolean,
     money: Number,
-    itemsOwned: [String],
-    itemSelected: String
+    itemsOwned: [String], // list of itemNames
+    itemSelected: String // single itemName
 });
-
-const shopItemSchema = new Schema({
-    itemName: {
-        type: String,
-        unique: true,
-        minLength: 1
-    },
-    price: Number,
-    image: String // "./img/imgName.png" 
-})
 
 userSchema.pre('save', function(next) {
     const user = this;
@@ -60,10 +50,8 @@ userSchema.statics.authenticate = function(name, password) {
 
 
 const User = mongoose.model('User', userSchema);
-const shopItem = mongoose.model('shopItem', shopItemSchema);
 
 module.exports = {
-    User: User,
-    shopItem: shopItem
+    User: User
 };
 
