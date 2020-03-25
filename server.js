@@ -36,7 +36,10 @@ function existsUserPass(req, res, next){
         next()
     }
 }
-
+function authenticate(req, res, next){
+    if (!req.session.username) res.sendStatus(401);
+    else next();
+}
 app.post('/api/signup', existsUserPass, async (req, res) => {
     const body = req.body;
     const docs = await User.find({user : body.user}).exec();
