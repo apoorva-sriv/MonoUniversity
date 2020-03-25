@@ -21,6 +21,7 @@ function attemptLogin(e){
     }
 
     authenticate(user, pass).done(() => {
+        setUser(user)
 		window.location.replace('./newgame.html');
     }).fail(() => {
         errorMessage('Invalid username or password');

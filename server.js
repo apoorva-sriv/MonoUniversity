@@ -47,7 +47,7 @@ app.post('/api/signup', existsUserPass, async (req, res) => {
         res.status(400).send("Username is already taken.");
         return;
     }
-    const user = new User({ user: body.user, password: body.password, money: 500, itemsOwned : ["default"], itemSelected: "default" });
+    const user = new User({ user: body.user, password: body.password, money: 500, itemsOwned :["default"], itemSelected: "default" });
     await user.save();
     res.sendStatus(200);
 });

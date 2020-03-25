@@ -3,7 +3,6 @@ const joinGameBtn = document.querySelector("#joingame");
 
 const roomNum = document.querySelector("#room-num");
 
-
 createGameBtn.addEventListener("click", ()=>{
 
     window.location='./createGame.html';
@@ -15,3 +14,7 @@ joinGameBtn.addEventListener("click", ()=>{
         window.location='./room.html';
     }
 })
+
+const profile = document.querySelector("#profile");
+profile.innerHTML = getUser()
+
