@@ -75,14 +75,14 @@ app.get('/api/logout', async (req, res) => {
 app.get('/api/id/:username', (req, res) => {
     User.find().then((users) => {
         const targetUserLst = users.filter(user => user.user === req.params.username)
-        
+
         res.send( targetUserLst[0] )
     }, (error) => {
         res.status(500).send(error)
     })
 })
 
-app.get('/api/username/:id', (req, res) => {
+app.get('/api/users/:id', (req, res) => {
     const id = req.params.id
 
     User.findById(id).then((users) => {
