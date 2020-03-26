@@ -21,7 +21,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60000,
+        expires: 60000*1000,
         httpOnly: true
     }
 }));
@@ -109,7 +109,7 @@ app.get('/api/shop/user', authenticate, async (req, res) => {
         res.sendStatus(404);
         return;
     }
-    await res.json(items.filter((x) => !user.itemsOwned.includes(x)));
+    await res.json(items.filter((x) => !user.itemsOwned.includes(x._id)));
 });
 
 app.get('/api/shop/:itemid', async (req, res) => {

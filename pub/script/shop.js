@@ -32,15 +32,9 @@ function addItem(item){
     buy.addEventListener('click', (e) => buyItem(e, div, item));
 }
 
-function fetchItems(){
-    //TODO fetch items from server
-
-    return Array(6).fill({
-        image: 'img/tenkai.png',
-        name: 'Tenkai',
-        description: 'Lorem ipsum, dolor sit amet. Consectetur adipiscing elit.',
-        price: 301,
-        bought: false
+function fetchItems(cb){
+    $.get('/api/shop/user').then((dat) => {
+        cb(dat);
     });
 }
 
@@ -49,14 +43,18 @@ function addItems(items){
 }
 
 function buyItem(e, div, item){
-    //TODO make server request
     e.preventDefault();
-    
-    if(localStorage.getItem("username") === "user"){
-        if(item.bought) return;
-    }
-    e.target.innerHTML = 'Bought';
-    item.bought = true;
+    $.ajax({
+        url: '/api/shop/'+item._id,
+        type: 'PUT',
+        success: () => {
+            e.target.innerHTML = 'Bought';
+            item.bought = true;
+        },
+        error: (err) => {
+            window.alert(err.responseText);
+        }
+    });
 }
 
 const leaveBtn = document.querySelector("#leave-btn")
@@ -65,4 +63,4 @@ leaveBtn.addEventListener("click", (e)=>{
 })
 
 clearItems();
-addItems(fetchItems());
+fetchItems(addItems);
