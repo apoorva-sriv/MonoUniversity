@@ -42,7 +42,7 @@ function getUserObj (id) {
     // incomplete function
     // take id (mongodb id) and return the mongodb object
 
-    const url = "/api/users/" + id
+    const url = "/api/user/" + id
 
     return fetch(url)
 }

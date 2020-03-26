@@ -82,14 +82,14 @@ app.get('/api/id/:username', (req, res) => {
     })
 })
 
-app.get('/api/users/:id', (req, res) => {
+app.get('/api/user/:id', (req, res) => {
     const id = req.params.id
 
-    User.findById(id).then((users) => {
-        if (!users){
+    User.findById(id).then((user) => {
+        if (!user){
             res.status(404).send()
         }else{
-            res.send(users)
+            res.send(user)
         }
     }).catch ((error) => {
         res.status(500).send()
