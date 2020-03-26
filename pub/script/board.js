@@ -134,6 +134,9 @@ const tileColorGroups = [	[1, 3],
 
 ];
 
+
+// Descriptions for chance and community cards need to be hardcoded as well as their effects,
+// incremental selection of cards not recommended
 // One-based indexes here to match the image file names!
 const NUM_CHANCE_CARDS = 16;
 const NUM_COMMUNITY_CARDS = 16;
@@ -176,7 +179,8 @@ function boardClass()
 	this.playerTurns = [],
 	this.playerTurn = 0,
 	this.gameState = 0,
-	this.dice = [ 1, 1 ]
+	this.dice = [ 1, 1 ],
+	this.infoedTile = null
 }
 
 // This is where all information pertinent to a tile is stored
@@ -493,7 +497,10 @@ function dummyClick(e)
 	{
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfo");
-		infoTile.innerHTML = "";
+		clearTileInfo();
+		
+		// Let the board know which tile we're displaying for refreshing purposes
+		gameBoard.infoedTile = index;
 		
 		// Set the header
 		const infoTileHeader = document.createElement("div")
@@ -528,7 +535,7 @@ function dummyClick(e)
 		infoTileText.className = "propertyInfoText"
 		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
-		
+		infoTile.style.backgroundColor = window.getComputedStyle(boardTile.children[index + 1], null).getPropertyValue("background-color");
 	}
 }
 
@@ -559,7 +566,10 @@ function parseInfo(e)
 	{
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfo");
-		infoTile.innerHTML = "";
+		clearTileInfo();
+		
+		// Let the board know which tile we're displaying for refreshing purposes
+		gameBoard.infoedTile = index;
 		
 		// Set the header
 		const infoTileHeader = document.createElement("div")
@@ -594,7 +604,15 @@ function parseInfo(e)
 		infoTileText.className = "propertyInfoText"
 		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
+		infoTile.style.backgroundColor = window.getComputedStyle(boardTile.children[index + 1], null).getPropertyValue("background-color");
 		
+		if (tileInfo.building == true)
+		{
+			infoTile.style.backgroundImage = "url('./img/built.png')";
+			infoTile.style.backgroundPosition = "bottom center";
+			infoTile.style.backgroundSize = "25%";
+			infoTile.style.backgroundRepeat = "no-repeat";
+		}
 	}
 }
 
@@ -624,7 +642,7 @@ function landedTileInfo(playerNum)
 	{
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfoAlt");
-		infoTile.innerHTML = "";
+		clearLandedTileInfo();
 		
 		// Set the header
 		const infoTileHeader = document.createElement("div")
@@ -701,6 +719,98 @@ function landedTileInfo(playerNum)
 			infoTileBuildButton.appendChild(infoTileBuildButtonText);
 			infoTileButtonBox.appendChild(infoTileBuildButton);
 			infoTile.appendChild(infoTileButtonBox);
+			
+			infoTile.style.backgroundColor = window.getComputedStyle(tile, null).getPropertyValue("background-color");
+			
+			if (tileInfo.building == true)
+			{
+				infoTile.style.backgroundImage = "url('./img/built.png')";
+				infoTile.style.backgroundPosition = "bottom center";
+				infoTile.style.backgroundSize = "25%";
+				infoTile.style.backgroundRepeat = "no-repeat";
+			}
+		}
+	}
+}
+
+// Refresh tile info in case the purchase button is pressed, you never know
+function refreshTileInfo(tileNum)
+{
+	if (gameBoard.infoedTile == null)
+	{
+		clearTileInfo();
+		return;
+	}
+	
+	if (tileNum != gameBoard.infoedTile)
+		return;
+	
+	// Setup	
+	const boardTile = document.getElementById("board");
+	let tileInfo = null;
+	let tile = null;
+
+	// Find corresponding tile
+	for (let i = 1; i < maxTiles + 1; i++)
+	{
+		if (i - 1 == tileNum)
+		{
+			tileInfo = gameBoard.tiles[tileNum];
+			tile = boardTile.children[i];
+			break;
+		}
+	}
+
+	if (tileInfo && tile)
+	{
+		// Get element and purge its inner contents
+		const infoTile = document.getElementById("propertyInfo");
+		clearTileInfo();
+		
+		// Let the board know which tile we're displaying for refreshing purposes
+		gameBoard.infoedTile = tileNum;
+		
+		// Set the header
+		const infoTileHeader = document.createElement("div")
+		if (tile.children[0])
+		{
+			infoTileHeader.className = "propertyInfoHeader"
+			infoTileHeader.style.backgroundColor = window.getComputedStyle(tile.children[0], null).getPropertyValue("background-color");
+		}
+		else
+		{
+			infoTileHeader.className = "propertyInfoHeaderNoColor"
+		}
+		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[tileNum].fullname)
+		infoTileHeader.appendChild(infoTileHeaderText)
+		infoTile.appendChild(infoTileHeader)
+		
+		// Set the image
+		if (gameBoard.tiles[tileNum].image)
+		{
+			const infoTileImage = document.createElement("img")
+			infoTileImage.className = "propertyInfoImage"
+			if (gameBoard.tiles[tileNum].image)
+				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[tileNum].image)
+			else
+				infoTileImage.setAttribute("src", "./img/placeholder.png")
+			infoTile.appendChild(infoTileImage)
+		}
+		
+		// Set the information
+		const infoTileText = document.createElement("div")
+		//infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
+		infoTileText.className = "propertyInfoText"
+		infoTileText.innerHTML = getTileInfo(tileInfo);
+		infoTile.appendChild(infoTileText);
+		infoTile.style.backgroundColor = window.getComputedStyle(boardTile.children[tileNum + 1], null).getPropertyValue("background-color");
+		
+		if (tileInfo.building == true)
+		{
+			infoTile.style.backgroundImage = "url('./img/built.png')";
+			infoTile.style.backgroundPosition = "bottom center";
+			infoTile.style.backgroundSize = "25%";
+			infoTile.style.backgroundRepeat = "no-repeat";
 		}
 	}
 }
@@ -711,6 +821,9 @@ function clearTileInfo()
 	// Get element and purge its inner contents
 	const infoTile = document.getElementById("propertyInfo");
 	infoTile.innerHTML = "";
+	infoTile.style.backgroundColor = "";
+	infoTile.style.backgroundImage = "";
+	gameBoard.infoedTile = null;
 }
  
 // Clear landed tile info
@@ -719,6 +832,8 @@ function clearLandedTileInfo()
 	// Get element and purge its inner contents
 	const infoTile = document.getElementById("propertyInfoAlt");
 	infoTile.innerHTML = "";
+	infoTile.style.backgroundColor = "";
+	infoTile.style.backgroundImage = "";
 }
 
 // Event handler for human player
@@ -1292,6 +1407,7 @@ function purchaseTile(playerNum, tileNum)
 		
 		// Refresh the landTileInfo
 		landedTileInfo(playerNum);
+		refreshTileInfo(tileNum);
 	}
 }
 
@@ -1330,8 +1446,30 @@ function constructTile(playerNum, tileNum)
 		const divId = tile.getAttribute("id");
 		const divElement = document.getElementById(divId);
 
+		divElement.style.backgroundRepeat = "no-repeat";
+		divElement.style.backgroundPosition = "center";
+		
+		if (divId.includes("bottomRow") || divId.includes("topRow"))
+		{
+			divElement.style.backgroundImage = "url('./img/built.png')";
+			divElement.style.backgroundSize = "40%";
+		}
+		else if (divId.includes("leftCol"))
+		{
+			divElement.style.backgroundImage = "url('./img/built-left.png')";
+			divElement.style.backgroundSize = "25%";
+		}
+		else if (divId.includes("rightCol"))
+		{
+			divElement.style.backgroundImage = "url('./img/built-right.png')";
+			divElement.style.backgroundSize = "25%";
+		}
 		
 	}
+	
+	// Refresh the landTileInfo
+	landedTileInfo(playerNum);
+	refreshTileInfo(tileNum);
 }
 
 // Kick an AI player
