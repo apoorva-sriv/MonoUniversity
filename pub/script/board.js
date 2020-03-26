@@ -164,7 +164,7 @@ function playerClass()
 	this.money = 1500,
 	this.jailed = false,
 	this.jailturns = 0,
-	this.pastfirst = true, //false,
+	this.pastfirst = false,
 	this.passedgo = false,
 	this.gorestrict = false,
 	this.previousposition = 0,
