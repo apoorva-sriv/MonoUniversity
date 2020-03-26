@@ -5,13 +5,21 @@ const express = require('express');
 const session = require('express-session');
 const crypto = require('crypto');
 
+const app = express();
+
+const server = require('http').createServer(app);
+const sharedSession = require('express-socket.io-session')
+const io = require('socket.io')(server);
+
+io.use(sharedSession(session))
+
 const { User, Item } = require('./schemas.js');
+const socket_setup = require('./socket-setup.js');
 
 const mongoose = require('mongoose');
 const dbpath = process.env.DB_PATH || 'mongodb://localhost:27017/test';
 mongoose.connect(dbpath);
 
-const app = express();
 
 app.use(express.static(__dirname + '/pub'));
 app.use(express.json());
@@ -149,8 +157,16 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
    }
 });
 
+io.on('connection', (socket) => {
+    if(!socket.handshake.session.username){
+        return socket.send('Unauthorized');
+    } else {
+        socket_setup(socket);
+    }
+});
+
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
+server.listen(port, () => {
     log(`Server started on port ${port}...`);
 });
 
