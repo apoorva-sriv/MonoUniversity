@@ -10,16 +10,32 @@ const userSchema = new Schema({
         minLength: 1
     },
     password: String,
-    games: [String],
-    isAdmin: Boolean,
-    money: Number,
-    itemsOwned: [String], // list of itemNames
-    itemSelected: String // single itemName
+    games: {
+        type: [String],
+        default:[]
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    money: {
+        type: Number,
+        default: 500
+    },
+    itemsOwned: {
+        type: [mongoose.Types.ObjectId],
+        default: []
+    }, // list of itemNames
+    itemSelected: {
+        type: mongoose.Types.ObjectId,
+        default: null
+    }// single itemName
 });
 
 userSchema.pre('save', function(next) {
     const user = this;
     if (user.isModified('password')) {
+        console.log(user.password);
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(user.password, salt, (err, hash) => {
                 user.password = hash;
@@ -51,7 +67,17 @@ userSchema.statics.authenticate = function(name, password) {
 
 const User = mongoose.model('User', userSchema);
 
+const itemSchema = new Schema({
+    name: String,
+    description: String,
+    image: String,
+    price: Number
+});
+
+const Item = mongoose.model('Item', itemSchema);
+
 module.exports = {
-    User: User
+    User: User,
+    Item: Item
 };
 

@@ -5,7 +5,7 @@ const express = require('express');
 const session = require('express-session');
 const crypto = require('crypto');
 
-const { User } = require('./schemas.js');
+const { User, Item } = require('./schemas.js');
 
 const mongoose = require('mongoose');
 const dbpath = process.env.DB_PATH || 'mongodb://localhost:27017/test';
@@ -47,7 +47,7 @@ app.post('/api/signup', existsUserPass, async (req, res) => {
         res.status(400).send("Username is already taken.");
         return;
     }
-    const user = new User({ user: body.user, password: body.password, money: 500, itemsOwned :["default"], itemSelected: "default" });
+    const user = new User({ user: body.user, password: body.password});
     await user.save();
     res.sendStatus(200);
 });
@@ -56,13 +56,14 @@ app.post('/api/login', existsUserPass, async (req, res) => {
     try {
         const user = await User.authenticate(req.body.user, req.body.password);
         req.session.username = user.user;
-        res.sendStatus(200);
+        await res.sendStatus(200);
     } catch(e) {
-        res.status(400).send("Invalid username or password");
+        console.log(e);
+        await res.status(400).send("Invalid username or password");
     }
 });
 
-app.get('/api/logout', async (req, res) => {
+app.get('/api/logout', (req, res) => {
    req.session.destroy((error) => {
       if(error){
           res.sendStatus(500);
@@ -73,17 +74,16 @@ app.get('/api/logout', async (req, res) => {
 });
 
 app.get('/api/id/:username', (req, res) => {
-    User.find().then((users) => {
-        const targetUserLst = users.filter(user => user.user === req.params.username)
-
-        res.send( targetUserLst[0] )
+    User.findOne({user: req.params.username}).then((user) => {
+        if(user) res.send(user);
+        else res.sendStatus(404);
     }, (error) => {
         res.status(500).send(error)
     })
-})
+});
 
 app.get('/api/user/:id', (req, res) => {
-    const id = req.params.id
+    const id = req.params.id;
 
     User.findById(id).then((user) => {
         if (!user){
@@ -94,7 +94,60 @@ app.get('/api/user/:id', (req, res) => {
     }).catch ((error) => {
         res.status(500).send()
     })
-})
+});
+
+app.get('/api/shop', (req, res) => {
+    Item.find({}, (err, items) => {
+        res.json(items);
+    })
+});
+
+app.get('/api/shop/user', authenticate, async (req, res) => {
+    const items = await Item.find({});
+    const user = await User.findOne({user: req.session.username});
+    if(!user){
+        res.sendStatus(404);
+        return;
+    }
+    await res.json(items.filter((x) => !user.itemsOwned.includes(x)));
+});
+
+app.get('/api/shop/:itemid', async (req, res) => {
+    let item;
+    try {
+        item = await Item.findById(req.params.itemid);
+    }catch(e){
+        res.sendStatus(404); return;
+    }
+    if(!item){
+        res.sendStatus(404);
+        return;
+    }
+    await res.json(item);
+});
+
+app.put('/api/shop/:itemid', authenticate, async (req, res) => {
+   let user; let item;
+   try {
+       user = await User.findOne({user: req.session.username});
+       item = await Item.findById(req.params.itemid);
+   }catch(e){
+       res.sendStatus(403);
+       return;
+   }
+   if(!user || !item){
+       res.sendStatus(404);
+   }else if(user.money < item.price){
+       res.status(401).send("Not enough money");
+   }else if(user.itemsOwned.includes(item._id)){
+       res.status(401).send("Already owned");
+   }else {
+       user.itemsOwned.push(item._id);
+       user.money -= item.price;
+       await res.json(user);
+       await user.save()
+   }
+});
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
