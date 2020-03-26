@@ -134,6 +134,12 @@ const tileColorGroups = [	[1, 3],
 
 ];
 
+// One-based indexes here to match the image file names!
+const NUM_CHANCE_CARDS = 16;
+const NUM_COMMUNITY_CARDS = 16;
+let chanceCounter = 1;
+let communityChestCounter = 1;
+
 //==========================================================================
 // 'Class' definitions
 //==========================================================================
@@ -286,7 +292,8 @@ function initializeBoard(board)
 		if (chanceTiles.includes(i))
 		{
 			newTile.tileflags = TILE_FLAG_CHANCE;
-			newTile.image = "topChance.png"
+			newTile.image = "/Chance/Chance" + chanceCounter + ".PNG";
+			chanceCounter = (chanceCounter + 1)%NUM_CHANCE_CARDS;
 		}
 		
 		
