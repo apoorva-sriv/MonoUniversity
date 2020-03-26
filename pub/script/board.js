@@ -289,14 +289,15 @@ function initializeBoard(board)
 		if (communityTiles.includes(i))
 		{
 			newTile.tileflags = TILE_FLAG_COMMUNITY;
-			newTile.image = "communityChest.gif";
+			newTile.image = `/communityChest/communityChest${communityChestCounter}.png`;
+			communityChestCounter = (communityChestCounter + 1)%NUM_COMMUNITY_CARDS;
 		}
 
 		// Check if this a chance tile
 		if (chanceTiles.includes(i))
 		{
 			newTile.tileflags = TILE_FLAG_CHANCE;
-			newTile.image = "/Chance/Chance" + chanceCounter + ".PNG";
+			newTile.image = `/chance/chance${chanceCounter}.png`;
 			chanceCounter = (chanceCounter + 1)%NUM_CHANCE_CARDS;
 		}
 		
