@@ -16,5 +16,3 @@ joinGameBtn.addEventListener("click", ()=>{
 })
 
 const profile = document.querySelector("#profile");
-profile.innerHTML = getUser()
-

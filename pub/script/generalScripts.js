@@ -20,10 +20,29 @@ function setCookie(key, value){
     document.cookie = key + "=" + value
 }
 
-function getUser(){
-    return getCookie("username")
+function getUserId(){
+    return getCookie("id")
 }
 
-function setUser(username){
-    setCookie("username", username)
+function setUser (username){
+    const url = "/api/id/" + username
+    const request = new Request (url, {
+        method: 'get',
+    });
+
+    fetch(request).then( (res) => {
+        return res.json()
+    }).then( (json)=>{
+        setCookie("id", json._id)
+    })
+}
+
+function getUserObj (id) {
+    
+    // incomplete function
+    // take id (mongodb id) and return the mongodb object
+
+    const url = "/api/username/" + id
+
+    return fetch(url)
 }
