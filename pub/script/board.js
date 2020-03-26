@@ -504,10 +504,10 @@ function dummyClick(e)
 		
 		// Set the header
 		const infoTileHeader = document.createElement("div")
-		if (tile.children[0])
+		if (tileIterate.children[0])
 		{
 			infoTileHeader.className = "propertyInfoHeader"
-			infoTileHeader.style.backgroundColor = window.getComputedStyle(tile.children[0], null).getPropertyValue("background-color");
+			infoTileHeader.style.backgroundColor = window.getComputedStyle(tileIterate.children[0], null).getPropertyValue("background-color");
 		}
 		else
 		{
@@ -940,7 +940,10 @@ function playerEffects()
 	tileLand(gameBoard.playerTurns[gameBoard.playerTurn], gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position);
 	landedTileInfo(gameBoard.playerTurns[gameBoard.playerTurn]);
 	
-	setTimeout(playerDecisionTime, 2000);
+	if (player.jailed == true)
+		setTimeout(nextTurn, 2000);
+	else
+		setTimeout(playerDecisionTime, 2000);
 }
 
 // Give the player some time to make decisions about his purchases
@@ -1319,8 +1322,7 @@ function playerSendToJail(playerNum)
 	player.oldposition = player.position;
 	player.position = 10;
 	offsetPiece(playerNum, player.position);
-	
-	setTimeout(nextTurn, 2000);
+
 }
 
 // Method to check if the player is jailed or not
