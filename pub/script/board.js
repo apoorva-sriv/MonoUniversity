@@ -1,25 +1,24 @@
 /* board js */
 
-'use strict';
+"use strict";
 
 //==========================================================================
 // Global Variables needed
 //==========================================================================
 
 // General purpose user class
-function userClass(username, password, id)
-{
-	this.username = username,
-	this.password = password,
-	this.id = id,
-	this.fullname = null,
-	this.email = null,
-	this.ownedPieces = [],
-	this.isAdmin = false
-};
+function userClass(username, password, id) {
+	(this.username = username),
+		(this.password = password),
+		(this.id = id),
+		(this.fullname = null),
+		(this.email = null),
+		(this.ownedPieces = []),
+		(this.isAdmin = false);
+}
 
 let login = new userClass(localStorage.getItem("username"), localStorage.getItem("username"), "0");
-login.isAdmin = (/true/i).test(localStorage.getItem("admin"));
+login.isAdmin = /true/i.test(localStorage.getItem("admin"));
 
 let diceRolling = false;
 
@@ -39,7 +38,7 @@ const utilityTiles = [12, 28];
 const ttcTiles = [5, 15, 25, 35];
 
 // Tile Flags
-const TILE_FLAG_NORMAL = 0
+const TILE_FLAG_NORMAL = 0;
 const TILE_FLAG_GO = 1;
 const TILE_FLAG_COMMUNITY = 2;
 const TILE_FLAG_CHANCE = 4;
@@ -48,7 +47,7 @@ const TILE_FLAG_FREEPARKING = 16;
 const TILE_FLAG_GOTOJAIL = 32;
 const TILE_FLAG_TAX = 64;
 const TILE_FLAG_UTILITY = 128;
-const TILE_FLAG_TTC = 256; 
+const TILE_FLAG_TTC = 256;
 
 // Game State Flags
 const GAMESTATE_END = 0;
@@ -78,359 +77,346 @@ const JAIL_TURN_NONE = 0;
 const JAIL_TURN_DEFAULT = 3;
 
 // Player Colors
-const playerColors = [ "magenta", "blue", "green", "orange" ];
+const playerColors = ["magenta", "blue", "green", "orange"];
 
 // Building codes, building names and descriptions are stored here for convenience
-const tileNames = [ ["GO", "GO",],
-					["MB","Mining Building"],
-					["COMMUNITY","Community"],
-					["PB","Pharmacy Building"],
-					["TUITION FEES","Tuition Fees"],
-					["TTC SOUTH","TTC South"],
-					["BA","Bahen Center"],
-					["CHANCE","Chance"],
-					["ES","Earth Sciences"],
-					["SS","Sidney Smith"],
-					["AS","Academic Suspension"],
-					["IN","Innis"],
-					["RL","Robarts Library"],
-					["KS","Koeffler Student Center"],
-					["LB","Lassonde Building"],
-					["TTC WEST","TTC West"],
-					["RW","Ramsay Wright Labs"],
-					["COMMUNITY","Community"],
-					["HH","Hart House"],
-					["MP","M-Physics Labs"],
-					["AB","Anthropology Building"],
-					["AC","Architecture Building"],
-					["CHANCE","Chance"],
-					["VC","Victoria College"],
-					["BC","Bancroft Building"],
-					["TTC NORTH","TTC North"],
-					["SC","Student Commons"],
-					["CA","Sid's Cafe"],
-					["CL","Claude T. Bissell Building"],
-					["CR","Carr Hall"],
-					["PO","Political Offense"],
-					["CF","Cardinal Flahiff Building"],
-					["WH","Whitney Hall"],
-					["COMMUNITY","Community"],
-					["CO","Convocation Hall"],
-					["TTC EAST","TTC East"],
-					["CHANCE","Chance"],
-					["EX","Exam Center"],
-					["INCOME TAX","Income Tax"],
-					["AH","Alumni Hall"]
+const tileNames = [
+	["GO", "GO"],
+	["MB", "Mining Building"],
+	["COMMUNITY", "Community"],
+	["PB", "Pharmacy Building"],
+	["TUITION FEES", "Tuition Fees"],
+	["TTC SOUTH", "TTC South"],
+	["BA", "Bahen Center"],
+	["CHANCE", "Chance"],
+	["ES", "Earth Sciences"],
+	["SS", "Sidney Smith"],
+	["AS", "Academic Suspension"],
+	["IN", "Innis"],
+	["RL", "Robarts Library"],
+	["KS", "Koeffler Student Center"],
+	["LB", "Lassonde Building"],
+	["TTC WEST", "TTC West"],
+	["RW", "Ramsay Wright Labs"],
+	["COMMUNITY", "Community"],
+	["HH", "Hart House"],
+	["MP", "M-Physics Labs"],
+	["AB", "Anthropology Building"],
+	["AC", "Architecture Building"],
+	["CHANCE", "Chance"],
+	["VC", "Victoria College"],
+	["BC", "Bancroft Building"],
+	["TTC NORTH", "TTC North"],
+	["SC", "Student Commons"],
+	["CA", "Sid's Cafe"],
+	["CL", "Claude T. Bissell Building"],
+	["CR", "Carr Hall"],
+	["PO", "Political Offense"],
+	["CF", "Cardinal Flahiff Building"],
+	["WH", "Whitney Hall"],
+	["COMMUNITY", "Community"],
+	["CO", "Convocation Hall"],
+	["TTC EAST", "TTC East"],
+	["CHANCE", "Chance"],
+	["EX", "Exam Center"],
+	["INCOME TAX", "Income Tax"],
+	["AH", "Alumni Hall"],
 ];
 
-const tileColorGroups = [	[1, 3],
-							[6, 8, 9],
-							[11, 13, 14],
-							[16, 18, 19],
-							[21, 23, 24],
-							[26, 27, 29],
-							[31, 32, 34],
-							[37, 39]
-
+const tileColorGroups = [
+	[1, 3],
+	[6, 8, 9],
+	[11, 13, 14],
+	[16, 18, 19],
+	[21, 23, 24],
+	[26, 27, 29],
+	[31, 32, 34],
+	[37, 39],
 ];
 
+const chanceTileImages = { 7: "bottomChance.png", 22: "topChance.png", 36: "rightChance.png" };
 
 // Descriptions for chance and community cards need to be hardcoded as well as their effects,
-// incremental selection of cards not recommended
+// incremental selection of cards not recommended (Why not?)
 // One-based indexes here to match the image file names!
 const NUM_CHANCE_CARDS = 16;
 const NUM_COMMUNITY_CARDS = 16;
 let chanceCounter = 1;
 let communityChestCounter = 1;
 
+const chanceDetails = [
+	"Advance to Innis. If you pass GO, collect $200.",
+	"Advance token to the nearest TTC and pay owner twice the rental to which they are otherwise entitled. If TTC is unowned, you may buy it from the Bank.",
+	"Take a ride on TTC South. If you pass GO, collect $200.",
+	"Advance to GO. (Collect $200.)",
+	"Your building and loan matures. Collect $150.",
+	"You have been elected President of the UTSU. Pay each player $50.",
+	"Go directly to jail. Do not pass GO; do not collect $200.",
+	"Pay poor tax of $15.",
+	"Talk a walk in Alumni Hall. Advance token to Alumni Hall.",
+	"Make general repairs on all your property. For each house, pay $25; for each hotel, pay $100.",
+	"Advance token to nearest library (RL or CL). If UNOWNED, you may buy it from the Bank. If OWNED, throw dice and pay owner a total ten times the amount thrown.",
+	"Bank pays you dividend of $50",
+	"Advance to Bancroft Building (BC)",
+	"Go back 3 spaces",
+	"This card may be kept until needed, or sold. Get out of jail, free.",
+	"Advance token to the nearest TTC and pay owner twice the rental to which they are otherwise entitled. If TTC is unowned, you may buy it from the Bank."
+];
+
+const communityChestDetails = [
+	"Doctor's fee. Pay $50.",
+	"UTSU Fund matures. Collect $100.",
+	"Get out of jail, free. This card may be kept until needed, or sold.",
+	"Skule Nite Opening: Collect $50 from every player for opening night seats.",
+	"You inherit $100.",
+	"Receive $25 for services.",
+	"Income tax refund: collect $20.",
+	"From sale of stock, you get $45.",
+	"Pay non-opt out ancillary fees of $150.",
+	"You are assessed for campus repairs: $40 per house, $115 per hotel",
+	"Bank error in your favor: collect $200",
+	"Advance to GO. (Collect $200.)",
+	"Life insurance matures: collect $100",
+	"Pay hospital $100",
+	"You have won second prize in Orientation Week. Collect $10.",
+	"Go directly to jail. Do not pass GO. Do not collect $200."
+];
+
 //==========================================================================
 // 'Class' definitions
 //==========================================================================
 
 // Placeholder for piece class
-function pieceClass(id, name, description)
-{
-	this.name = name,
-	this.description = description,
-	this.id = id
-};
+function pieceClass(id, name, description) {
+	(this.name = name), (this.description = description), (this.id = id);
+}
 
 // This is the player class, starts with default money, unjailed and generally null information. Users are players, but not all players are users (AI)
-function playerClass()
-{
-	this.user = null,
-	this.piece = null,
-	this.color = null,
-	this.money = 1500,
-	this.jailed = false,
-	this.jailturns = 0,
-	this.pastfirst = false,
-	this.passedgo = false,
-	this.gorestrict = false,
-	this.previousposition = 0,
-	this.position = 0
-};
+function playerClass() {
+	(this.user = null),
+		(this.piece = null),
+		(this.color = null),
+		(this.money = 1500),
+		(this.jailed = false),
+		(this.jailturns = 0),
+		(this.pastfirst = false),
+		(this.passedgo = false),
+		(this.gorestrict = false),
+		(this.previousposition = 0),
+		(this.position = 0);
+}
 
 // This is board class, it contains the tiles, a tracker of player turn, and in which order players play. The game state is also saved here
-function boardClass()
-{
-	this.tiles = [],
-	this.players = [],
-	this.playerTurns = [],
-	this.playerTurn = 0,
-	this.gameState = 0,
-	this.dice = [ 1, 1 ],
-	this.infoedTile = null
+function boardClass() {
+	(this.tiles = []),
+		(this.players = []),
+		(this.playerTurns = []),
+		(this.playerTurn = 0),
+		(this.gameState = 0),
+		(this.dice = [1, 1]),
+		(this.infoedTile = null);
 }
 
 // This is where all information pertinent to a tile is stored
-function tileClass()
-{
+function tileClass() {
 	// basic information about the tiles
-	this.name = "",
-	this.fullname = ""
-	this.desc = "",
-	this.image = null,
-	
-	// Do we deal a random community or chance card
-	this.tileflags = TILE_FLAG_NORMAL;
-	
+	(this.name = ""), (this.fullname = "");
+	(this.desc = ""),
+		(this.image = null),
+		// Do we deal a random community or chance card
+		(this.tileflags = TILE_FLAG_NORMAL);
+
 	// Is this a purchasable property
-	this.purchaseable = false, // Can you even buy this
-	this.price = 0, // price is used to calculate rent and construction prices as well as tax tile payup and utility/ttc paying computations
-	this.owner = null,
-	this.building = false
+	(this.purchaseable = false), // Can you even buy this
+		(this.price = 0), // price is used to calculate rent and construction prices as well as tax tile payup and utility/ttc paying computations
+		(this.owner = null),
+		(this.building = false);
 }
 
 //==========================================================================
 // Initializing and testing
 //==========================================================================
 
-window.addEventListener('load', readyBoard);
+window.addEventListener("load", readyBoard);
 
 // This function populates the board with a tile
-function initializeBoard(board)
-{
+function initializeBoard(board) {
 	// Generate tiles to place in the board
-	for (let i = 0; i < maxTiles; i++)
-	{
+	for (let i = 0; i < maxTiles; i++) {
 		// Set name, full name, description and image using the const array
 		const newTile = new tileClass();
 		newTile.name = tileNames[i][0];
 		newTile.fullname = tileNames[i][1];
-		//newTile.desc = 
+		//newTile.desc =
 		newTile.image = newTile.name + ".png";
-		
+
 		// Check if those are corner tiles and apply the necessary properties
-		if (cornerTiles.includes(i))
-		{
-			switch(i)
-			{
+		if (cornerTiles.includes(i)) {
+			switch (i) {
 				case 10:
 					newTile.tileflags = TILE_FLAG_JAIL;
 					newTile.image = "as.png";
-					break;			
+					break;
 				case 20:
 					newTile.tileflags = TILE_FLAG_FREEPARKING;
 					newTile.image = "fp.png";
-					break;			
+					break;
 				case 30:
 					newTile.tileflags = TILE_FLAG_GOTOJAIL;
 					newTile.image = "go2jail.png";
-					break;			
+					break;
 				default:
 					newTile.tileflags = TILE_FLAG_GO;
 					newTile.image = "go4it.png";
 					break;
 			}
 		}
-		
 
 		// Check if you can buy said tiles
-		if (!unbuyableTiles.includes(i))
-		{
+		if (!unbuyableTiles.includes(i)) {
 			newTile.purchaseable = true;
 			// Check if this a utility tile
-			if (utilityTiles.includes(i))
-			{
+			if (utilityTiles.includes(i)) {
 				newTile.tileflags = TILE_FLAG_UTILITY;
 				newTile.price = 250;
-			}
-			else if (ttcTiles.includes(i))
-			{
+			} else if (ttcTiles.includes(i)) {
 				newTile.tileflags = TILE_FLAG_TTC;
 				newTile.price = 200;
-				newTile.image = "ttc.svg"
-			}
-			else
-			{
+				newTile.image = "ttc.svg";
+			} else {
 				newTile.price = 100 + (i - 1) * 20;
 			}
-		}
-		else
-		{
-			if (taxTiles.includes(i))
-			{
+		} else {
+			if (taxTiles.includes(i)) {
 				newTile.tileflags = TILE_FLAG_TAX;
-				if (i == taxTiles[1])
-				{
+				if (i == taxTiles[1]) {
 					newTile.price = 200;
 					newTile.image = "specimen.png";
-				}
-				else
-				{
+				} else {
 					newTile.price = 100;
 					newTile.image = "ACORN.png";
 				}
 			}
 		}
-		
+
 		// Check if this is a community tile
-		if (communityTiles.includes(i))
-		{
+		if (communityTiles.includes(i)) {
 			newTile.tileflags = TILE_FLAG_COMMUNITY;
 			newTile.image = `/communityChest/communityChest${communityChestCounter}.png`;
-			communityChestCounter = (communityChestCounter + 1)%NUM_COMMUNITY_CARDS;
 		}
 
 		// Check if this a chance tile
-		if (chanceTiles.includes(i))
-		{
+		if (chanceTiles.includes(i)) {
 			newTile.tileflags = TILE_FLAG_CHANCE;
-			newTile.image = `/chance/chance${chanceCounter}.png`;
-			chanceCounter = (chanceCounter + 1)%NUM_CHANCE_CARDS;
+			newTile.image = chanceTileImages[i];
 		}
-		
-		
+
 		board.tiles.push(newTile);
-		
+
 		// Set the names
-		const boardHTML = document.getElementById('board');
+		const boardHTML = document.getElementById("board");
 		const boardHTMLTile = boardHTML.children[i + 1];
-		if (cornerTiles.includes(i))
-		{
+		if (cornerTiles.includes(i)) {
 			//boardHTMLTile.innerHTML = newTile.name;
-		}
-		else if (communityTiles.includes(i) || chanceTiles.includes(i))
-		{
+		} else if (communityTiles.includes(i) || chanceTiles.includes(i)) {
 			boardHTMLTile.children[0].innerHTML = newTile.name;
-		}
-		else if (utilityTiles.includes(i) || ttcTiles.includes(i) || taxTiles.includes(i))
-		{
+		} else if (utilityTiles.includes(i) || ttcTiles.includes(i) || taxTiles.includes(i)) {
 			boardHTMLTile.children[0].innerHTML = newTile.name;
-			boardHTMLTile.children[1].innerHTML = '$' + newTile.price;
-		}
-		else
-		{
+			boardHTMLTile.children[1].innerHTML = "$" + newTile.price;
+		} else {
 			boardHTMLTile.children[1].innerHTML = newTile.name;
-			boardHTMLTile.children[2].innerHTML = '$' + newTile.price;
+			boardHTMLTile.children[2].innerHTML = "$" + newTile.price;
 		}
-		
+
 		// Set the prices
 	}
 }
 
 // Get the players ready
-function initializePlayers(board, numPlayers)
-{
-	if (numPlayers < 2)
-		alert("Insufficent player number.");
-	
-	if (numPlayers > 4)
-		alert("Too many players.");
-	
-	if (!login)
-		alert("No user logged in");
-	
+function initializePlayers(board, numPlayers) {
+	if (numPlayers < 2) alert("Insufficent player number.");
+
+	if (numPlayers > 4) alert("Too many players.");
+
+	if (!login) alert("No user logged in");
+
 	// Add actual player
-	const newPlayer = new playerClass()
+	const newPlayer = new playerClass();
 	newPlayer.user = login;
 	newPlayer.color = playerColors[0];
 	board.players.push(newPlayer);
 	board.playerTurns.push(0);
-	
+
 	// Add AI players
-	for (let i = 1; i < numPlayers; i++)
-	{
+	for (let i = 1; i < numPlayers; i++) {
 		const newAI = new playerClass();
 		newAI.color = playerColors[i];
-		board.players.push(newAI)
+		board.players.push(newAI);
 		board.playerTurns.push(i);
 	}
-	
+
 	// Get the player pieces in position
-	for (let i = 0; i < numPlayers; i++)
-	{	
+	for (let i = 0; i < numPlayers; i++) {
 		offsetPiece(i, 0);
 	}
-	
+
 	// Shuffle playing order
 	board.playerTurns.sort(() => Math.random() - 0.5);
-	
-	if (board.players[board.playerTurns[0]].user == null)
-	{
+
+	if (board.players[board.playerTurns[0]].user == null) {
 		board.gameState = GAMESTATE_AI_TURN;
 		setTimeout(aiRollTheDice, 2000);
-	}
-	else
-	{
+	} else {
 		board.gameState = GAMESTATE_PLAYER_TURN;
 		highlightDice();
 	}
-	
-	console.log('Player ' + board.playerTurns[board.playerTurn] + "'s turn ");
+
+	console.log("Player " + board.playerTurns[board.playerTurn] + "'s turn ");
 }
 
 // Get the player list prepared. Add a resign button for human player and highlight whoever's turn it is, if human is logged as admin, he can kick other players out
-function initializePlayerList(board)
-{
+function initializePlayerList(board) {
 	const playerList = document.getElementById("playerList");
-	
-	// Add the players in descending order of the playerturn list	
-	for (let i = 0; i < board.players.length; i++)
-	{
+
+	// Add the players in descending order of the playerturn list
+	for (let i = 0; i < board.players.length; i++) {
 		const actualPlayerId = board.playerTurns[i];
 		const playerSlot = document.createElement("div");
-		playerSlot.setAttribute("id","playerSlot");
-		
-		if (board.playerTurn == i)
-			playerSlot.setAttribute("style","color:red");
-		else
-			playerSlot.setAttribute("style","color:" + board.players[actualPlayerId].color);
-		
-		if (board.players[actualPlayerId].user)
-		{
-			const playerSlotText = document.createTextNode(board.players[actualPlayerId].user.username + " - $" + board.players[actualPlayerId].money + " " );
+		playerSlot.setAttribute("id", "playerSlot");
+
+		if (board.playerTurn == i) playerSlot.setAttribute("style", "color:red");
+		else playerSlot.setAttribute("style", "color:" + board.players[actualPlayerId].color);
+
+		if (board.players[actualPlayerId].user) {
+			const playerSlotText = document.createTextNode(
+				board.players[actualPlayerId].user.username + " - $" + board.players[actualPlayerId].money + " "
+			);
+			playerSlot.appendChild(playerSlotText);
+		} else {
+			const playerSlotText = document.createTextNode(
+				"AI " + actualPlayerId + " - $" + board.players[actualPlayerId].money + " "
+			);
 			playerSlot.appendChild(playerSlotText);
 		}
-		else
-		{
-			const playerSlotText = document.createTextNode("AI " + actualPlayerId + " - $" + board.players[actualPlayerId].money + " " );
-			playerSlot.appendChild(playerSlotText);			
-		}
-		
-		if (actualPlayerId == 0)
-		{
+
+		if (actualPlayerId == 0) {
 			const playerResignButton = document.createElement("button");
-			playerResignButton.setAttribute("id","resignButton");
-			playerResignButton.setAttribute("onclick","playerResign(event)");
+			playerResignButton.setAttribute("id", "resignButton");
+			playerResignButton.setAttribute("onclick", "playerResign(event)");
 			const playerResignButtonText = document.createTextNode("RESIGN");
 			playerResignButton.appendChild(playerResignButtonText);
 			playerSlot.appendChild(playerResignButton);
-		}
-		else
-		{
-			if (login.isAdmin)
-			{
+		} else {
+			if (login.isAdmin) {
 				const playerKickButton = document.createElement("button");
-				playerKickButton.setAttribute("id","kickButton");
-				playerKickButton.setAttribute("onclick","playerKick(event, " + actualPlayerId + ")");
-				const playerKickButtonText = document.createTextNode("KICK");	
+				playerKickButton.setAttribute("id", "kickButton");
+				playerKickButton.setAttribute("onclick", "playerKick(event, " + actualPlayerId + ")");
+				const playerKickButtonText = document.createTextNode("KICK");
 				playerKickButton.appendChild(playerKickButtonText);
 				playerSlot.appendChild(playerKickButton);
 			}
 		}
-		
+
 		playerList.appendChild(playerSlot);
 	}
 }
@@ -439,113 +425,127 @@ function initializePlayerList(board)
 const gameBoard = new boardClass();
 
 // Ready the board for testing
-function readyBoard()
-{
+function readyBoard() {
 	initializeBoard(gameBoard);
 	initializePlayers(gameBoard, 4);
 	initializePlayerList(gameBoard);
 }
 
 // Tile information displayed on propertyInfo
-function getTileInfo(tile)
-{
-	switch(tile.tileflags)
-	{
-		case TILE_FLAG_GO: return "Collect $200 if you pass and an extra $200 if you land on it."; break;
-		case TILE_FLAG_COMMUNITY: return "Community card!"; break;
-		case TILE_FLAG_CHANCE: return "Chance card!"; break;
-		case TILE_FLAG_JAIL: return "If you're just visting, stay put. Otherwise, wait three turns, use a Get out of Jail free card or score a double to be freed."; break;
-		case TILE_FLAG_FREEPARKING: return "Free parking! Stay put or get a your tax returns if you landed here with a double."; break;
-		case TILE_FLAG_GOTOJAIL: return "You've said or done something politically offensive, get academically suspended."; break;
-		case TILE_FLAG_TAX: return "Pay your taxes! $" + tile.price; break;
-		case TILE_FLAG_UTILITY: return "Pay 50% of the tile price of every utility the owner has."; break;
-		case TILE_FLAG_TTC: return "Pay $50 for every TTC the owner has."; break;
-		default: return "Price: $" + tile.price + "<br /> Pay 25% of the buying price,<br />double its color group is owned by a single person,<br />double more if a building is on it."; break;
+function getTileInfo(tile) {
+	switch (tile.tileflags) {
+		case TILE_FLAG_GO:
+			return "Collect $200 if you pass and an extra $200 if you land on it.";
+			break;
+		case TILE_FLAG_COMMUNITY:
+			return "Community Chest Card!";
+			break;
+		case TILE_FLAG_CHANCE:
+			return "Chance Card!";
+			break;
+		case TILE_FLAG_JAIL:
+			return "If you're just visting, stay put. Otherwise, wait three turns, use a Get out of Jail free card or score a double to be freed.";
+			break;
+		case TILE_FLAG_FREEPARKING:
+			return "Free parking! Stay put or get a your tax returns if you landed here with a double.";
+			break;
+		case TILE_FLAG_GOTOJAIL:
+			return "You've said or done something politically offensive, get academically suspended.";
+			break;
+		case TILE_FLAG_TAX:
+			return "Pay your taxes! $" + tile.price;
+			break;
+		case TILE_FLAG_UTILITY:
+			return "Pay 50% of the tile price of every utility the owner has.";
+			break;
+		case TILE_FLAG_TTC:
+			return "Pay $50 for every TTC the owner has.";
+			break;
+		default:
+			return (
+				"Price: $" +
+				tile.price +
+				"<br /> Pay 25% of the buying price,<br />double its color group if owned by a single person,<br />double again if a building is on it."
+			);
+			break;
 	}
 	return "";
 }
 
 // This is a dummy event handler, as when children's handlers are called, so are their parent's
-function dummyClick(e)
-{
+function dummyClick(e) {
 	e.preventDefault();
-	
+
 	// Setup
 	const tile = e.target;
 	let tileIterate = tile;
-	
-	while (tileIterate.getAttribute("onclick") != "parseInfo(event)")
-	{
+
+	while (tileIterate.getAttribute("onclick") != "parseInfo(event)") {
 		tileIterate = tileIterate.parentElement;
 	}
-	
+
 	const boardTile = document.getElementById("board");
 	let tileInfo = null;
 	let index = 1;
 
 	// Find corresponding tile
-	for (let i = 1; i < maxTiles + 1; i++)
-	{
-		if (boardTile.children[i] == tileIterate)
-		{
+	for (let i = 1; i < maxTiles + 1; i++) {
+		if (boardTile.children[i] == tileIterate) {
 			tileInfo = gameBoard.tiles[i - 1];
 			index = i - 1;
 			break;
 		}
 	}
 
-	if (tileInfo)
-	{
+	if (tileInfo) {
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfo");
 		clearTileInfo();
-		
+
 		// Let the board know which tile we're displaying for refreshing purposes
 		gameBoard.infoedTile = index;
-		
+
 		// Set the header
-		const infoTileHeader = document.createElement("div")
-		if (tileIterate.children[0])
-		{
-			infoTileHeader.className = "propertyInfoHeader"
-			infoTileHeader.style.backgroundColor = window.getComputedStyle(tileIterate.children[0], null).getPropertyValue("background-color");
+		const infoTileHeader = document.createElement("div");
+		if (tileIterate.children[0]) {
+			infoTileHeader.className = "propertyInfoHeader";
+			infoTileHeader.style.backgroundColor = window
+				.getComputedStyle(tileIterate.children[0], null)
+				.getPropertyValue("background-color");
+		} else {
+			infoTileHeader.className = "propertyInfoHeaderNoColor";
 		}
-		else
-		{
-			infoTileHeader.className = "propertyInfoHeaderNoColor"
-		}
-		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[index].fullname)
-		infoTileHeader.appendChild(infoTileHeaderText)
-		infoTile.appendChild(infoTileHeader)
-		
+		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[index].fullname);
+		infoTileHeader.appendChild(infoTileHeaderText);
+		infoTile.appendChild(infoTileHeader);
+
 		// Set the image
-		if (gameBoard.tiles[index].image)
-		{
-			const infoTileImage = document.createElement("img")
-			infoTileImage.className = "propertyInfoImage"
+		if (gameBoard.tiles[index].image) {
+			const infoTileImage = document.createElement("img");
+			infoTileImage.className = "propertyInfoImage";
 			if (gameBoard.tiles[index].image)
-				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[index].image)
-			else
-				infoTileImage.setAttribute("src", "./img/placeholder.png")
-			infoTile.appendChild(infoTileImage)
+				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[index].image);
+			else infoTileImage.setAttribute("src", "./img/placeholder.png");
+			infoTile.appendChild(infoTileImage);
 		}
-		
+
 		// Set the information
-		const infoTileText = document.createElement("div")
+		const infoTileText = document.createElement("div");
 		//infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
-		infoTileText.className = "propertyInfoText"
+		infoTileText.className = "propertyInfoText";
 		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
-		infoTile.style.backgroundColor = window.getComputedStyle(boardTile.children[index + 1], null).getPropertyValue("background-color");
+		infoTile.style.backgroundColor = window
+			.getComputedStyle(boardTile.children[index + 1], null)
+			.getPropertyValue("background-color");
 	}
 }
 
 // Event handler, this purges the property information display and replaces it with up-to-date information from the last clicked tile
-function parseInfo(e)
-{
+function parseInfo(e) {
 	// prevent default form action
 	e.preventDefault();
-	
+
 	// Setup
 	const tile = e.target;
 	const boardTile = document.getElementById("board");
@@ -553,62 +553,57 @@ function parseInfo(e)
 	let index = 1;
 
 	// Find corresponding tile
-	for (let i = 1; i < maxTiles + 1; i++)
-	{
-		if (boardTile.children[i] == tile)
-		{
+	for (let i = 1; i < maxTiles + 1; i++) {
+		if (boardTile.children[i] == tile) {
 			tileInfo = gameBoard.tiles[i - 1];
 			index = i - 1;
 			break;
 		}
 	}
 
-	if (tileInfo)
-	{
+	if (tileInfo) {
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfo");
 		clearTileInfo();
-		
+
 		// Let the board know which tile we're displaying for refreshing purposes
 		gameBoard.infoedTile = index;
-		
+
 		// Set the header
-		const infoTileHeader = document.createElement("div")
-		if (tile.children[0])
-		{
-			infoTileHeader.className = "propertyInfoHeader"
-			infoTileHeader.style.backgroundColor = window.getComputedStyle(tile.children[0], null).getPropertyValue("background-color");
+		const infoTileHeader = document.createElement("div");
+		if (tile.children[0]) {
+			infoTileHeader.className = "propertyInfoHeader";
+			infoTileHeader.style.backgroundColor = window
+				.getComputedStyle(tile.children[0], null)
+				.getPropertyValue("background-color");
+		} else {
+			infoTileHeader.className = "propertyInfoHeaderNoColor";
 		}
-		else
-		{
-			infoTileHeader.className = "propertyInfoHeaderNoColor"
-		}
-		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[index].fullname)
-		infoTileHeader.appendChild(infoTileHeaderText)
-		infoTile.appendChild(infoTileHeader)
-		
+		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[index].fullname);
+		infoTileHeader.appendChild(infoTileHeaderText);
+		infoTile.appendChild(infoTileHeader);
+
 		// Set the image
-		if (gameBoard.tiles[index].image)
-		{
-			const infoTileImage = document.createElement("img")
-			infoTileImage.className = "propertyInfoImage"
+		if (gameBoard.tiles[index].image) {
+			const infoTileImage = document.createElement("img");
+			infoTileImage.className = "propertyInfoImage";
 			if (gameBoard.tiles[index].image)
-				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[index].image)
-			else
-				infoTileImage.setAttribute("src", "./img/placeholder.png")
-			infoTile.appendChild(infoTileImage)
+				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[index].image);
+			else infoTileImage.setAttribute("src", "./img/placeholder.png");
+			infoTile.appendChild(infoTileImage);
 		}
-		
+
 		// Set the information
-		const infoTileText = document.createElement("div")
+		const infoTileText = document.createElement("div");
 		//infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
-		infoTileText.className = "propertyInfoText"
+		infoTileText.className = "propertyInfoText";
 		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
-		infoTile.style.backgroundColor = window.getComputedStyle(boardTile.children[index + 1], null).getPropertyValue("background-color");
-		
-		if (tileInfo.building == true)
-		{
+		infoTile.style.backgroundColor = window
+			.getComputedStyle(boardTile.children[index + 1], null)
+			.getPropertyValue("background-color");
+
+		if (tileInfo.building == true) {
 			infoTile.style.backgroundImage = "url('./img/built.png')";
 			infoTile.style.backgroundPosition = "bottom center";
 			infoTile.style.backgroundSize = "25%";
@@ -618,113 +613,98 @@ function parseInfo(e)
 }
 
 // Get the information of the tile the last player landed on
-function landedTileInfo(playerNum)
-{
+function landedTileInfo(playerNum) {
 	const position = gameBoard.players[playerNum].position;
 	const player = gameBoard.players[playerNum];
 	const boardTile = document.getElementById("board");
 	let tileInfo = null;
 	let index = 1;
 	let tile = null;
-	
+
 	// Find corresponding tile
-	for (let i = 1; i < maxTiles + 1; i++)
-	{
-		if (i - 1 == position)
-		{
+	for (let i = 1; i < maxTiles + 1; i++) {
+		if (i - 1 == position) {
 			tile = boardTile.children[i];
 			tileInfo = gameBoard.tiles[i - 1];
 			index = i - 1;
 			break;
 		}
 	}
-	
-	if (tileInfo && tile)
-	{
+
+	if (tileInfo && tile) {
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfoAlt");
 		clearLandedTileInfo();
-		
+
 		// Set the header
-		const infoTileHeader = document.createElement("div")
-		if (tile.children[0])
-		{
-			infoTileHeader.className = "propertyInfoHeaderAlt"
-			infoTileHeader.style.backgroundColor = window.getComputedStyle(tile.children[0], null).getPropertyValue("background-color");
+		const infoTileHeader = document.createElement("div");
+		if (tile.children[0]) {
+			infoTileHeader.className = "propertyInfoHeaderAlt";
+			infoTileHeader.style.backgroundColor = window
+				.getComputedStyle(tile.children[0], null)
+				.getPropertyValue("background-color");
+		} else {
+			infoTileHeader.className = "propertyInfoHeaderNoColorAlt";
 		}
-		else
-		{
-			infoTileHeader.className = "propertyInfoHeaderNoColorAlt"
-		}
-		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[index].fullname)
-		infoTileHeader.appendChild(infoTileHeaderText)
-		infoTile.appendChild(infoTileHeader)
-		
+		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[index].fullname);
+		infoTileHeader.appendChild(infoTileHeaderText);
+		infoTile.appendChild(infoTileHeader);
+
 		// Set the image
-		if (gameBoard.tiles[index].image)
-		{
-			const infoTileImage = document.createElement("img")
-			infoTileImage.className = "propertyInfoImageAlt"
+		if (gameBoard.tiles[index].image) {
+			const infoTileImage = document.createElement("img");
+			infoTileImage.className = "propertyInfoImageAlt";
 			if (gameBoard.tiles[index].image)
-				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[index].image)
-			else
-				infoTileImage.setAttribute("src", "./img/placeholder.png")
-			infoTile.appendChild(infoTileImage)
+				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[index].image);
+			else infoTileImage.setAttribute("src", "./img/placeholder.png");
+			infoTile.appendChild(infoTileImage);
 		}
-		
+
 		// Set the information
-		const infoTileText = document.createElement("div")
+		const infoTileText = document.createElement("div");
 		//infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
-		infoTileText.className = "propertyInfoTextAlt"
+		infoTileText.className = "propertyInfoTextAlt";
 		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
-		
+
 		// Add the buttons depending on conditions, you can only build or buy in this version of the game to make it fast
-		if (gameBoard.tiles[index].purchaseable == true)
-		{
+		if (gameBoard.tiles[index].purchaseable == true) {
 			const infoTileButtonBox = document.createElement("div");
 			infoTileButtonBox.setAttribute("id", "propertyInfoButtonBoxAlt");
-			
+
 			// Buy Button
 			const infoTileBuyButton = document.createElement("button");
-			
-			if (checkCanBuy(playerNum, index) && gameBoard.gameState < GAMESTATE_AI_TURN)
-			{
-				infoTileBuyButton.setAttribute("id","propertyInfoButtonBuy");
+
+			if (checkCanBuy(playerNum, index) && gameBoard.gameState < GAMESTATE_AI_TURN) {
+				infoTileBuyButton.setAttribute("id", "propertyInfoButtonBuy");
 				infoTileBuyButton.setAttribute("onclick", "buyTile(event)");
-			}
-			else
-			{
-				infoTileBuyButton.setAttribute("id","propertyInfoButtonBuyDisabled");
+			} else {
+				infoTileBuyButton.setAttribute("id", "propertyInfoButtonBuyDisabled");
 				infoTileBuyButton.setAttribute("disabled", "");
 			}
-			
+
 			const infoTileBuyButtonText = document.createTextNode("BUY");
 			infoTileBuyButton.appendChild(infoTileBuyButtonText);
 			infoTileButtonBox.appendChild(infoTileBuyButton);
-			
+
 			const infoTileBuildButton = document.createElement("button");
-			
-			if (checkCanBuild(playerNum, index) && gameBoard.gameState < GAMESTATE_AI_TURN)
-			{
-				infoTileBuildButton.setAttribute("id","propertyInfoButtonBuild");
+
+			if (checkCanBuild(playerNum, index) && gameBoard.gameState < GAMESTATE_AI_TURN) {
+				infoTileBuildButton.setAttribute("id", "propertyInfoButtonBuild");
 				infoTileBuildButton.setAttribute("onclick", "buildTile(event)");
-			}
-			else
-			{
-				infoTileBuildButton.setAttribute("id","propertyInfoButtonBuildDisabled");
+			} else {
+				infoTileBuildButton.setAttribute("id", "propertyInfoButtonBuildDisabled");
 				infoTileBuildButton.setAttribute("disabled", "");
 			}
-			
+
 			const infoTileBuildButtonText = document.createTextNode("BUILD");
 			infoTileBuildButton.appendChild(infoTileBuildButtonText);
 			infoTileButtonBox.appendChild(infoTileBuildButton);
 			infoTile.appendChild(infoTileButtonBox);
-			
+
 			infoTile.style.backgroundColor = window.getComputedStyle(tile, null).getPropertyValue("background-color");
-			
-			if (tileInfo.building == true)
-			{
+
+			if (tileInfo.building == true) {
 				infoTile.style.backgroundImage = "url('./img/built.png')";
 				infoTile.style.backgroundPosition = "bottom center";
 				infoTile.style.backgroundSize = "25%";
@@ -735,79 +715,71 @@ function landedTileInfo(playerNum)
 }
 
 // Refresh tile info in case the purchase button is pressed, you never know
-function refreshTileInfo(tileNum)
-{
-	if (gameBoard.infoedTile == null)
-	{
+function refreshTileInfo(tileNum) {
+	if (gameBoard.infoedTile == null) {
 		clearTileInfo();
 		return;
 	}
-	
-	if (tileNum != gameBoard.infoedTile)
-		return;
-	
-	// Setup	
+
+	if (tileNum != gameBoard.infoedTile) return;
+
+	// Setup
 	const boardTile = document.getElementById("board");
 	let tileInfo = null;
 	let tile = null;
 
 	// Find corresponding tile
-	for (let i = 1; i < maxTiles + 1; i++)
-	{
-		if (i - 1 == tileNum)
-		{
+	for (let i = 1; i < maxTiles + 1; i++) {
+		if (i - 1 == tileNum) {
 			tileInfo = gameBoard.tiles[tileNum];
 			tile = boardTile.children[i];
 			break;
 		}
 	}
 
-	if (tileInfo && tile)
-	{
+	if (tileInfo && tile) {
 		// Get element and purge its inner contents
 		const infoTile = document.getElementById("propertyInfo");
 		clearTileInfo();
-		
+
 		// Let the board know which tile we're displaying for refreshing purposes
 		gameBoard.infoedTile = tileNum;
-		
+
 		// Set the header
-		const infoTileHeader = document.createElement("div")
-		if (tile.children[0])
-		{
-			infoTileHeader.className = "propertyInfoHeader"
-			infoTileHeader.style.backgroundColor = window.getComputedStyle(tile.children[0], null).getPropertyValue("background-color");
+		const infoTileHeader = document.createElement("div");
+		if (tile.children[0]) {
+			infoTileHeader.className = "propertyInfoHeader";
+			infoTileHeader.style.backgroundColor = window
+				.getComputedStyle(tile.children[0], null)
+				.getPropertyValue("background-color");
+		} else {
+			infoTileHeader.className = "propertyInfoHeaderNoColor";
 		}
-		else
-		{
-			infoTileHeader.className = "propertyInfoHeaderNoColor"
-		}
-		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[tileNum].fullname)
-		infoTileHeader.appendChild(infoTileHeaderText)
-		infoTile.appendChild(infoTileHeader)
-		
+		const infoTileHeaderText = document.createTextNode(gameBoard.tiles[tileNum].fullname);
+		infoTileHeader.appendChild(infoTileHeaderText);
+		infoTile.appendChild(infoTileHeader);
+
 		// Set the image
-		if (gameBoard.tiles[tileNum].image)
-		{
-			const infoTileImage = document.createElement("img")
-			infoTileImage.className = "propertyInfoImage"
+		if (gameBoard.tiles[tileNum].image) {
+			const infoTileImage = document.createElement("img");
+			infoTileImage.className = "propertyInfoImage";
 			if (gameBoard.tiles[tileNum].image)
-				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[tileNum].image)
-			else
-				infoTileImage.setAttribute("src", "./img/placeholder.png")
-			infoTile.appendChild(infoTileImage)
+				infoTileImage.setAttribute("src", "./img/" + gameBoard.tiles[tileNum].image);
+			else infoTileImage.setAttribute("src", "./img/placeholder.png");
+			infoTile.appendChild(infoTileImage);
 		}
-		
+
 		// Set the information
-		const infoTileText = document.createElement("div")
+		const infoTileText = document.createElement("div");
 		//infoTileText.style = "white-space: pre;" // To avoid white space culling and allowing the newline to work
-		infoTileText.className = "propertyInfoText"
+		infoTileText.className = "propertyInfoText";
 		infoTileText.innerHTML = getTileInfo(tileInfo);
 		infoTile.appendChild(infoTileText);
-		infoTile.style.backgroundColor = window.getComputedStyle(boardTile.children[tileNum + 1], null).getPropertyValue("background-color");
-		
-		if (tileInfo.building == true)
-		{
+		infoTile.style.backgroundColor = window
+			.getComputedStyle(boardTile.children[tileNum + 1], null)
+			.getPropertyValue("background-color");
+
+		if (tileInfo.building == true) {
 			infoTile.style.backgroundImage = "url('./img/built.png')";
 			infoTile.style.backgroundPosition = "bottom center";
 			infoTile.style.backgroundSize = "25%";
@@ -817,8 +789,7 @@ function refreshTileInfo(tileNum)
 }
 
 // Clear onclick tile-info
-function clearTileInfo()
-{
+function clearTileInfo() {
 	// Get element and purge its inner contents
 	const infoTile = document.getElementById("propertyInfo");
 	infoTile.innerHTML = "";
@@ -826,10 +797,9 @@ function clearTileInfo()
 	infoTile.style.backgroundImage = "";
 	gameBoard.infoedTile = null;
 }
- 
+
 // Clear landed tile info
-function clearLandedTileInfo()
-{
+function clearLandedTileInfo() {
 	// Get element and purge its inner contents
 	const infoTile = document.getElementById("propertyInfoAlt");
 	infoTile.innerHTML = "";
@@ -838,30 +808,25 @@ function clearLandedTileInfo()
 }
 
 // Event handler for human player
-function playerRollTheDice(e)
-{
+function playerRollTheDice(e) {
 	// Prevent Default
 	e.preventDefault();
-	
+
 	// If it's not the player's turn do not roll the dice
-	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
-		return;
-	
+	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN) return;
+
 	// Immediately roll the dice for the player
 	gameBoard.gameState = GAMESTATE_PLAYER_ROLL;
 	startDiceRoll();
 	lowlightDice();
 	setTimeout(rollTheDice, 2000);
-	
 }
 
 // AI function for rolling the dice
-function aiRollTheDice()
-{
+function aiRollTheDice() {
 	// If it's not the player's turn do not roll the dice
-	if (gameBoard.gameState != GAMESTATE_AI_TURN)
-		return;
-	
+	if (gameBoard.gameState != GAMESTATE_AI_TURN) return;
+
 	// Roll the dice
 	gameBoard.gameState = GAMESTATE_AI_ROLL;
 	startDiceRoll();
@@ -869,475 +834,384 @@ function aiRollTheDice()
 }
 
 // Rolling the dice
-function rollTheDice()
-{
+function rollTheDice() {
 	const currentPlayer = gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]];
-		
+
 	// Dice rolling away
 	gameBoard.dice[0] = 1 + Math.floor(Math.random() * Math.floor(6));
-	gameBoard.dice[1] =  1 + Math.floor(Math.random() * Math.floor(6));
+	gameBoard.dice[1] = 1 + Math.floor(Math.random() * Math.floor(6));
 	stopDiceRoll(gameBoard.dice[0], gameBoard.dice[1]);
-	
-	console.log('Player ' + gameBoard.playerTurns[gameBoard.playerTurn] + ' has rolled ' + gameBoard.dice[0] + ' ' + gameBoard.dice[1]);
-	
+
+	console.log(
+		"Player " +
+		gameBoard.playerTurns[gameBoard.playerTurn] +
+		" has rolled " +
+		gameBoard.dice[0] +
+		" " +
+		gameBoard.dice[1]
+	);
+
 	// Delay player movement
 	setTimeout(playerMove, 1000);
 }
 
 // Moving the player
-function playerMove()
-{
+function playerMove() {
 	const player = gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]];
-	
-	if (player.jailed == true)
-	{
-		if (gameBoard.dice[0] == gameBoard.dice[1])
-			playerReleaseFromJail(gameBoard.playerTurns[gameBoard.playerTurn]);
-		
+
+	if (player.jailed == true) {
+		if (gameBoard.dice[0] == gameBoard.dice[1]) playerReleaseFromJail(gameBoard.playerTurns[gameBoard.playerTurn]);
+
 		setTimeout(nextTurn, 2000);
-			return;
+		return;
 	}
 
 	// Default behavior
 	player.previousposition = player.position;
-	if (player.position + gameBoard.dice[0] + gameBoard.dice[1] > maxTiles - 1)
-	{
-		if (!playerCheckJailed(gameBoard.playerTurn))
-		{
+	if (player.position + gameBoard.dice[0] + gameBoard.dice[1] > maxTiles - 1) {
+		if (!playerCheckJailed(gameBoard.playerTurn)) {
 			player.passedgo = true;
 			player.pastfirst = true;
 		}
-		
+
 		player.position = player.position + gameBoard.dice[0] + gameBoard.dice[1] - 40;
-	}
-	else
-	{
+	} else {
 		player.position = player.position + gameBoard.dice[0] + gameBoard.dice[1];
 	}
-	
-	console.log('Player ' + gameBoard.playerTurns[gameBoard.playerTurn] + ' is now at position ' + player.position);
-	
+
+	console.log("Player " + gameBoard.playerTurns[gameBoard.playerTurn] + " is now at position " + player.position);
+
 	// Move physical piece for that player
 	offsetPiece(gameBoard.playerTurns[gameBoard.playerTurn], player.position);
-	
+
 	// Apply effects
 	setTimeout(playerEffects, 2000);
 }
 
 // Apply tile and movement effects to the player
-function playerEffects()
-{
+function playerEffects() {
 	const player = gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]];
-	
-	if (player.user != null)
-	{
+
+	if (player.user != null) {
 		gameBoard.gameState = GAMESTATE_PLAYER_INFO;
-	}
-	else
-	{
+	} else {
 		gameBoard.gameState = GAMESTATE_AI_INFO;
 	}
-	
-	tileLand(gameBoard.playerTurns[gameBoard.playerTurn], gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position);
+
+	tileLand(
+		gameBoard.playerTurns[gameBoard.playerTurn],
+		gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position
+	);
 	landedTileInfo(gameBoard.playerTurns[gameBoard.playerTurn]);
-	
-	if (player.jailed == true)
-		setTimeout(nextTurn, 2000);
-	else
-		setTimeout(playerDecisionTime, 2000);
+
+	if (player.jailed == true) setTimeout(nextTurn, 2000);
+	else setTimeout(playerDecisionTime, 2000);
 }
 
 // Give the player some time to make decisions about his purchases
-function playerDecisionTime()
-{
+function playerDecisionTime() {
 	const player = gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]];
-	
-	if (player.user)
-	{
+
+	if (player.user) {
 		gameBoard.gameState = GAMESTATE_PLAYER_DECISION;
-	}
-	else
-	{
+	} else {
 		gameBoard.gameState = GAMESTATE_AI_DECISION;
 	}
-	
+
 	setTimeout(nextTurn, 2000); // Should be 10000 for ten seconds
 }
 
 // Giving the dice to the next player
-function nextTurn()
-{	
+function nextTurn() {
 	// Clear the information once turn is done
 	clearLandedTileInfo();
-	
+
 	// Player keeps his turn if he lands double, so check before incrementing.
-	if (gameBoard.dice[0] != gameBoard.dice[1])
-	{
+	if (gameBoard.dice[0] != gameBoard.dice[1]) {
 		// Start off by turning the original player name back to black
 		playerListColor(gameBoard.playerTurn, playerColors[gameBoard.playerTurns[gameBoard.playerTurn]]);
-		
-		if (gameBoard.playerTurn + 1 >= gameBoard.players.length)
-			gameBoard.playerTurn = 0;
-		else
-			gameBoard.playerTurn += 1;
-		
+
+		if (gameBoard.playerTurn + 1 >= gameBoard.players.length) gameBoard.playerTurn = 0;
+		else gameBoard.playerTurn += 1;
+
 		// Turn the next player's name to red
 		playerListColor(gameBoard.playerTurn, "red");
 	}
-	
+
 	// Check whose turn it is
-	if (gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].user == null)
-	{
+	if (gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].user == null) {
 		gameBoard.gameState = GAMESTATE_AI_TURN;
 		setTimeout(aiRollTheDice, 2000);
-	}
-	else
-	{
-		gameBoard.gameState = GAMESTATE_PLAYER_TURN
+	} else {
+		gameBoard.gameState = GAMESTATE_PLAYER_TURN;
 		highlightDice();
 	}
-	console.log('Player ' + gameBoard.playerTurns[gameBoard.playerTurn] + "'s turn ");
-	
+	console.log("Player " + gameBoard.playerTurns[gameBoard.playerTurn] + "'s turn ");
+
 	// Jailing mechanic
-	if (gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].jailed)
-	{
+	if (gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].jailed) {
 		if (gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].jailturns > 0)
 			--gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].jailturns;
-		
+
 		if (gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].jailturns <= 0)
 			playerReleaseFromJail(gameBoard.playerTurns[gameBoard.playerTurn]);
 	}
-	
 }
 
 // What happens if you land on a certain tile
-function tileLand(playerNum, tileNum)
-{
+function tileLand(playerNum, tileNum) {
 	const playerPtr = gameBoard.players[playerNum];
-	
+
 	// Check to make sure player has passed go
-	if (playerPtr.passedgo == true)
-	{
-		if (playerPtr.gorestrict == true)
-		{
+	if (playerPtr.passedgo == true) {
+		if (playerPtr.gorestrict == true) {
 			gorestrict = false;
-		}
-		else
-		{
+		} else {
 			flowFunds(playerNum, 200, true);
 			gameBoard.players[playerNum].passedgo = false;
 		}
 	}
-	
+
 	const tile = gameBoard.tiles[tileNum];
 	const tileFlags = gameBoard.tiles[tileNum].tileflags;
-	
-	if (tileFlags == TILE_FLAG_NORMAL || tileFlags == TILE_FLAG_UTILITY || tileFlags == TILE_FLAG_TTC)
-	{
-		if (tile.owner != playerPtr && tile.owner != null)
-		{
+
+	if (tileFlags == TILE_FLAG_NORMAL || tileFlags == TILE_FLAG_UTILITY || tileFlags == TILE_FLAG_TTC) {
+		if (tile.owner != playerPtr && tile.owner != null) {
 			console.log("Landed at " + gameBoard.tiles[tileNum].fullname + ".");
-			
-			if (tileFlags == TILE_FLAG_UTILITY)
-			{
+
+			if (tileFlags == TILE_FLAG_UTILITY) {
 				const loot = numOwnedUtility(tile.owner) * (tile.price / 2);
-				
+
 				flowFunds(playerNum, loot, false);
 				flowFunds(tile.owner, loot, true);
-			}
-			else if (tileFlags == TILE_FLAG_TTC)
-			{
+			} else if (tileFlags == TILE_FLAG_TTC) {
 				const loot = numOwnedTTC(tile.owner) * (tile.price / 4);
-				
+
 				flowFunds(playerNum, loot, false);
-				flowFunds(tile.owner, loot, true);				
-			}
-			else
-			{
+				flowFunds(tile.owner, loot, true);
+			} else {
 				let loot = tile.price / 4;
-				
-				if (ownsCorrespondingColorTiles(tile.owner, tileNum))
-					loot *= 2;
-				
-				if (tile.building == true)
-					loot *= 2;
+
+				if (ownsCorrespondingColorTiles(tile.owner, tileNum)) loot *= 2;
+
+				if (tile.building == true) loot *= 2;
 
 				flowFunds(playerNum, loot, false);
 				flowFunds(tile.owner, loot, true);
 			}
 		}
-		
-	}
-	else if (tileFlags == TILE_FLAG_TAX)
-	{
+	} else if (tileFlags == TILE_FLAG_TAX) {
 		flowFunds(playerNum, gameBoard.tiles[tileNum].price, false);
 		gameBoard.tiles[20].price += gameBoard.tiles[tileNum].price;
 		console.log("Paying tax of " + gameBoard.tiles[tileNum].price + ".");
-	}
-	else if (tileFlags == TILE_FLAG_COMMUNITY)
-	{
+	} else if (tileFlags == TILE_FLAG_COMMUNITY) {
 		drawCommunityCard(playerNum);
-		console.log("Drawing community card!");
-	}
-	else if (tileFlags == TILE_FLAG_CHANCE)
-	{
+	} else if (tileFlags == TILE_FLAG_CHANCE) {
 		drawChanceCard(playerNum);
-		console.log("Drawing chance card!");
-	}
-	else if (tileFlags == TILE_FLAG_GOTOJAIL)
-	{
+	} else if (tileFlags == TILE_FLAG_GOTOJAIL) {
 		playerSendToJail(playerNum);
-		console.log("Go to jail scumbag!");
-	}
-	else if (tileFlags == TILE_FLAG_FREEPARKING)
-	{
-		if (gameBoard.dice[0] == gameBoard.dice[1])
-		{
+		console.log("Go to jail, scumbag!");
+	} else if (tileFlags == TILE_FLAG_FREEPARKING) {
+		if (gameBoard.dice[0] == gameBoard.dice[1]) {
 			flowFunds(playerNum, gameBoard.tiles[tileNum].price, true);
 			console.log("Nice! You get your tax returns!");
-		}
-		else
-		{
+		} else {
 			console.log("Free parking!");
 		}
-	}
-	else if (tileFlags == TILE_FLAG_GO)
-	{
+	} else if (tileFlags == TILE_FLAG_GO) {
 		flowFunds(playerNum, 200, true);
 		console.log("Get double salary!");
 	}
 }
 
 // What happens if the player runs out of funds
-function checkFunds(playerNum)
-{
-	if (gameBoard.players[playerNum].money >= 0)
-		return;
-	
+function checkFunds(playerNum) {
+	if (gameBoard.players[playerNum].money >= 0) return;
+
 	return true;
 }
 
 // Does the player have a sufficient amount of funds to perform a certain action
-function hasSufficentFunds(playerNum, fundsAmount)
-{
-	if (gameBoard.players[playerNum].money < fundsAmount)
-		return false;
-	
+function hasSufficentFunds(playerNum, fundsAmount) {
+	if (gameBoard.players[playerNum].money < fundsAmount) return false;
+
 	return true;
 }
 
 // Check if the player can purchase a certain property
-function checkCanBuy(playerNum, tileNum)
-{
-	if (gameBoard.players[playerNum].pastfirst == false)
-		return false;
-	
-	if (gameBoard.tiles[tileNum].purchasable == false)
-		return false;
-	
-	if (gameBoard.tiles[tileNum].owner != null)
-		return false;
-	
-	if (!hasSufficentFunds(playerNum,gameBoard.tiles[tileNum].price))
-		return false;
-	
+function checkCanBuy(playerNum, tileNum) {
+	if (gameBoard.players[playerNum].pastfirst == false) return false;
+
+	if (gameBoard.tiles[tileNum].purchasable == false) return false;
+
+	if (gameBoard.tiles[tileNum].owner != null) return false;
+
+	if (!hasSufficentFunds(playerNum, gameBoard.tiles[tileNum].price)) return false;
+
 	return true;
 }
 
 // Check if the player can build on a certain property
-function checkCanBuild(playerNum, tileNum)
-{
+function checkCanBuild(playerNum, tileNum) {
 	const tile = gameBoard.tiles[tileNum];
-	
+
 	// If this already has a building, don't bother
-	if (tile.building == true)
-		return false;
-	
+	if (tile.building == true) return false;
+
 	// All special tiles can't be built on anyways
-	if (tile.tileflags != TILE_FLAG_NORMAL)
-		return false;
-	
+	if (tile.tileflags != TILE_FLAG_NORMAL) return false;
+
 	// If this doesn't have an owner or the player in question isn't the owner, you can't build here
-	if (tile.owner != playerNum)
-		return false;
-	
+	if (tile.owner != playerNum) return false;
+
 	// You must own all tiles of the same color code to build
-	if (!ownsCorrespondingColorTiles(playerNum, tileNum))
-		return false;
-	
-	if (!hasSufficentFunds(playerNum,tile.price))
-		return false;
-	
+	if (!ownsCorrespondingColorTiles(playerNum, tileNum)) return false;
+
+	if (!hasSufficentFunds(playerNum, tile.price)) return false;
+
 	return true;
 }
 
 // Helper to the above function to see the player owns buildings of corresponding colors, use the const table at the top of the page
-function ownsCorrespondingColorTiles(playerNum, tileNum)
-{
+function ownsCorrespondingColorTiles(playerNum, tileNum) {
 	let result = false;
-	
-	for (let i = 0; i < tileColorGroups.length; i++)
-	{
-		if (tileColorGroups[i].includes(tileNum))
-		{
+
+	for (let i = 0; i < tileColorGroups.length; i++) {
+		if (tileColorGroups[i].includes(tileNum)) {
 			let answer = true;
-			for (let j = 0; j < tileColorGroups[i].length; j++)
-			{
+			for (let j = 0; j < tileColorGroups[i].length; j++) {
 				if (tileColorGroups[i][j].owner != playerNum);
 				{
-					answer = false
+					answer = false;
 					break;
 				}
 			}
-			
-			if (answer == true)
-				result = true;
-			
+
+			if (answer == true) result = true;
+
 			break;
 		}
 	}
-	
+
 	return result;
 }
 
-// Return the number of 
-function numOwnedTTC(playerNum)
-{
+// Return the number of
+function numOwnedTTC(playerNum) {
 	let result = 0;
-	
-	for (let i = 0; i < ttcTiles.length; i++)
-	{
-		if (gameBoard.tiles[ttcTiles[i]].owner == playerNum)
-			result++;
+
+	for (let i = 0; i < ttcTiles.length; i++) {
+		if (gameBoard.tiles[ttcTiles[i]].owner == playerNum) result++;
 	}
-	
+
 	return result;
 }
 
 // Return the number of owned utility tiles
-function numOwnedUtility(playerNum)
-{
+function numOwnedUtility(playerNum) {
 	let result = 0;
-	
-	for (let i = 0; i < utilityTiles.length; i++)
-	{
-		if (gameBoard.tiles[utilityTiles[i]].owner == playerNum)
-			result++;
+
+	for (let i = 0; i < utilityTiles.length; i++) {
+		if (gameBoard.tiles[utilityTiles[i]].owner == playerNum) result++;
 	}
-	
-	return result;	
+
+	return result;
 }
 
 // This changes a player's money, fundsDirection controls whether it's removed or added
-function flowFunds(playerNum, fundsAmount, fundsDirection)
-{
-	if (fundsDirection)
-		gameBoard.players[playerNum].money += fundsAmount;
-	else
-		gameBoard.players[playerNum].money -= fundsAmount;
-	
+function flowFunds(playerNum, fundsAmount, fundsDirection) {
+	if (fundsDirection) gameBoard.players[playerNum].money += fundsAmount;
+	else gameBoard.players[playerNum].money -= fundsAmount;
+
 	updateFundsDisplay(playerNum);
 	checkFunds(playerNum);
 }
 
-function updateFundsDisplay(playerNum)
-{
-	let playerList = document.querySelector('#playerList');
-		
+function updateFundsDisplay(playerNum) {
+	let playerList = document.querySelector("#playerList");
+
 	// Get the index on the player list
 	let index = 0;
-	for (let i = 0; i < gameBoard.playerTurns.length; i++)
-	{
-		if (gameBoard.playerTurns[i] == playerNum)
-		{
+	for (let i = 0; i < gameBoard.playerTurns.length; i++) {
+		if (gameBoard.playerTurns[i] == playerNum) {
 			index = i;
 			break;
 		}
 	}
-	
+
 	const actualPlayerId = gameBoard.playerTurns[index];
 	const playerSlot = document.createElement("div");
-	playerSlot.setAttribute("id","playerSlot");
-	
-	if (gameBoard.playerTurn == index)
-		playerSlot.setAttribute("style","color:red");
-	else
-		playerSlot.setAttribute("style","color:" + playerColors[actualPlayerId]);
-	
-	if (gameBoard.players[actualPlayerId].user)
-	{
-		const playerSlotText = document.createTextNode(gameBoard.players[actualPlayerId].user.username + " - $" + gameBoard.players[actualPlayerId].money + " " );
+	playerSlot.setAttribute("id", "playerSlot");
+
+	if (gameBoard.playerTurn == index) playerSlot.setAttribute("style", "color:red");
+	else playerSlot.setAttribute("style", "color:" + playerColors[actualPlayerId]);
+
+	if (gameBoard.players[actualPlayerId].user) {
+		const playerSlotText = document.createTextNode(
+			gameBoard.players[actualPlayerId].user.username + " - $" + gameBoard.players[actualPlayerId].money + " "
+		);
+		playerSlot.appendChild(playerSlotText);
+	} else {
+		const playerSlotText = document.createTextNode(
+			"AI " + actualPlayerId + " - $" + gameBoard.players[actualPlayerId].money + " "
+		);
 		playerSlot.appendChild(playerSlotText);
 	}
-	else
-	{
-		const playerSlotText = document.createTextNode("AI " + actualPlayerId + " - $" + gameBoard.players[actualPlayerId].money + " " );
-		playerSlot.appendChild(playerSlotText);			
-	}
-	
-	if (actualPlayerId == 0)
-	{
+
+	if (actualPlayerId == 0) {
 		const playerResignButton = document.createElement("button");
-		playerResignButton.setAttribute("id","resignButton");
-		playerResignButton.setAttribute("onclick","playerResign(event)");
+		playerResignButton.setAttribute("id", "resignButton");
+		playerResignButton.setAttribute("onclick", "playerResign(event)");
 		const playerResignButtonText = document.createTextNode("RESIGN");
 		playerResignButton.appendChild(playerResignButtonText);
 		playerSlot.appendChild(playerResignButton);
-	}
-	else
-	{
-		if (login.isAdmin)
-		{
+	} else {
+		if (login.isAdmin) {
 			const playerKickButton = document.createElement("button");
-			playerKickButton.setAttribute("id","kickButton");
-			playerKickButton.setAttribute("onclick","playerKick(event, " + actualPlayerId + ")");
-			const playerKickButtonText = document.createTextNode("KICK");	
+			playerKickButton.setAttribute("id", "kickButton");
+			playerKickButton.setAttribute("onclick", "playerKick(event, " + actualPlayerId + ")");
+			const playerKickButtonText = document.createTextNode("KICK");
 			playerKickButton.appendChild(playerKickButtonText);
 			playerSlot.appendChild(playerKickButton);
 		}
 	}
-	
+
 	playerList.children[index + 1].replaceWith(playerSlot);
 }
 
-// Player draws a community card
-function drawCommunityCard(playerNum)
-{
-	
+// Players draws a chance card
+function drawChanceCard(playerNum) {
+	console.log(`Drawing Chance card: ${chanceDetails[chanceCounter - 1]}`);
+	chanceCounter = (chanceCounter + 1) % NUM_CHANCE_CARDS;
 }
 
-// Players draws a chance card
-function drawChanceCard(playerNum)
-{
-	
+// Player draws a community card
+function drawCommunityCard(playerNum) {
+	console.log(`Drawing Community Chest card: ${communityChestDetails[communityChestCounter - 1]}`);
+	communityChestCounter = (communityChestCounter + 1) % NUM_COMMUNITY_CARDS;
 }
 
 // Player is sent to jail
-function playerSendToJail(playerNum)
-{
+function playerSendToJail(playerNum) {
 	const player = gameBoard.players[playerNum];
 	player.jailed = true;
 	player.jailturns = JAIL_TURN_DEFAULT;
-	
+
 	// Movement is directly manipulated in this particular case
 	player.oldposition = player.position;
 	player.position = 10;
 	offsetPiece(playerNum, player.position);
-
 }
 
 // Method to check if the player is jailed or not
-function playerCheckJailed(playerNum)
-{
-	if (gameBoard.players[playerNum].jailed)
-		return true;
-	
+function playerCheckJailed(playerNum) {
+	if (gameBoard.players[playerNum].jailed) return true;
+
 	return false;
 }
 
-// Release the player from jail, done either through 
-function playerReleaseFromJail(playerNum)
-{
+// Release the player from jail, done either through
+function playerReleaseFromJail(playerNum) {
 	const player = gameBoard.players[playerNum];
 	player.jailed = false;
 	player.jailturns = JAIL_TURN_NONE;
@@ -1345,69 +1219,60 @@ function playerReleaseFromJail(playerNum)
 }
 
 // Change color of player in player list. Used to indicate whose turn it is
-function playerListColor(playerIndex, color)
-{
+function playerListColor(playerIndex, color) {
 	const playerList = document.getElementById("playerList");
-	playerList.children[playerIndex + 1].setAttribute("style","color:" + color);
+	playerList.children[playerIndex + 1].setAttribute("style", "color:" + color);
 }
 
 // Buy the tile
-function buyTile(e)
-{
+function buyTile(e) {
 	e.preventDefault();
-	
-	purchaseTile(gameBoard.playerTurns[gameBoard.playerTurn], gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position);
+
+	purchaseTile(
+		gameBoard.playerTurns[gameBoard.playerTurn],
+		gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position
+	);
 }
 
 // Ditto, shared by both player and AI
-function purchaseTile(playerNum, tileNum)
-{
+function purchaseTile(playerNum, tileNum) {
 	// Game logic change
-	
-	if (playerNum > -1)
-	{
+
+	if (playerNum > -1) {
 		gameBoard.tiles[tileNum].owner = playerNum;
 		flowFunds(playerNum, gameBoard.tiles[tileNum].price, false);
-	}
-	else
-	{
+	} else {
 		gameBoard.tiles[tileNum].owner = null;
 	}
-	
+
 	// Board display change
 	const board = document.getElementById("board");
 	let tile = null;
 
 	// Find corresponding tile
-	for (let i = 1; i < maxTiles + 1; i++)
-	{
-		if (i - 1 == tileNum)
-		{
+	for (let i = 1; i < maxTiles + 1; i++) {
+		if (i - 1 == tileNum) {
 			tile = board.children[i];
 			break;
 		}
 	}
-	
-	if (tile)
-	{
+
+	if (tile) {
 		const divId = tile.getAttribute("id");
 		const divElement = document.getElementById(divId);
-		if (playerNum < 0)
-		{
+		if (playerNum < 0) {
 			divElement.style.backgroundColor = "#CEE6D0";
-		}
-		else
-		{
+		} else {
 			if (gameBoard.players[playerNum].color == "magenta")
 				divElement.style.backgroundColor = "rgba(255,0,255,0.2)";
 			else if (gameBoard.players[playerNum].color == "blue")
-				divElement.style.backgroundColor  = "rgba(0,0,255,0.2)";
+				divElement.style.backgroundColor = "rgba(0,0,255,0.2)";
 			else if (gameBoard.players[playerNum].color == "green")
 				divElement.style.backgroundColor = "rgba(0,128,0,0.2)";
 			else if (gameBoard.players[playerNum].color == "orange")
 				divElement.style.backgroundColor = "rgba(255,165,0,0.2)";
 		}
-		
+
 		// Refresh the landTileInfo
 		landedTileInfo(playerNum);
 		refreshTileInfo(tileNum);
@@ -1415,88 +1280,77 @@ function purchaseTile(playerNum, tileNum)
 }
 
 // Build on the tile
-function buildTile(e)
-{
+function buildTile(e) {
 	e.preventDefault();
-	
-	constructTile(gameBoard.playerTurns[gameBoard.playerTurn], gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position);
+
+	constructTile(
+		gameBoard.playerTurns[gameBoard.playerTurn],
+		gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position
+	);
 	//console.log("Built on it");
 }
 
 // Ditto shared by both player and AI
-function constructTile(playerNum, tileNum)
-{
+function constructTile(playerNum, tileNum) {
 	// Game logic change
 	gameBoard.tiles[tileNum].building = true;
 	flowFunds(playerNum, gameBoard.tiles[tileNum].price, false);
-	
+
 	// Board display change
 	const board = document.getElementById("board");
 	let tile = null;
 
 	// Find corresponding tile
-	for (let i = 1; i < maxTiles + 1; i++)
-	{
-		if (i - 1 == tileNum)
-		{
+	for (let i = 1; i < maxTiles + 1; i++) {
+		if (i - 1 == tileNum) {
 			tile = board.children[i];
 			break;
 		}
 	}
-	
-	if (tile)
-	{
+
+	if (tile) {
 		const divId = tile.getAttribute("id");
 		const divElement = document.getElementById(divId);
 
 		divElement.style.backgroundRepeat = "no-repeat";
 		divElement.style.backgroundPosition = "center";
-		
-		if (divId.includes("bottomRow") || divId.includes("topRow"))
-		{
+
+		if (divId.includes("bottomRow") || divId.includes("topRow")) {
 			divElement.style.backgroundImage = "url('./img/built.png')";
 			divElement.style.backgroundSize = "40%";
-		}
-		else if (divId.includes("leftCol"))
-		{
+		} else if (divId.includes("leftCol")) {
 			divElement.style.backgroundImage = "url('./img/built-left.png')";
 			divElement.style.backgroundSize = "25%";
-		}
-		else if (divId.includes("rightCol"))
-		{
+		} else if (divId.includes("rightCol")) {
 			divElement.style.backgroundImage = "url('./img/built-right.png')";
 			divElement.style.backgroundSize = "25%";
 		}
-		
 	}
-	
+
 	// Refresh the landTileInfo
 	landedTileInfo(playerNum);
 	refreshTileInfo(tileNum);
 }
 
 // Kick an AI player
-function playerKick(e, id)
-{
+function playerKick(e, id) {
 	// Prevent default
 	e.preventDefault();
-	
-	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
-		return;
-	
+
+	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN) return;
+
 	console.log("Kick " + id + ".");
 }
 
 // Client resign
-function playerResign(e)
-{
+function playerResign(e) {
 	// Prevent default
 	e.preventDefault();
-	
+
 	//if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
 	//	return;
-		
-	window.location.replace('./newgame.html');
+
+	window.location.replace("./newgame.html");
 }
 
 //==========================================================================
@@ -1504,41 +1358,37 @@ function playerResign(e)
 //==========================================================================
 
 // Start rolling the dice
-function startDiceRoll()
-{
+function startDiceRoll() {
 	// Immediately start and set dice rolling flag to true
 	diceRolling = true;
 	loopDiceRoll();
 }
 
 // Loop through and keep setting it away
-function loopDiceRoll()
-{
+function loopDiceRoll() {
 	// Only do this if the dice is rolling
-	if (diceRolling)
-	{
+	if (diceRolling) {
 		const diceSection = document.getElementById("diceDisplay");
 		const dice1 = diceSection.children[0];
 		const dice2 = diceSection.children[1];
-		
-		dice1.setAttribute("src", "img/dice" + (1 + Math.floor(Math.random() * Math.floor(6))) + ".png" );
-		dice2.setAttribute("src", "img/dice" + (1 + Math.floor(Math.random() * Math.floor(6))) + ".png" );
-		
+
+		dice1.setAttribute("src", "img/dice" + (1 + Math.floor(Math.random() * Math.floor(6))) + ".png");
+		dice2.setAttribute("src", "img/dice" + (1 + Math.floor(Math.random() * Math.floor(6))) + ".png");
+
 		// Do this every 10th of a second
 		setTimeout(loopDiceRoll, 100);
 	}
 }
 
 // Stop it, freeze with the die set to what the current player rolled
-function stopDiceRoll(dice1val, dice2val)
-{
+function stopDiceRoll(dice1val, dice2val) {
 	diceRolling = false;
 	const diceSection = document.getElementById("diceDisplay");
 	const dice1 = diceSection.children[0];
 	const dice2 = diceSection.children[1];
-	
-	dice1.setAttribute("src", "img/dice" + dice1val + ".png" );
-	dice2.setAttribute("src", "img/dice" + dice2val + ".png" );
+
+	dice1.setAttribute("src", "img/dice" + dice1val + ".png");
+	dice2.setAttribute("src", "img/dice" + dice2val + ".png");
 }
 
 //==========================================================================
@@ -1546,19 +1396,16 @@ function stopDiceRoll(dice1val, dice2val)
 //==========================================================================
 
 // When it's the player's turn
-function highlightDice()
-{
+function highlightDice() {
 	const diceSection = document.getElementById("diceDisplay");
 	diceSection.style.border = "2px solid red";
 }
 
 // When it's no longer the player's turn
-function lowlightDice()
-{
+function lowlightDice() {
 	const diceSection = document.getElementById("diceDisplay");
 	diceSection.style.border = "2px solid black";
 }
-
 
 //==========================================================================
 // Additional Helper functions
@@ -1567,34 +1414,44 @@ function lowlightDice()
 // From https://plainjs.com/javascript/styles/get-the-position-of-an-element-relative-to-the-document-24/
 // Returns the offset of input element
 function offset(el) {
-    var rect = el.getBoundingClientRect(),
-    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+	var rect = el.getBoundingClientRect(),
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
 }
 
 // Get offset for each of the player pieces
-function offsetPiece(playerNum, tile)
-{
+function offsetPiece(playerNum, tile) {
 	const physicalBoard = document.getElementById("board");
 	const tilePlate = physicalBoard.children[tile + 1];
 	const tilePlateOffset = offset(tilePlate);
 	const boardOffset = offset(physicalBoard);
-    tilePlateOffset.top -= boardOffset.top;
-    tilePlateOffset.left -= boardOffset.left;
+	tilePlateOffset.top -= boardOffset.top;
+	tilePlateOffset.left -= boardOffset.left;
 
 	let leftOffset = 0;
 	let topOffset = 0;
-	
-	switch(playerNum)
-	{
-		case 1: leftOffset = 40; topOffset = 0; break;
-		case 2: leftOffset = 0; topOffset = 40; break;
-		case 3: leftOffset = 40; topOffset = 40; break;
-		default: leftOffset = 0; topOffset = 0; break;
+
+	switch (playerNum) {
+		case 1:
+			leftOffset = 40;
+			topOffset = 0;
+			break;
+		case 2:
+			leftOffset = 0;
+			topOffset = 40;
+			break;
+		case 3:
+			leftOffset = 40;
+			topOffset = 40;
+			break;
+		default:
+			leftOffset = 0;
+			topOffset = 0;
+			break;
 	}
-		
+
 	const playerPiece = document.getElementById("player" + playerNum);
-	playerPiece.style.left = (tilePlateOffset.left + (tilePlate.style.width / 2) + leftOffset ) + "px";
-	playerPiece.style.top = (tilePlateOffset.top + (tilePlate.style.height / 2) + topOffset ) + "px";
+	playerPiece.style.left = tilePlateOffset.left + tilePlate.style.width / 2 + leftOffset + "px";
+	playerPiece.style.top = tilePlateOffset.top + tilePlate.style.height / 2 + topOffset + "px";
 }
