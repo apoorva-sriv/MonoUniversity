@@ -302,7 +302,7 @@ function initializeBoard(board) {
 		// Check if this is a community tile
 		if (communityTiles.includes(i)) {
 			newTile.tileflags = TILE_FLAG_COMMUNITY;
-			newTile.image = `/communityChest/communityChest${communityChestCounter}.png`;
+			newTile.image = '/communityChest.gif';
 		}
 
 		// Check if this a chance tile
