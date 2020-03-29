@@ -1582,7 +1582,7 @@ function hasSufficentFunds(playerNum, fundsAmount)
 // Check if the player can purchase a certain property
 function checkCanBuy(playerNum, tileNum)
 {
-	if (gameBoard.players[playerNum].pastfirst == false)
+	if (gameBoard.players[playerNum].pastfirst == false && gameBoard.players[playerNum].piece != PIECE_TYPE_INVESTOR)
 		return false;
 
 	if (gameBoard.tiles[tileNum].purchaseable == false)
@@ -1591,8 +1591,16 @@ function checkCanBuy(playerNum, tileNum)
 	if (gameBoard.tiles[tileNum].owner != null)
 		return false;
 
-	if (!hasSufficentFunds(playerNum, gameBoard.tiles[tileNum].price))
-		return false;
+	if (gameBoard.players[playerNum].piece == PIECE_TYPE_INVESTOR)
+	{
+		if (!hasSufficentFunds(playerNum, gameBoard.tiles[tileNum].price * 1.5))
+			return false;
+	}
+	else
+	{
+		if (!hasSufficentFunds(playerNum, gameBoard.tiles[tileNum].price))
+			return false;		
+	}
 
 	return true;
 }
@@ -1601,6 +1609,9 @@ function checkCanBuy(playerNum, tileNum)
 function checkCanBuild(playerNum, tileNum)
 {
 	const tile = gameBoard.tiles[tileNum];
+
+	if (gameBoard.players[playerNum].pastfirst == false)
+		return false;
 
 	// If this already has a building, don't bother
 	if (tile.building == true) 
@@ -1943,7 +1954,11 @@ function purchaseTile(playerNum, tileNum) {
 	if (playerNum > -1) 
 	{
 		gameBoard.tiles[tileNum].owner = playerNum;
-		flowFunds(playerNum, gameBoard.tiles[tileNum].price, false);
+		
+		if (gameBoard.players[playerNum].piece == PIECE_TYPE_INVESTOR && gameBoard.players[playerNum].pastfirst == false)
+			flowFunds(playerNum, gameBoard.tiles[tileNum].price * 1.5, false);
+		else
+			flowFunds(playerNum, gameBoard.tiles[tileNum].price, false);
 	} 
 	else
 	{
