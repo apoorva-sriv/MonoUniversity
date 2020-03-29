@@ -169,7 +169,7 @@ const chanceDetails = [
 	[ "Bank pays you dividend of $50", function(playerNum) { chBankDividend(playerNum); } ],
 	[ "Advance to Bancroft Building (BC)", function(playerNum) { chBancroftMove(playerNum); } ],
 	[ "Go back 3 tiles.", function(playerNum) { chThreeStepsBack(playerNum); } ],
-	[ "Add a get out of jail free card, may be used at any time.", function() { chGOOJFC(playerNum); } ],
+	[ "Add a get out of jail free card, may be used at any time.", function(playerNum) { chGOOJFC(playerNum); } ],
 	[ "Advance token to the nearest TTC and pay the owner the rental to which they are entitled. If TTC is unowned, you may buy it from the Bank.", function(playerNum) { chTTCDouble(playerNum); } ],
 ];
 
