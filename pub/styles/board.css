@@ -1358,47 +1358,12 @@ body {
 
 .player {
 	position: absolute;
-    font-family: "Wingdings";
-    font-size: 40px;
-	text-align: center;
+	width: 33px;
+	height: 33px;
+	background-size: 33px 33px;
 	transition: all ease-in-out 1000ms;
-}
-
-#player0 {
-	color: magenta;
-	text-shadow:
-	-2px -2px 0 #000,
-	2px -2px 0 #000,
-	-2px 2px 0 #000,
-	2px 2px 0 #000;
-}
-
-#player1 {
-	color: blue;
-	text-shadow:
-	-2px -2px 0 #000,
-	2px -2px 0 #000,
-	-2px 2px 0 #000,
-	2px 2px 0 #000;
-
-}
-
-#player2 {
-	color: green;
-	text-shadow:
-	-1px -1px 0 #000,
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000;
-}
-
-#player3 {
-	color: orange;
-	text-shadow:
-	-1px -1px 0 #000,
-	1px -1px 0 #000,
-	-1px 1px 0 #000,
-	1px 1px 0 #000;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 #playerList {
