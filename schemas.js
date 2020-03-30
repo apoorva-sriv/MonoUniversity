@@ -76,8 +76,19 @@ const itemSchema = new Schema({
 
 const Item = mongoose.model('Item', itemSchema);
 
+const roomSchema = mongoose.Schema({
+    users: [mongoose.Types.ObjectId],
+    isPlaying: {
+        type: Boolean,
+        default: false
+    }
+});
+
+const Room = mongoose.model('Room', roomSchema);
+
 module.exports = {
     User: User,
-    Item: Item
+    Item: Item,
+    Room: Room
 };
 
