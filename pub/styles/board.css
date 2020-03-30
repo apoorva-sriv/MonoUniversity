@@ -2,8 +2,21 @@ body {
     background-color: #5EB4E5;
     font-family: "Oswald", "Helvetica", sans-serif;
 	margin-left: 20px;
-    zoom: 80%; /* Added to fit the board vertically */
+    zoom: 80%;  /*Added to fit the board vertically */
     overflow-y: hidden;
+}
+
+audio {
+    display: none;
+}
+
+#audioIcon {
+    left: 1510px;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    cursor: pointer;
 }
 
 #gameZone {
@@ -100,6 +113,7 @@ body {
     left: 5px;
     height: 113px;
     width: 113px;
+    cursor: pointer;
 }
 
 #bottomRow1 {
@@ -109,6 +123,7 @@ body {
     position: absolute;
     right: calc(0% + 124px);
     width: calc(652px / 9);
+    cursor: pointer;
 }
 
 #bottomRow1Text {
@@ -134,6 +149,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow2Text {
@@ -165,6 +181,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 2 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow3Text {
@@ -190,6 +207,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 3 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow4Text {
@@ -231,6 +249,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 4 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow5Text {
@@ -269,6 +288,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 5 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow6Text {
@@ -294,6 +314,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 6 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow7Text {
@@ -324,6 +345,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 7 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow8Text {
@@ -349,6 +371,7 @@ body {
     position: absolute;
     right: calc(0% + 124px + (652px / 9) * 8 + 4px);
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #bottomRow9Text {
@@ -374,6 +397,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #cornerTileSWImage {
@@ -391,6 +415,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol1Text {
@@ -420,6 +445,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol2Text {
@@ -466,6 +492,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol3Text {
@@ -495,6 +522,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol4Text {
@@ -524,6 +552,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol5Text {
@@ -570,6 +599,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol6Text {
@@ -599,6 +629,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol7Text {
@@ -634,6 +665,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol8Text {
@@ -663,6 +695,7 @@ body {
     left: 0;
     position: absolute;
     width: 120px;
+    cursor: pointer;
 }
 
 #leftCol9Text {
@@ -692,6 +725,7 @@ body {
     position: absolute;
     top: 0;
     width: 120px;
+    cursor: pointer;
 }
 
 #cornerTileNWImage {
@@ -700,7 +734,6 @@ body {
     left: 9px;
 }
 
-
 #topRow1 {
     border: 2px solid black;
     height: 120px;
@@ -708,6 +741,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9);
+    cursor: pointer;
 }
 
 #topRow1Text {
@@ -733,6 +767,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow2Text {
@@ -763,6 +798,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow3Text {
@@ -788,6 +824,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow4Text {
@@ -813,6 +850,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow5Text {
@@ -851,6 +889,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow6Text {
@@ -876,6 +915,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow7Text {
@@ -901,6 +941,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow8ImageContainer {
@@ -938,6 +979,7 @@ body {
     position: absolute;
     top: 0;
     width: calc(652px / 9 - 4px);
+    cursor: pointer;
 }
 
 #topRow9Text {
@@ -963,6 +1005,7 @@ body {
     right: 0;
     top: 0;
     width: 120px;
+    cursor: pointer;
 }
 
 #cornerTileNEImage {
@@ -978,6 +1021,7 @@ body {
     right: 0;
     top: calc(0% + 124px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol1Text {
@@ -1007,6 +1051,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol2Text {
@@ -1036,6 +1081,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 2 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol3Text {
@@ -1055,17 +1101,11 @@ body {
 }
 
 #rightCol3Image {
-
     transform: rotate(-90deg);
-
     max-height: 100%;
-
     max-width: 100%;
-
     top: -63px;
-
     position: relative;
-
     left: 31px;
 }
 
@@ -1076,6 +1116,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 3 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol4Text {
@@ -1105,6 +1146,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 4 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol5Text {
@@ -1152,6 +1194,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 5 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol6Text {
@@ -1189,6 +1232,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 6 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol7Text {
@@ -1218,6 +1262,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 7 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol8Text {
@@ -1264,6 +1309,7 @@ body {
     right: 0;
     top: calc(0% + 124px + (652px / 9) * 8 + 4px);
     width: 120px;
+    cursor: pointer;
 }
 
 #rightCol9Text {
@@ -1412,6 +1458,7 @@ body {
 #kickButton {
 	float: right;
 	margin-right: 20px;
+    cursor: pointer;
 }
 
 #resignButton {
@@ -1513,7 +1560,6 @@ body {
 	float: left;
 	padding: 5px;
 	margin-left: 15px;
-	font-color: gray;
 }
 
 .propertyInfoButtonBuy {
@@ -1524,7 +1570,6 @@ body {
 .propertyInfoButtonBuyDisabled {
 	float: left;
 	padding: 5px;
-	font-color: gray;
 }
 
 #communityChestCardsContainer {
@@ -1555,9 +1600,10 @@ body {
 
 #name {
     cursor: pointer;
-    position: relative;
+    position: absolute;
     height: 130px;
     width: 180px;
-    bottom: 1615px;
-    left: 100px;
+    bottom: 810px;
+    left: 35px;
+    z-index: 1;
 }
