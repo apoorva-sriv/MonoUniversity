@@ -7,7 +7,9 @@
     </head>
     <body>
         <!--Header should be its own component-->
-        <div id="header"> 
+        <div id="header">
+            <audio id="audio" src="music/welcomeToMonopoly.mp3" controls autoplay loop>Your browser does not support the audio element.</audio>
+            <img id="audioIcon" src="img/audioIconMuted.png"/>
             <div id="name" class="vcenter">
                 <img class="logo" src="img/logo.png">
                 <h1>Mono University</h1>
@@ -37,5 +39,6 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="script/signup.js"></script>
+        <script src="script/generalScripts.js"></script>
     </body>
 </html>
