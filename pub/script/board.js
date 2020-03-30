@@ -2254,6 +2254,7 @@ function highlightDice()
 {
 	const diceSection = document.getElementById("diceDisplay");
 	diceSection.style.border = "2px solid red";
+	diceSection.style.cursor = "pointer";
 }
 
 // When it's no longer the player's turn
