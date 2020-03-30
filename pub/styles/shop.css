@@ -66,3 +66,17 @@
 #name {
     cursor: pointer;
 }
+
+audio {
+    display: none;
+}
+
+#audioIcon {
+    top: 14px;
+    left: 1290px;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    cursor: pointer;
+}
