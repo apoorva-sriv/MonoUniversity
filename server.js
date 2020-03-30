@@ -157,6 +157,40 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
    }
 });
 
+// Get list of all existing (non-admin) users
+app.get('/api/users', (req, res) => {
+    User.find().then((users) => {
+        users = users.filter(user => !user.isAdmin)
+        res.send(users)
+    }, (error) => {
+        res.status(500).send(error)
+    })
+})
+
+// update given user's info
+app.patch('/api/user/:id/:name/:money', (req, res) => {
+    const id = req.params.id
+    const newName = req.params.name
+    const newMoney = req.params.money
+    if (!ObjectID.isValid(id)) {
+		res.status(404).send()
+		return;
+    }
+    
+    User.findById(id).then((user) => {
+        user.user = newName
+        user.money = newMoney
+
+        user.save().then((resultUser) => {
+            // do nothing for now
+        }, (error) => {
+            res.status(400).send(error)
+        })
+    })
+})
+
+
+
 io.on('connection', (socket) => {
     if(!socket.handshake.session.username){
         return socket.send('Unauthorized');
