@@ -8,6 +8,7 @@ async function socket_setup(socket){
         if(!room.users.includes(user._id)){
             room.users.push(user._id);
             await room.save();
+            socket.to(roomid).emit('newUser', user);
         }
         socket.join(roomid);
     })

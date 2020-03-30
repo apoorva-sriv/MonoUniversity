@@ -43,8 +43,8 @@ const pathparts = getUrl.pathname.split('/');
 const roomId = pathparts[pathparts.length - 1];
 
 const socket = io(baseUrl);
-socket.on('updateUsers', (msg) => {
-    // Do something
+socket.on('newUser', (user) => {
+    console.log(user);
 });
 socket.connect();
 socket.emit('identify', roomId);
