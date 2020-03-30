@@ -11,7 +11,19 @@ const server = require('http').createServer(app);
 const sharedSession = require('express-socket.io-session')
 const io = require('socket.io')(server);
 
-io.use(sharedSession(session))
+const sessionMiddleware = session({
+    secret: crypto.randomBytes(16).toString(),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60000*1000,
+        httpOnly: true
+    }
+});
+
+io.use((socket, next) => {
+    sessionMiddleware(socket.request, socket.request.res, next);
+});
 
 const { User, Item, Room } = require('./schemas.js');
 const socket_setup = require('./socket-setup.js');
@@ -24,15 +36,7 @@ mongoose.connect(dbpath);
 app.use(express.static(__dirname + '/pub'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(session({
-    secret: crypto.randomBytes(16).toString(),
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 60000*1000,
-        httpOnly: true
-    }
-}));
+app.use(sessionMiddleware);
 
 function existsUserPass(req, res, next){
     const body = req.body;
@@ -205,7 +209,7 @@ app.get('/room/:id', authenticate, async (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    if(!socket.handshake.session.username){
+    if(!socket.request.session.username){
         return socket.disconnect(true);
     } else {
         socket_setup(socket);

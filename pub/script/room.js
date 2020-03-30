@@ -36,3 +36,15 @@ function addKickBtn(){
 addKickBtn();
 
 replaceUserWithUserName();
+
+const getUrl = window.location;
+const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+const pathparts = getUrl.pathname.split('/');
+const roomId = pathparts[pathparts.length - 1];
+
+const socket = io(baseUrl);
+socket.on('updateUsers', (msg) => {
+    // Do something
+});
+socket.connect();
+socket.emit('identify', roomId);
