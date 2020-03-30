@@ -173,13 +173,6 @@ const chanceDetails = [
 	[ "Advance token to the nearest TTC and pay the owner the rental to which they are entitled. If TTC is unowned, you may buy it from the Bank.", function(playerNum) { chTTCDouble(playerNum); } ],
 ];
 
-// Enable navigation prompt
-window.onbeforeunload = function() {
-	return true;
-};
-// Remove navigation prompt
-window.onbeforeunload = null;
-
 // Audio
 const audio = document.querySelector('#audio');
 const audioIcon = document.querySelector("#audioIcon");
