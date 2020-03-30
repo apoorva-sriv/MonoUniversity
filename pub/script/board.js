@@ -2262,6 +2262,7 @@ function lowlightDice()
 {
 	const diceSection = document.getElementById("diceDisplay");
 	diceSection.style.border = "2px solid black";
+	diceSection.style.cursor = "";
 }
 
 //==========================================================================
