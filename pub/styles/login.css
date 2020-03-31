@@ -79,3 +79,17 @@
 .dark-blue{
     color: rgb(3, 96, 156);
 }
+
+audio {
+    display: none;
+}
+
+#audioIcon {
+    top: 14px;
+    left: 1465px;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    z-index: 1;
+    cursor: pointer;
+}

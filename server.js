@@ -11,9 +11,21 @@ const server = require('http').createServer(app);
 const sharedSession = require('express-socket.io-session')
 const io = require('socket.io')(server);
 
-io.use(sharedSession(session))
+const sessionMiddleware = session({
+    secret: crypto.randomBytes(16).toString(),
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 60000*1000,
+        httpOnly: true
+    }
+});
 
-const { User, Item } = require('./schemas.js');
+io.use((socket, next) => {
+    sessionMiddleware(socket.request, socket.request.res, next);
+});
+
+const { User, Item, Room } = require('./schemas.js');
 const socket_setup = require('./socket-setup.js');
 
 const mongoose = require('mongoose');
@@ -24,15 +36,7 @@ mongoose.connect(dbpath);
 app.use(express.static(__dirname + '/pub'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(session({
-    secret: crypto.randomBytes(16).toString(),
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        expires: 60000*1000,
-        httpOnly: true
-    }
-}));
+app.use(sessionMiddleware);
 
 function existsUserPass(req, res, next){
     const body = req.body;
@@ -41,7 +45,7 @@ function existsUserPass(req, res, next){
     }else if(body.password.length === 0 || body.user.length === 0){
         res.status(400).send("Username and password cannot be empty");
     } else {
-        next()
+        next();
     }
 }
 function authenticate(req, res, next){
@@ -160,26 +164,26 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
 // Get list of all existing (non-admin) users
 app.get('/api/users', (req, res) => {
     User.find().then((users) => {
-        users = users.filter(user => !user.isAdmin)
+        users = users.filter(user => !user.isAdmin);
         res.send(users)
     }, (error) => {
         res.status(500).send(error)
     })
-})
+});
 
 // update given user's info
 app.patch('/api/user/:id/:name/:money', (req, res) => {
-    const id = req.params.id
-    const newName = req.params.name
-    const newMoney = req.params.money
+    const id = req.params.id;
+    const newName = req.params.name;
+    const newMoney = req.params.money;
     if (!ObjectID.isValid(id)) {
-		res.status(404).send()
+		res.status(404).send();
 		return;
     }
     
     User.findById(id).then((user) => {
-        user.user = newName
-        user.money = newMoney
+        user.user = newName;
+        user.money = newMoney;
 
         user.save().then((resultUser) => {
             // do nothing for now
@@ -187,13 +191,26 @@ app.patch('/api/user/:id/:name/:money', (req, res) => {
             res.status(400).send(error)
         })
     })
+});
+
+app.get('/api/createGame', authenticate, async (req, res) => {
+    const user = await User.findOne({user: req.session.username});
+    if(!user) return res.sendStatus(404);
+    const room = new Room({users: [user._id]});
+    await room.save();
+    return res.redirect('/room/'+ room._id);
+});
+
+app.get('/room/:id', authenticate, async (req, res) => {
+    if(await Room.findById(req.params.id))
+        res.sendFile('./pub/room.html', {root: __dirname});
+    else
+        res.sendStatus(404);
 })
 
-
-
 io.on('connection', (socket) => {
-    if(!socket.handshake.session.username){
-        return socket.send('Unauthorized');
+    if(!socket.request.session.username){
+        return socket.disconnect(true);
     } else {
         socket_setup(socket);
     }

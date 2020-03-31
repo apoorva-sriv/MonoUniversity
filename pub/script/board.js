@@ -748,13 +748,13 @@ function getTileInfo(tile, cardNum)
 				return gameBoard.chanceCards[cardNum][0];
 			break;
 		case TILE_FLAG_JAIL:
-			return "If you're just visting, stay put. Otherwise, wait three turns, use a Get out of Jail free card or score a double to be freed.";
+			return "If you're just visiting, stay put. Otherwise, wait three turns, use a Get out of Jail free card or score a double to be freed.";
 			break;
 		case TILE_FLAG_FREEPARKING:
-			return "Free parking! Stay put or get a your tax returns if you landed here with a double.";
+			return "Free parking! Stay put or get your tax returns if you landed here with a double.";
 			break;
 		case TILE_FLAG_GOTOJAIL:
-			return "You've said or done something politically offensive, get academically suspended.";
+			return "You've said or done something politically offensive. Get academically suspended.";
 			break;
 		case TILE_FLAG_TAX:
 			return "Pay your taxes! $" + tile.price;
@@ -2231,6 +2231,7 @@ function highlightDice()
 {
 	const diceSection = document.getElementById("diceDisplay");
 	diceSection.style.border = "2px solid red";
+	diceSection.style.cursor = "pointer";
 }
 
 // When it's no longer the player's turn
@@ -2238,6 +2239,7 @@ function lowlightDice()
 {
 	const diceSection = document.getElementById("diceDisplay");
 	diceSection.style.border = "2px solid black";
+	diceSection.style.cursor = "";
 }
 
 //==========================================================================

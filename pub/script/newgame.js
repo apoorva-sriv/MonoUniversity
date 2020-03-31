@@ -5,7 +5,7 @@ const roomNum = document.querySelector("#room-num");
 
 createGameBtn.addEventListener("click", ()=>{
 
-    window.location='./createGame.html';
+    window.location='./api/createGame';
 
 })
 

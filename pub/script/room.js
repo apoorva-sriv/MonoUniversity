@@ -3,11 +3,11 @@ const startBtn = document.querySelector(".start-btn");
 
 
 leaveBtn.addEventListener("click", () => {
-    window.location.replace('./newgame.html');
+    window.location.replace('/newgame.html');
 })
 
 startBtn.addEventListener("click", () => {
-    window.location.replace('./board.html');
+    window.location.replace('/board.html');
 })
 
 function replaceUserWithUserName()
@@ -36,3 +36,15 @@ function addKickBtn(){
 addKickBtn();
 
 replaceUserWithUserName();
+
+const getUrl = window.location;
+const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+const pathparts = getUrl.pathname.split('/');
+const roomId = pathparts[pathparts.length - 1];
+
+const socket = io(baseUrl);
+socket.on('newUser', (user) => {
+    console.log(user);
+});
+socket.connect();
+socket.emit('identify', roomId);
