@@ -61,17 +61,72 @@ function createProfileCard(user){
     const btnContainerDiv = document.createElement("div")
     btnContainerDiv.classList.add("btn-container")
     profileCardDiv.appendChild(btnContainerDiv)
+
     const btnEdit = document.createElement("button")
     btnEdit.classList.add("btn-edit")
     btnEdit.appendChild(document.createTextNode("Edit"))
+    btnEdit.addEventListener("click", editFunction)
     btnContainerDiv.appendChild(btnEdit)
+
     const btnSave = document.createElement("button")
     btnSave.classList.add("btn-save")
     btnSave.appendChild(document.createTextNode("Save"))
+    btnSave.addEventListener("click", saveFunction)
     btnContainerDiv.appendChild(btnSave)
 
     return profileCardDiv
 }
+
+function editFunction (){
+    const cardDiv = this.parentNode.parentNode
+    const lstInput = cardDiv.querySelectorAll("input")
+
+    for (let i=1; i < lstInput.length; i++){
+        lstInput[i].disabled = false;
+        lstInput[i].classList.add("active-input")
+    }
+}
+
+function saveFunction (){
+    const cardDiv = this.parentNode.parentNode
+    const lstInput = cardDiv.querySelectorAll("input")
+
+    for (let i=1; i < lstInput.length; i++){
+        lstInput[i].disabled = true;
+        lstInput[i].classList.remove("active-input")
+    }
+
+    const url = "/api/user"
+
+    let data = {
+        username: lstInput[0].value,
+        money: parseInt(lstInput[1].value),
+        wins: parseInt(lstInput[2].value),
+        points: parseInt(lstInput[3].value)
+    }
+
+    const request = new Request(url, {
+        method: 'PATCH', 
+        body: JSON.stringify(data), 
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+
+    fetch(request)
+    .then(function(res) {
+        if (res.status === 200) {
+            console.log('Patch Success')           
+        } else {
+            console.log("Patch Failed")
+        }
+    }).catch((error) => {
+        log(error)
+    })
+}
+
+
 
 function startup(){
 

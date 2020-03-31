@@ -188,20 +188,20 @@ app.get('/api/users', (req, res) => {
 });
 
 // update given user's info
-app.patch('/api/user/:id/:name/:money', (req, res) => {
-    const id = req.params.id;
-    const newName = req.params.name;
-    const newMoney = req.params.money;
-    if (!ObjectID.isValid(id)) {
-		res.status(404).send();
-		return;
-    }
-    
-    User.findById(id).then((user) => {
-        user.user = newName;
-        user.money = newMoney;
+app.patch('/api/user', (req, res) => {
 
-        user.save().then((resultUser) => {
+    const username = req.body.username
+    const money = req.body.money
+    const wins = req.body.wins
+    const points = req.body.points
+    
+    User.find().then((allUsers) => {
+        const targetUser = allUsers.filter((user) => user.user === username)
+        targetUser[0].money = money
+        targetUser[0].wins = wins
+        targetUser[0].points = points
+        
+        targetUser[0].save().then((resultUser) =>{
             // do nothing for now
         }, (error) => {
             res.status(400).send(error)
