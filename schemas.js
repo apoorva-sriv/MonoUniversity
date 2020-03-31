@@ -25,11 +25,24 @@ const userSchema = new Schema({
     itemsOwned: {
         type: [mongoose.Types.ObjectId],
         default: []
-    }, // list of itemNames
+    },
     itemSelected: {
         type: mongoose.Types.ObjectId,
         default: null
-    }// single itemName
+    },
+    wins:{
+        type: Number,
+        default: 0
+    },
+    points:{
+        type: Number,
+        default: 0
+    },
+    image:{
+        type: String,
+        default: "img/tenkai.png"
+    }
+
 });
 
 userSchema.pre('save', function(next) {

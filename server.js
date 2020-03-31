@@ -161,6 +161,22 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
    }
 });
 
+// Get current User
+app.get('/api/user', (req, res) => {
+    // console.log(req.session.username)
+    User.findOne({user: req.session.username}).then((user) => {
+        // console.log(user)
+        if(user) {
+            res.send(user)
+        }
+        else {
+            res.sendStatus(404)
+        }
+    }, (error) => {
+        res.status(500).send(error)
+    })
+});
+
 // Get list of all existing (non-admin) users
 app.get('/api/users', (req, res) => {
     User.find().then((users) => {

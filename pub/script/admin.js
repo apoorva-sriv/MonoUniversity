@@ -1,4 +1,7 @@
 
+'use strict';
+const log = console.log
+
 function createInfoDiv(labelName, value){
 
     value = value.toString()
@@ -11,7 +14,8 @@ function createInfoDiv(labelName, value){
     infoItemDiv.appendChild(label)
     const input = document.createElement("input")
     input.disabled = true
-    input.appendChild(document.createTextNode(value))
+    input.value = value
+    // input.appendChild(document.createTextNode(value))
     infoItemDiv.appendChild(input)
 
     return infoItemDiv
@@ -59,10 +63,14 @@ function createProfileCard(user){
     profileCardDiv.appendChild(btnContainerDiv)
     const btnEdit = document.createElement("button")
     btnEdit.classList.add("btn-edit")
+    btnEdit.appendChild(document.createTextNode("Edit"))
     btnContainerDiv.appendChild(btnEdit)
     const btnSave = document.createElement("button")
     btnSave.classList.add("btn-save")
+    btnSave.appendChild(document.createTextNode("Save"))
     btnContainerDiv.appendChild(btnSave)
+
+    return profileCardDiv
 }
 
 function startup(){
@@ -78,7 +86,7 @@ function startup(){
        }                
     })
     .then((json) => {
-        profileContainer = document.querySelector('#profile-container')
+        const profileContainer = document.querySelector('#profiles-container')
     
         json.map((user) => {
             const profileCard = createProfileCard(user)

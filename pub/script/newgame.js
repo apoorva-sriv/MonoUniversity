@@ -15,13 +15,10 @@ joinGameBtn.addEventListener("click", ()=>{
     }
 })
 
-console.log(this.session.username)
-
 const profile = document.querySelector("#profile");
 
-
-function checkAdmin(username){
-    const url = "/api/id/" + username
+function checkAdmin(){
+    const url = "/api/user"
 
     fetch(url)
     .then((res) => { 
@@ -37,6 +34,9 @@ function checkAdmin(username){
             const btnDiv = document.querySelector("#buttons")
             const btnAdmin = document.createElement("button")
             btnAdmin.appendChild(document.createTextNode("Admin"))
+            btnAdmin.addEventListener("click", ()=>{
+                window.location='./admin.html';
+            })
             btnDiv.appendChild(btnAdmin)
         }
     }).catch((error) => {
@@ -44,5 +44,5 @@ function checkAdmin(username){
     })
 }
 
-checkAdmin(this.session.username)
+checkAdmin()
 
