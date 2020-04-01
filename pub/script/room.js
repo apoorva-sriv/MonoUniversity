@@ -1,13 +1,19 @@
 const leaveBtn = document.querySelector(".leave-btn");
 const startBtn = document.querySelector(".start-btn");
 
+const getUrl = window.location;
+const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
+const pathparts = getUrl.pathname.split('/');
+const roomId = pathparts[pathparts.length - 1];
+
+const socket = io(baseUrl);
 
 leaveBtn.addEventListener("click", () => {
     window.location.replace('/newgame.html');
 })
 
 startBtn.addEventListener("click", () => {
-    window.location.replace('/board.html');
+    socket.emit("startRequest", roomId);
 })
 
 function replaceUserWithUserName()
@@ -37,14 +43,12 @@ addKickBtn();
 
 replaceUserWithUserName();
 
-const getUrl = window.location;
-const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
-const pathparts = getUrl.pathname.split('/');
-const roomId = pathparts[pathparts.length - 1];
-
-const socket = io(baseUrl);
 socket.on('newUser', (user) => {
     console.log(user);
+});
+socket.on("startGame", () => {
+    console.log("Game start");
+    window.location.replace("/board.html");
 });
 socket.connect();
 socket.emit('identify', roomId);
