@@ -10,11 +10,11 @@ const socket = io(baseUrl);
 
 leaveBtn.addEventListener("click", () => {
     window.location.replace('/newgame.html');
-})
+});
 
 startBtn.addEventListener("click", () => {
-    socket.emit("startRequest", roomId);
-})
+    socket.emit("startRequest");
+});
 
 function replaceUserWithUserName()
 {
@@ -23,18 +23,19 @@ function replaceUserWithUserName()
 }
 
 function addKickBtn(){
-    let allOtherUser = document.querySelectorAll(".cardRightContainer")
+    let allOtherUser = document.querySelectorAll(".cardRightContainer");
 
-    if (localStorage.getItem("username") == "admin"){
+    if (localStorage.getItem("username") === "admin"){
         for (let i=0; i < allOtherUser.length; i ++ ){
-            const btn = document.createElement("button")
-            btn.classList.add("kickBtn")
-            btn.appendChild(document.createTextNode("Kick"))
+            const btn = document.createElement("button");
+            btn.classList.add("kickBtn");
+            btn.appendChild(document.createTextNode("Kick"));
             btn.addEventListener("click", (e) => {
-                const toRemove = btn.parentElement.parentElement
-                btn.parentElement.parentElement.parentElement.removeChild(toRemove)
-            })
-            allOtherUser[i].appendChild(btn)
+                e.preventDefault();
+                const toRemove = btn.parentElement.parentElement;
+                btn.parentElement.parentElement.parentElement.removeChild(toRemove);
+            });
+            allOtherUser[i].appendChild(btn);
         }
     }
 }
