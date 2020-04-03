@@ -1,0 +1,30 @@
+body {
+    background-color: #5EB4E5;
+}
+
+#name {
+    cursor: auto;
+}
+
+.sub-heading {
+    font-family: "Oswald", "Helvetica", sans-serif;
+    text-align: center;
+}
+
+.text {
+    font-family: "Oswald", "Helvetica", sans-serif;
+    text-align: center;
+    font-size: 22px;
+}
+
+.text ul {
+    text-align: left;
+}
+
+#contentheader {
+    font-family: "Oswald", "Helvetica", sans-serif;
+}
+
+li {
+    list-style-image: url(../img/white-right-pointing-index_261e.png);
+}
