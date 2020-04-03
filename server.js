@@ -161,6 +161,13 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
    }
 });
 
+// Post item
+app.post('/api/shop/item', (req, res) => {
+    const item = new Item({ name: body.name, description: body.description, image: body.image, price: body.price});
+    await item.save();
+    res.sendStatus(200);
+})
+
 // Get current User
 app.get('/api/user', (req, res) => {
     // console.log(req.session.username)
@@ -181,6 +188,15 @@ app.get('/api/user', (req, res) => {
 app.get('/api/users', (req, res) => {
     User.find().then((users) => {
         users = users.filter(user => !user.isAdmin);
+        res.send(users)
+    }, (error) => {
+        res.status(500).send(error)
+    })
+});
+
+// Get list of all existing users (including admin)
+app.get('/api/users/all', (req, res) => {
+    User.find().then((users) => {
         res.send(users)
     }, (error) => {
         res.status(500).send(error)
