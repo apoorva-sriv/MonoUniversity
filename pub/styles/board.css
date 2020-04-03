@@ -1607,3 +1607,14 @@ audio {
     left: 35px;
     z-index: 1;
 }
+
+#rules a {
+    color: rgb(3, 96, 156);
+    font-weight: bold;
+    position: absolute;
+    font-size: 21px;
+    bottom: 750px;
+    left: 105px;
+    cursor: pointer;
+    text-decoration: none;
+}
