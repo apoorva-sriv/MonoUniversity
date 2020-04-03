@@ -64,3 +64,28 @@ leaveBtn.addEventListener("click", (e)=>{
 
 clearItems();
 fetchItems(addItems);
+
+
+// function populateShop(){
+//     const url = "/api/shop/user"
+
+//     fetch(url)
+//     .then((res) => { 
+//         if (res.status === 200) {
+//            return res.json() 
+//        } else {
+//             alert('Could not get items for shop')
+//        }                
+//     })
+//     .then((json) => {
+    
+//         fetchItems()
+//     }).catch((error) => {
+//         log(error)
+//     })
+
+
+// }
+
+
+

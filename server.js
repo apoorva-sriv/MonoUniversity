@@ -162,8 +162,8 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
 });
 
 // Post item
-app.post('/api/shop/item', (req, res) => {
-    const item = new Item({ name: body.name, description: body.description, image: body.image, price: body.price});
+app.post('/api/shop/item', async (req, res) => {
+    const item = new Item({ name: req.body.name, description: req.body.description, image: req.body.image, price: req.body.price});
     await item.save();
     res.sendStatus(200);
 })
