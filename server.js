@@ -166,7 +166,12 @@ app.post('/api/shop/item', async (req, res) => {
     const item = new Item({ name: req.body.name, description: req.body.description, image: req.body.image, price: req.body.price});
     await item.save();
     res.sendStatus(200);
-})
+});
+
+app.get('/api/item/:id', async (req, res) => {
+    const item = await Item.findById(req.params.id);
+    await res.json(item);
+});
 
 // Get current User
 app.get('/api/user', (req, res) => {
