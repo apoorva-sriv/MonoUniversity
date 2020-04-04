@@ -18,6 +18,15 @@ function getUserDetails() {
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
             window.isAdmin = json.isAdmin;
+            // Admin---needed to be put here because it didn't work down for some reason!
+            if (window.isAdmin) {
+                const ul = document.querySelector(".fa-ul");
+                ul.appendChild(document.createElement("br"));
+                const li = document.createElement("li");
+                li.innerHTML = '<span class="fa-li"><i class="fas fa-user-shield" aria-hidden="true"></i></span><strong>Admin</strong>';
+                li.style.color = "red";
+                ul.appendChild(li);
+            }
             window.userNamefromDB = json.user;
             document.querySelector("#username").innerText = window.userNamefromDB;
         }).catch((error) => {
@@ -105,16 +114,4 @@ for (const availableToken of availableTokens) {
     }
     li.appendChild(img);
     tokens.appendChild(li);
-}
-
-// Admin
-console.log("Test");
-if (window.isAdmin) {
-    console.log("Test in");
-    const ul = document.querySelector(".fa-ul");
-    ul.appendChild(document.createElement("br"));
-    const li = document.createElement("li");
-    li.innerHTML = '<span class="fa-li"><i class="fas fa-user-shield" aria-hidden="true"></i></span><strong>Admin</strong>';
-    li.style.color = "red";
-    ul.appendChild(li);
 }
