@@ -54,11 +54,11 @@ if (audioIcon) {
     audioIcon.addEventListener('click', function toggleAudio() {
         if (audio.paused || audio.muted)   // audio.paused for the first time the page is loaded (in Chrome at least, where autoplay is disabled)
         {
-            audioIcon.src = "img/audioIcon.png";
+            audioIcon.src = "/img/audioIcon.png";
             audio.play();
             audio.muted = false;
         } else {
-            audioIcon.src = "img/audioIconMuted.png";
+            audioIcon.src = "/img/audioIconMuted.png";
             audio.muted = true;
         }
     });
