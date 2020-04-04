@@ -4,6 +4,8 @@ document.querySelector("#rank").innerText = 1;
 document.querySelector("#shopMoney").innerText = 500;
 const availableTokens = ["default", "cop", "lawyer"];
 let currentToken = "default";
+const isAdmin = true;
+const userNamefromDB = "user";
 
 // Upload profile picture
 // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
@@ -49,10 +51,10 @@ function validFileType(file) {
 
 // Edit username
 const userName = document.querySelector("#username");
-const first = userName.textContent;
+userName.innerText = userNamefromDB;
 userName.addEventListener("input", function editUsername() {
     if (!userName.textContent) {
-        userName.textContent = first;
+        userName.textContent = userNamefromDB;
     }
 });
 
@@ -86,7 +88,6 @@ for (const availableToken of availableTokens) {
 }
 
 // Admin
-const isAdmin = true;
 if (isAdmin) {
     const ul = document.querySelector(".fa-ul");
     ul.appendChild(document.createElement("br"));
