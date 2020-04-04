@@ -51,6 +51,16 @@ function getUserObj (id) {
 const audio = document.querySelector('#audio');
 const audioIcon = document.querySelector("#audioIcon");
 if (audioIcon) {
+    // while loading page, before any clicks
+    if (audio.paused || audio.muted)   // audio.paused for the first time the page is loaded (in Chrome at least, where autoplay is disabled)
+    {
+        audioIcon.src = "/img/audioIcon.png";
+        audio.play();
+        audio.muted = false;
+    } else {
+        audioIcon.src = "/img/audioIconMuted.png";
+        audio.muted = true;
+    }
     audioIcon.addEventListener('click', function toggleAudio() {
         if (audio.paused || audio.muted)   // audio.paused for the first time the page is loaded (in Chrome at least, where autoplay is disabled)
         {
