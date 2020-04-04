@@ -23,8 +23,7 @@ startBtn.addEventListener("click", () => {
 });
 
 // Profile navigation
-document.querySelector("#rightbar").removeEventListener("click", goToProfile());
-document.querySelector("#rightbar").addEventListener("click", function goToProfileFromRoom() {
+document.querySelector("#rightbar").addEventListener("click", () => {
     window.location.replace('/profile.html');
 });
 
