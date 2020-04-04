@@ -10,9 +10,7 @@ createGameBtn.addEventListener("click", ()=>{
 })
 
 joinGameBtn.addEventListener("click", ()=>{
-    if (roomNum.value === "1234567"){
-        window.location='./room.html';
-    }
+    window.location='/room/'+roomNum.value;
 })
 
 const profile = document.querySelector("#profile");

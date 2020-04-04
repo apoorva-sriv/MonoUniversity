@@ -28,6 +28,7 @@ async function socket_setup(socket){
         }
     });
     socket.on('leave', async () => {
+        if(!room) return;
         room.users.remove(user._id);
         await room.save();
         socket.to(room._id).emit('playerLeave', user._id);
