@@ -26,6 +26,8 @@ function getUserDetails() {
     });
 }
 
+getUserDetails();
+
 // Upload profile picture
 // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
 const input = document.querySelector("input");
