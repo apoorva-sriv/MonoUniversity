@@ -108,6 +108,7 @@ for (const availableToken of availableTokens) {
 }
 
 // Admin
+console.log("Test");
 if (window.isAdmin) {
     const ul = document.querySelector(".fa-ul");
     ul.appendChild(document.createElement("br"));
