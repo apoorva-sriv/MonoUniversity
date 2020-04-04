@@ -2,17 +2,6 @@
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-# Table of Contents
-	-DESCRIPTION OF THE APPLICATION
-		-LOGIN
-		-MAIN PAGE
-		-CREATE GAME
-		-JOIN GAME
-		-SHOP
-		-LOGOUT
-		-BOARD
-	-SAMPLE WALKTHROUGH FOR TA
-
 # Description of the Application
 
 ## Login
