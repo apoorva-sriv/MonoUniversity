@@ -21,7 +21,7 @@ async function socket_setup(socket){
     });
     socket.on('startRequest', () => {
         if(room.users.includes(user._id) && room.users.length > 1){
-            socket.to(roomid).emit('startGame');
+            socket.to(room._id).emit('startGame');
             socket.emit('startGame');
         }
     })
