@@ -149,7 +149,7 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
    }
    if(!user || !item){
        res.sendStatus(404);
-   }else if(user.money < item.price){
+   }else if(user.money < item.price && !user.isAdmin){
        res.status(401).send("Not enough money");
    }else if(user.itemsOwned.includes(item._id)){
        res.status(401).send("Already owned");
