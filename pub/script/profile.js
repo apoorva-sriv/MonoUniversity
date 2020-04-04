@@ -1,11 +1,30 @@
 // Get user info from DB
-document.querySelector("#gamesWon").innerText = 100;
-document.querySelector("#rank").innerText = 1;
-document.querySelector("#shopMoney").innerText = 500;
-const availableTokens = ["default", "cop", "lawyer"];
+let availableTokens = ["default", "cop", "lawyer"];
 let currentToken = "default";
-const isAdmin = true;
-const userNamefromDB = "user";
+let isAdmin;
+let userNamefromDB;
+
+function getUserDetails() {
+    const url = "/api/user";
+
+    fetch(url)
+        .then((res) => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert('Could not get user');
+            }
+        })
+        .then((json) => {
+            document.querySelector("#gamesWon").innerText = json.wins;
+            // document.querySelector("#rank").innerText = 1;
+            document.querySelector("#shopMoney").innerText = json.money;
+            isAdmin = json.isAdmin;
+            userNamefromDB = json.user;
+        }).catch((error) => {
+        console.log(error);
+    });
+}
 
 // Upload profile picture
 // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
