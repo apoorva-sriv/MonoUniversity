@@ -16,7 +16,10 @@ function userClass(username, id) {
 }
 
 // Setup the current user
-let mangoItem = null;
+let login = null;
+
+// Is the page loaded yet?
+let load = false;
 
 // Grab user info so that we may use his shit for login
 function fetchUserInfo()
@@ -32,21 +35,18 @@ function fetchUserInfo()
        }                
     })
     .then((user) => {
-		mangoItem = user;
-		console.log(user);
+		let mangoItem = user;
+		login = new userClass(mangoItem.user, "0");
+		login.isAdmin = mangoItem.isAdmin;
+		login.ownedPieces.push(0);
+		for (let i = 0; i < mangoItem.itemsOwned.length; i++)
+			login.ownedPieces.push(mangoItem.itemsOwned[i].behaviourId);
+		login.selectedPiece = mangoItem.itemSelected.behaviorId;
+		window.addEventListener("load", readyBoard);
     }).catch((error) => {
         console.log(error)
     })
 }
-
-let login = new userClass(mangoItem.user, "0");
-login.isAdmin = mangoItem.isAdmin;
-login.ownedPieces.push(0);
-for (let i = 0; i < mangoItem.itemsOwned.length; i++)
-{
-	login.ownedPieces.push(mangoItem.itemsOwned[i].behaviourId);
-}
-login.selectedPiece = mangoItem.itemSelected.behaviorId;
 
 // We need this for dice rolling
 let diceRolling = false;
@@ -547,8 +547,6 @@ function tileClass()
 // Initializing and testing
 //==========================================================================
 
-window.addEventListener("load", readyBoard);
-
 // This function populates the board with a tile
 function initializeBoard(board) 
 {
@@ -755,6 +753,7 @@ function readyBoard()
 	initializePlayers(gameBoard, 4);
 	initializePlayerList();
 	updateOtherInformation();
+	load = true;
 }
 
 // Tile information displayed on propertyInfo
@@ -809,6 +808,9 @@ function getTileInfo(tile, cardNum)
 // This is a dummy event handler, as when children's handlers are called, so are their parent's
 function dummyClick(e) {
 	e.preventDefault();
+
+	if (!load)
+		return;
 
 	// Setup
 	const tile = e.target;
@@ -880,6 +882,9 @@ function parseInfo(e) {
 	// prevent default form action
 	e.preventDefault();
 
+	if (!load)
+		return;
+	
 	// Setup
 	const tile = e.target;
 	const boardTile = document.getElementById("board");
@@ -1161,6 +1166,9 @@ function playerRollTheDice(e)
 {
 	// Prevent Default
 	e.preventDefault();
+
+	if (!load)
+		return;
 
 	// If it's not the player's turn do not roll the dice
 	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN) return;
@@ -1986,6 +1994,9 @@ function buyTile(e)
 {
 	e.preventDefault();
 
+	if (!load)
+		return;
+
 	purchaseTile(
 		gameBoard.playerTurns[gameBoard.playerTurn],
 		gameBoard.players[gameBoard.playerTurns[gameBoard.playerTurn]].position
@@ -2047,6 +2058,9 @@ function purchaseTile(playerNum, tileNum) {
 // Build on the tile
 function buildTile(e) {
 	e.preventDefault();
+
+	if (!load)
+		return;
 
 	constructTile(
 		gameBoard.playerTurns[gameBoard.playerTurn],
@@ -2195,6 +2209,10 @@ function GTFO(playerNum)
 function freedom(e)
 {
 	e.preventDefault();
+	
+	if (!load)
+		return;
+	
 	GTFO(0);
 }
 
@@ -2203,6 +2221,9 @@ function playerKick(e, id)
 {
 	// Prevent default
 	e.preventDefault();
+
+	if (!load)
+		return;
 
 	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
 		return;
@@ -2215,6 +2236,9 @@ function playerKick(e, id)
 function playerResign(e) 
 {
 	e.preventDefault();
+
+	if (!load)
+		return;
 
 	if (gameBoard.gameState != GAMESTATE_PLAYER_TURN)
 		return;
