@@ -105,3 +105,186 @@ module.exports = {
     Room: Room
 };
 
+// Tile schema for tiles
+const tileSchema = mongoose.Schema({
+	name : {
+		type: String,
+		default: ""
+	},
+	
+	fullname : {
+		type: String,
+		default: ""
+	},	
+	
+	desc : {
+		type: String,
+		default: ""
+	},
+	
+	image : {
+		type: String,
+		default: null
+	},
+	
+	tileflags : {
+		type: Number,
+		default: 0
+	},
+
+	purchaseable : {
+		type: Boolean,
+		default: false
+	},
+	
+	price : {
+		type: Number,
+		default: 0
+	},
+	
+	owner : {
+		type: Number,
+		default: null
+	},
+	
+	building : {
+		type: Boolean,
+		default: false
+	}
+});
+
+const playerSchema = mongoose.Schema({
+	user : {
+		type: mongoose.Types.ObjectId,
+		default: null
+	},
+	
+	piece : { 
+		type: Number,
+		default: 0
+	},
+	
+	color :	{
+		type: String,
+		default: ""
+	},
+	
+	money : {
+		type: Number,
+		default: 1500
+	},
+	
+	jailed : {
+		type: Boolean,
+		default: false
+	},
+	
+	jailturns : {
+		type: Number,
+		default: 0
+	},
+	
+	jailcards : {
+		type: Number,
+		default: 0
+	},
+	
+	pastfirst : {
+		type: Boolean,
+		default: false
+	},
+	
+	passedgo : {
+		type: Boolean,
+		default: false
+	},
+	
+	gorestrict : {
+		type: Boolean,
+		default: false
+	},
+	
+	oldposition : {
+		type: Number,
+		default: 0
+	},
+	
+	position : {
+		type: Number,
+		default: 0
+	},
+	
+	aiprofile : {
+		type: Number,
+		default: 0
+	},
+});
+
+const boardSchema = mongoose.Schema({
+		tiles: {	
+			type: [tileSchema],
+			default: []
+		},
+		
+		players: {	
+			type: [playerSchema],
+			default: []
+		},
+		
+		playerTurns: {
+			type: [Number],
+			default: []
+		},
+		
+		playerTurn: {
+			type: Number,
+			default: 0
+		},
+		
+		gameState: {
+			type: Number,
+			default: 0
+		},
+		
+		dice : {
+			type: [Number],
+			default: [1, 1]
+		},
+		
+		timeOutId : {
+			type: Number,
+			default: null
+		},
+		
+		chanceCards : {
+			type: [String],
+			default: null
+		},
+		
+		communityCards : {
+			type: [String],
+			default: null
+		},
+		
+		chanceCount : {
+			type: Number,
+			default: -1
+		},
+		
+		communityCount : {
+			type: Number,
+			default: -1
+		},
+		
+		gametype : {
+			type: Number,
+			default: null
+		},
+		
+		diceRolling : {
+			type: Boolean,
+			default: false
+		},
+});
+
+const Board = mongoose.model('Board', boardSchema);
