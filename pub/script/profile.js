@@ -21,6 +21,7 @@ function getUserDetails() {
             document.querySelector("#shopMoney").innerText = json.money;
             isAdmin = json.isAdmin;
             userNamefromDB = json.user;
+            document.querySelector("#username").innerText = userNamefromDB;
         }).catch((error) => {
         console.log(error);
     });
