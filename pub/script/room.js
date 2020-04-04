@@ -107,3 +107,9 @@ socket.on("identifyAccept", (res) => {
         console.log(err);
     });
 });
+
+// Profile navigation
+document.querySelector("#rightbar").removeEventListener("click", goToProfile());
+document.querySelector("#rightbar").addEventListener("click", function goToProfileFromRoom() {
+    window.location.replace('/profile.html');
+});
