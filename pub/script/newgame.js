@@ -4,9 +4,7 @@ const joinGameBtn = document.querySelector("#joingame");
 const roomNum = document.querySelector("#room-num");
 
 createGameBtn.addEventListener("click", ()=>{
-
-    window.location='./api/createGame';
-
+    window.location='/board.html';
 })
 
 joinGameBtn.addEventListener("click", ()=>{

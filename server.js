@@ -8,8 +8,7 @@ const crypto = require('crypto');
 const app = express();
 
 const server = require('http').createServer(app);
-const sharedSession = require('express-socket.io-session')
-const io = require('socket.io')(server);
+// const io = require('socket.io')(server);
 
 const sessionMiddleware = session({
     secret: crypto.randomBytes(16).toString(),
@@ -20,13 +19,13 @@ const sessionMiddleware = session({
         httpOnly: true
     }
 });
-
+/*
 io.use((socket, next) => {
     sessionMiddleware(socket.request, socket.request.res, next);
 });
-
+*/
 const { User, Item, Room } = require('./schemas.js');
-const socket_setup = require('./socket-setup.js');
+//const socket_setup = require('./socket-setup.js');
 
 const mongoose = require('mongoose');
 const dbpath = process.env.DB_PATH || 'mongodb://localhost:27017/test';
@@ -182,7 +181,7 @@ app.get('/api/item/:id', async (req, res) => {
 });
 
 // Get current User
-app.get('/api/user', (req, res) => {
+app.get('/api/user', authenticate, (req, res) => {
     // console.log(req.session.username)
     User.findOne({user: req.session.username}).then((user) => {
         // console.log(user)
@@ -253,6 +252,16 @@ app.get('/room/:id', authenticate, async (req, res) => {
         res.sendStatus(404);
 })
 
+app.get('/board/:id', authenticate, async (req, res) => {
+    if(await Board.findById(req.params.id))
+        res.sendFile('./pub/board.html', {root: __dirname});
+    else
+        res.sendStatus(404);
+});
+app.put('/api/win', authenticate, async (req, res) => {
+
+});
+/*
 io.on('connection', (socket) => {
     if(!socket.request.session.username){
         return socket.disconnect(true);
@@ -260,7 +269,7 @@ io.on('connection', (socket) => {
         socket_setup(socket);
     }
 });
-
+*/
 const port = process.env.PORT || 5000;
 server.listen(port, () => {
     log(`Server started on port ${port}...`);

@@ -25,7 +25,7 @@ startBtn.addEventListener("click", () => {
 // Profile navigation
 document.querySelector("#rightbar").addEventListener("click", () => {
     window.location.replace('/profile.html');
-});
+});;
 
 function replaceUserWithUserName()
 {
@@ -92,9 +92,9 @@ socket.on('playerLeave', (pid) => {
     }
     renderUsers();
 });
-socket.on("startGame", () => {
+socket.on("startGame", (id) => {
     console.log("Game start");
-    window.location.replace("/board.html");
+    window.location.replace("/board/"+id);
 });
 socket.connect();
 socket.emit('identify', roomId);
