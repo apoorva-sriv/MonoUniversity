@@ -55,31 +55,27 @@ function startup()
             alert('Could not get users')
        }                
     })
-    .then((json) => {
-        json.map((user) => {
+    .then((user) => {
+		// Initialize array
+		let userArray = [];
+		
+		// Get all the users and store them
+		for (let i = 0; i < user.length; i++)
+		{
+			const newUser = new User(user[i].user, user[i].wins);
+			userArray.push(newUser);
+		}
+		
+		// Sort the array
+		userArray.sort(sortLeaderboard);
+		// Generate the top 5 people
+		for (let i = 0; (i < userArray.length && i < 5); i++)
+		{
+			addLeaderboardMember(userArray[i]);
+		}
 			
-			// Initialize array
-			let userArray = [];
-			
-			// Get all the users and store them
-			for (let i = 0; i < user.length; i++)
-			{
-				const newUser = new User(user.user, user.wins);
-				userArray.push(newUser);
-			}
-			
-			// Sort the array
-			userArray.sort(sortLeaderBoard);
-			
-			// Generate the top 5 people
-			for (let i = 0; (i < userArray.length || i < 5); i++)
-			{
-				addLeaderboardMember(userArray[i]);
-			}
-			
-        })
     }).catch((error) => {
-        log(error)
+        console.log(error)
     })
 
 }
