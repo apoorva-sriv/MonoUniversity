@@ -11,7 +11,7 @@ const server = require('http').createServer(app);
 // const io = require('socket.io')(server);
 
 const sessionMiddleware = session({
-    secret: crypto.randomBytes(16).toString(),
+    secret: "thisisthesecretpleasedontreadthis",
     resave: false,
     saveUninitialized: false,
     cookie: {
