@@ -195,20 +195,11 @@ app.get('/api/user', authenticate, async (req, res) => {
         items.push({name: "Default", description: "This is the default item",
             behaviourId: 0, image: "img/default.png"});
         user.itemsOwned = items;
+        user.itemSelected = await Item.findById(user.itemSelected);
+        res.json(user);
     }catch(e){
         res.status(500).send(e);
     }
-    User.findOne({user: req.session.username}).then((user) => {
-        // console.log(user)
-        if(user) {
-            res.send(user)
-        }
-        else {
-            res.sendStatus(404)
-        }
-    }, (error) => {
-        res.status(500).send(error)
-    })
 });
 
 // Get list of all existing (non-admin) users
