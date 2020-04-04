@@ -7,19 +7,48 @@
 //==========================================================================
 
 // General purpose user class
-function userClass(username, password, id) {
+function userClass(username, id) {
 	(this.username = username),
-		(this.password = password),
 		(this.id = id),
-		(this.fullname = null),
-		(this.email = null),
 		(this.ownedPieces = []),
+		(this.selectedPiece = 0),
 		(this.isAdmin = false);
 }
 
-let login = new userClass(localStorage.getItem("username"), localStorage.getItem("username"), "0");
-login.isAdmin = /true/i.test(localStorage.getItem("admin"));
+// Setup the current user
+let mangoItem = null;
 
+// Grab user info so that we may use his shit for login
+function fetchUserInfo()
+{
+	const url = '/api/user';
+
+    fetch(url)
+    .then((res) => { 
+        if (res.status === 200) {
+           return res.json() 
+       } else {
+            alert('Could not get user')
+       }                
+    })
+    .then((user) => {
+		mangoItem = user;
+		console.log(user);
+    }).catch((error) => {
+        console.log(error)
+    })
+}
+
+let login = new userClass(mangoItem.user, "0");
+login.isAdmin = mangoItem.isAdmin;
+login.ownedPieces.push(0);
+for (let i = 0; i < mangoItem.itemsOwned.length; i++)
+{
+	login.ownedPieces.push(mangoItem.itemsOwned[i].behaviourId);
+}
+login.selectedPiece = mangoItem.itemSelected.behaviorId;
+
+// We need this for dice rolling
 let diceRolling = false;
 
 //==========================================================================
@@ -655,6 +684,7 @@ function initializePlayers(board, numPlayers)
 	const newPlayer = new playerClass();
 	newPlayer.user = login;
 	newPlayer.color = playerColors[0];
+	newPlayer.piece = newPlayer.user.login.selectedPiece;
 	board.players.push(newPlayer);
 	board.playerTurns.push(0);
 
@@ -663,8 +693,8 @@ function initializePlayers(board, numPlayers)
 	{
 		const newAI = new playerClass();
 		newAI.color = playerColors[i];
-		newAI.aiprofile = i - 1;
-		newAI.piece = i;
+		newAI.aiprofile = Math.floor(Math.random() * Math.floor(3)); // 0 - 2
+		newAI.piece = newPlayer.user.login.ownedPieces[Math.floor(Math.random() * Math.floor(newPlayer.user.login.ownedPieces.length))]; 
 		board.players.push(newAI);
 		board.playerTurns.push(i);
 	}
@@ -1431,6 +1461,21 @@ function kickPlayer(playerNum)
 		clearTimeout(gameBoard.timeOutId);
 		gameBoard.timeOutId = null;
 		gameBoard.gameState = GAMESTATE_END;
+		
+		// PUT REQUEST if the player wins
+		if (gameBoard.playerTurns[0] == 0)
+		{
+			const url = 'api/win';
+			
+			$.ajax({
+			  url: url,
+			  type: 'PUT',
+			  success: function(data) {
+				window.location.replace("./newgame.html");
+				alert("You've own and earned 100 credits!");
+			  }
+			});
+		}
 	}
 }
 
@@ -2178,7 +2223,8 @@ function playerResign(e)
 		
 	//console.log(gameBoard.gameState);
 	
-	//window.location.replace("./newgame.html");
+	window.location.replace("./newgame.html");
+	alert("You forfeited the game.");
 }
 
 //==========================================================================
