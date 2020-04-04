@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mono University: User's Profile</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/leaderboard.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/profile.css"/>
+    <script src="https://kit.fontawesome.com/da7cb33548.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--Header should be its own component-->
+<div id="header">
+    <audio id="audio" src="music/iceBoard.mp3" controls autoplay loop>Your browser does not support the audio element.
+    </audio>
+    <img id="audioIcon" src="img/audioIconMuted.png"/>
+    <div id="name" class="vcenter" onclick="window.location='./newgame.html';">
+        <img class="logo" src="img/logo.png">
+        <h1>Mono University</h1>
+    </div>
+    <div id="rightbar">
+        <div id="pfp"><img src="img/tenkai.png"/></div>
+        <div id="profile" class="vcenter hcenter">Profile</div>
+    </div>
+</div>
+<div class="hcenter">
+    <div id="content-box">
+        <div id="contentheader" class="vcenter hcenter"><span id="username" contenteditable="true">User</span></div>
+        <div id="profile-container">
+            <div id="inline-container">
+                <image id="profile-image" src="img/tenkai.png"/>
+                <i class="fa fa-upload fa-2x" id="uploadIcon"></i>
+                <span id="imageHint"><em>Click image or username to change</em></span>
+            </div>
+        </div>
+        <input id="imageUpload" type="file" name="profile_photo" accept="image/*">
+        <ul class="fa-ul">
+            <li><span class="fa-li"><i class="fa fa-trophy" aria-hidden="true"></i></span><strong>Games Won</strong>: 100</li><br>
+            <li><span class="fa-li"><i class="fa fa-award" aria-hidden="true"></i></span><strong>Leaderboard Rank</strong>: 1</li><br>
+            <li><span class="fa-li"><i class="fas fa-money-bill-alt" aria-hidden="true"></i></span><strong>Shop Money</strong>: $500</li><br>
+            <li><span class="fa-li"><i class="fas fa-puzzle-piece" aria-hidden="true"></i></span><strong>Current Token</strong>: 100</li>
+        </ul>
+    </div>
+</div>
+<script src="script/generalScripts.js"></script>
+<script src="script/profile.js"></script>
+</body>
+</html>

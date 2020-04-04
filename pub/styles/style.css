@@ -71,6 +71,7 @@ body {
     background: lightblue;
     float: right;
     height: 100%;
+    cursor: pointer;
 }
 
 #profile{
@@ -91,8 +92,10 @@ body {
     height: 100%;
     float: right;
 }
-#pfp img{
-    height: 100%;
+
+#pfp img {
+    width: 74.825px;
+    height: 73.75px;
     border-radius: 50%;
 }
 

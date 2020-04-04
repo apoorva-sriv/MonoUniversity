@@ -62,3 +62,8 @@ audioIcon.addEventListener('click', function toggleAudio(){
         audio.muted = true;
     }
 });
+
+// Profile navigation
+document.querySelector("#rightbar").addEventListener("click", function goToProfile() {
+   window.location = "profile.html";
+});

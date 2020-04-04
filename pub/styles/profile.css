@@ -1,0 +1,45 @@
+#imageUpload {
+    display: none;
+}
+
+#profile-container {
+    text-align: center;
+}
+
+#profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+#inline-container {
+    cursor: pointer;
+    display: inline-block;
+    height: 150px;
+}
+
+#uploadIcon {
+    display: block;
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+#inline-container:hover #profile-image {
+    opacity: 50%;
+    z-index: 1;
+}
+
+#inline-container:hover #uploadIcon {
+    display: block;
+    z-index: 2;
+    position: relative;
+    bottom: 100px;
+    opacity: 75%;
+    left: 85px;
+}
+
+#imageHint {
+    font-family: "Arial";
+    font-size: 14px;
+}
