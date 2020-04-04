@@ -1,10 +1,6 @@
-# TEAM 03's MONO UNIVERSITY
+# TEAM 03's MONO UNIVERSITY: TA INSTRUCTION MANUAL
 
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-//=============================================
-// MONO UNIVERSITY - TA INSTRUCTION MANUAL
-//=============================================
 
 # Table of Contents
 	-DESCRIPTION OF THE APPLICATION
