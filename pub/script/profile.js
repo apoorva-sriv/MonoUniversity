@@ -1,4 +1,12 @@
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
+// Get user info from DB
+document.querySelector("#gamesWon").innerText = 100;
+document.querySelector("#rank").innerText = 1;
+document.querySelector("#shopMoney").innerText = 500;
+const availableTokens = ["default", "cop", "lawyer"];
+let currentToken = "default";
+
+// Upload profile picture
+// See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
 const input = document.querySelector("input");
 const preview = document.querySelector("#inline-container");
 
@@ -18,10 +26,10 @@ input.addEventListener("input", function changeInput() {
 });
 
 preview.addEventListener("click", function clickPreview() {
-    input.click();
+    input.click();   // Send click event to input button, which has the event listener added above.
 });
 
-// https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
+// Taken from https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 const fileTypes = [
     'image/apng',
     'image/bmp',
@@ -39,29 +47,51 @@ function validFileType(file) {
     return fileTypes.includes(file.type);
 }
 
+// Edit username
 const userName = document.querySelector("#username");
 const first = userName.textContent;
 userName.addEventListener("input", function editUsername() {
-    console.log(userName.textContent);
     if (!userName.textContent) {
         userName.textContent = first;
     }
 });
 
-// Current tokens
-document.querySelector("#tokens").innerHTML =
-    "  <div class=\"column\">\n" +
-    "    <img src='img/pieces/default-black.png'>\n" +
-    "  </div>\n" +
-    "  <div class=\"column\">\n" +
-    "    <img src='img/pieces/cop-black.png'>\n" +
-    "  </div>\n" +
-    "  <div class=\"column\">\n" +
-    "    <img src='img/pieces/lawyer-black.png'>\n" +
-    "  </div>\n";
+// Token functions
+function getTokenPath(tokenName) {
+    return `img/pieces/${tokenName}-black.png`;
+}
 
+const tokens = document.querySelector("#tokens");
+
+for (const availableToken of availableTokens) {
+    const li = document.createElement("li");   // Note: "const" instead of "let" is valid inside for loops since the variable goes out of scope and is redeclared after each iteration (https://stackoverflow.com/a/50808013/4179032)!
+    const img = document.createElement("img");
+    img.style.cursor = "pointer";
+    img.src = getTokenPath(availableToken);
+    img.addEventListener("click", function clickImage(e) {
+        // Remove the borders from the other tokens.
+        document.querySelectorAll("#tokens img").forEach(elem => {
+            elem.style.border = "0";
+        });
+        // Add border to current token.
+        e.target.style.border = "2px solid rgb(3, 96, 156)";
+        const splitArray = e.target.src.split("/");
+        currentToken = splitArray[splitArray.length - 1].split("-black.png")[0];
+    });
+    if (availableToken === currentToken) {
+        img.style.border = "2px solid rgb(3, 96, 156)";
+    }
+    li.appendChild(img);
+    tokens.appendChild(li);
+}
+
+// Admin
 const isAdmin = true;
 if (isAdmin) {
-    document.querySelector(".fa-ul").innerHTML += '<br><li><span class="fa-li"><i class="fas fa-user-shield" aria-hidden="true"></i></span><strong>Admin</strong></li>';
-    document.querySelector(".fa-ul li:last-child").style.color = "red";
+    const ul = document.querySelector(".fa-ul");
+    ul.appendChild(document.createElement("br"));
+    const li = document.createElement("li");
+    li.innerHTML = '<span class="fa-li"><i class="fas fa-user-shield" aria-hidden="true"></i></span><strong>Admin</strong>';
+    li.style.color = "red";
+    ul.appendChild(li);
 }
