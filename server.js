@@ -262,7 +262,7 @@ app.put('/api/win', authenticate, async (req, res) => {
     const user = await User.findOne({user: req.session.username});
     user.wins += 1;
     user.money += 100;
-    await user.save()
+    await user.save();
     res.sendStatus(200);
 });
 /*
