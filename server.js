@@ -110,8 +110,8 @@ app.get('/api/user/:id', (req, res) => {
         }else{
             res.send(user)
         }
-    }).catch ((error) => {
-        res.status(500).send()
+    }).catch ((e) => {
+        res.status(500).send(e)
     })
 });
 
@@ -196,7 +196,7 @@ app.get('/api/user', authenticate, async (req, res) => {
             behaviourId: 0, image: "img/default.png"});
         user.itemsOwned = items;
         user.itemSelected = await Item.findById(user.itemSelected);
-        res.json(user);
+        await res.json(user);
     }catch(e){
         res.status(500).send(e);
     }
@@ -224,16 +224,16 @@ app.get('/api/users/all', (req, res) => {
 // update given user's info
 app.patch('/api/user', (req, res) => {
 
-    const username = req.body.username
-    const money = req.body.money
-    const wins = req.body.wins
-    const points = req.body.points
+    const username = req.body.username;
+    const money = req.body.money;
+    const wins = req.body.wins;
+    const points = req.body.points;
 
     User.find().then((allUsers) => {
-        const targetUser = allUsers.filter((user) => user.user === username)
-        targetUser[0].money = money
-        targetUser[0].wins = wins
-        targetUser[0].points = points
+        const targetUser = allUsers.filter((user) => user.user === username);
+        targetUser[0].money = money;
+        targetUser[0].wins = wins;
+        targetUser[0].points = points;
 
         targetUser[0].save().then((resultUser) =>{
             // do nothing for now
@@ -256,7 +256,7 @@ app.get('/room/:id', authenticate, async (req, res) => {
         res.sendFile('./pub/room.html', {root: __dirname});
     else
         res.sendStatus(404);
-})
+});
 
 app.get('/board/:id', authenticate, async (req, res) => {
     if(await Board.findById(req.params.id))
