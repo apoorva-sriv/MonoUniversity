@@ -2363,3 +2363,8 @@ function offsetPiece(playerNum, tile)
 	playerPiece.style.left = tilePlateOffset.left + tilePlate.style.width / 2 + leftOffset + "px";
 	playerPiece.style.top = tilePlateOffset.top + tilePlate.style.height / 2 + topOffset + "px";
 }
+
+//==========================================================================
+// Crank it up!
+//==========================================================================
+fetchUserInfo();
