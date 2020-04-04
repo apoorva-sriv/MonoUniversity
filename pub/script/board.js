@@ -184,7 +184,7 @@ function refreshBoard(gameBoard)
 	landTile.style.backgroundImage = "";
 	
 	if (gameBoard.gameState == boardL.GAMESTATE_PLAYER_INFO || gameBoard.gameState == boardL.GAMESTATE_PLAYER_DECISION 
-	|| gameBoard.gameState == boardL.GAMESTATE_AI_INFO || gameBoard.gameState == boardL.GAMESTATE_AI_DECISION ))
+	|| gameBoard.gameState == boardL.GAMESTATE_AI_INFO || gameBoard.gameState == boardL.GAMESTATE_AI_DECISION )
 	{
 		const position = gameBoard.players[playerNum].position;
 		const player = gameBoard.players[playerNum];
