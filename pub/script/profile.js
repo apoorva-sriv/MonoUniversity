@@ -2,7 +2,6 @@
 let availableTokens = ["default", "cop", "lawyer"];
 let currentToken = "default";
 let isAdmin;
-let userNamefromDB;
 
 function getUserDetails() {
     const url = "/api/user";
@@ -19,7 +18,7 @@ function getUserDetails() {
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
-            isAdmin = json.isAdmin;
+            window.isAdmin = json.isAdmin;
             userNamefromDB = json.user;
             document.querySelector("#username").innerText = userNamefromDB;
         }).catch((error) => {
