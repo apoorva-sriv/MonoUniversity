@@ -6,7 +6,7 @@ async function socket_setup(socket){
     socket.on('identify', async (roomid) => {
         room = await Room.findById(roomid);
         if(!room){
-            socket.disconnect();
+            return socket.disconnect();
         }
         if(!room.users.includes(user._id)){
             room.users.push(user._id);
@@ -14,10 +14,12 @@ async function socket_setup(socket){
             socket.to(roomid).emit('newUser', user);
         }
         socket.join(roomid);
+        socket.emit("identifyAccept");
         if(room.users.length === 4){
             socket.to(roomid).emit('startGame');
             socket.emit('startGame');
         }
+
     });
     socket.on('startRequest', () => {
         if(room.users.includes(user._id) && room.users.length > 1){

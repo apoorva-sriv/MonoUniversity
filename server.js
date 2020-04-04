@@ -85,6 +85,14 @@ app.get('/api/logout', (req, res) => {
    });
 });
 
+app.get('/api/room/:id', async (req, res) => {
+    const room = await Room.findById(req.params.id);
+    for(let i=0; i<room.users.length; i++){
+        room.users[i] = await User.findById(room.users[i]);
+    }
+    res.json(room);
+});
+
 app.get('/api/id/:username', (req, res) => {
     User.findOne({user: req.params.username}).then((user) => {
         if(user) res.send(user);

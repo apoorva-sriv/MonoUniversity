@@ -1,12 +1,17 @@
 const leaveBtn = document.querySelector(".leave-btn");
 const startBtn = document.querySelector(".start-btn");
+const roomNum = document.getElementById('roomHeading').getElementsByClassName('roomNum')[0];
+const waitingRoom = document.getElementById('playerCards');
 
 const getUrl = window.location;
 const baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[0];
 const pathparts = getUrl.pathname.split('/');
 const roomId = pathparts[pathparts.length - 1];
+roomNum.innerText = roomId;
 
 const socket = io(baseUrl);
+
+let users = [];
 
 leaveBtn.addEventListener("click", () => {
     window.location.replace('/newgame.html');
@@ -40,12 +45,36 @@ function addKickBtn(){
     }
 }
 
+function renderUser(user){
+    waitingRoom.innerHTML += `
+            <div class="playerCard">
+                <div class="cardContainers cardLeftContainer">
+                    <img class="cardProfilePic" src="/${user.image}"/>
+                </div>
+                 
+                <div class="cardContainers cardCenterContainer">
+                    <h3>${user.user}</h3>
+                    <h4>Number of Wins: ${user.wins}</h4>
+                </div>
+            </div>
+        `
+}
+
+
+function renderUsers(){
+    waitingRoom.innerHTML = "";
+    for(let i=0; i<users.length; i++){
+        renderUser(users[i]);
+    }
+}
+
 addKickBtn();
 
 replaceUserWithUserName();
 
 socket.on('newUser', (user) => {
-    console.log(user);
+    users.push(user);
+    renderUsers();
 });
 socket.on("startGame", () => {
     console.log("Game start");
@@ -53,3 +82,17 @@ socket.on("startGame", () => {
 });
 socket.connect();
 socket.emit('identify', roomId);
+socket.on("identifyAccept", (res) => {
+    fetch('/api/room/'+roomId).then((res) => { 
+        if (res.status === 200) {
+           return res.json() 
+       } else {
+            alert('Could not get users')
+       }                
+    }).then((res) => {
+        users = res.users;
+        renderUsers();
+    }).catch((err) => {
+        console.log(err);
+    });
+});

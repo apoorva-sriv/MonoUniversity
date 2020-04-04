@@ -7,6 +7,9 @@
     margin: 1%;
     left: 28%;
 }
+#playerCards {
+    height: 100%;
+}
 
 .playerCard{
     position: relative;
