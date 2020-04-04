@@ -84,7 +84,8 @@ const itemSchema = new Schema({
     name: String,
     description: String,
     image: String,
-    price: Number
+    price: Number,
+	behaviourId: Number
 });
 
 const Item = mongoose.model('Item', itemSchema);
@@ -287,4 +288,4 @@ const boardSchema = mongoose.Schema({
 		},
 });
 
-const Board = mongoose.model('Board', boardSchema);
+module.exports.Board = mongoose.model('Board', boardSchema);
