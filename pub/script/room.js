@@ -22,6 +22,12 @@ startBtn.addEventListener("click", () => {
     socket.emit("startRequest");
 });
 
+// Profile navigation
+document.querySelector("#rightbar").removeEventListener("click", goToProfile());
+document.querySelector("#rightbar").addEventListener("click", function goToProfileFromRoom() {
+    window.location.replace('/profile.html');
+});
+
 function replaceUserWithUserName()
 {
     const username = document.getElementsByTagName("h3"); 
@@ -106,10 +112,4 @@ socket.on("identifyAccept", (res) => {
     }).catch((err) => {
         console.log(err);
     });
-});
-
-// Profile navigation
-document.querySelector("#rightbar").removeEventListener("click", goToProfile());
-document.querySelector("#rightbar").addEventListener("click", function goToProfileFromRoom() {
-    window.location.replace('/profile.html');
 });
