@@ -66,5 +66,5 @@ if (audioIcon) {
 
 // Profile navigation
 document.querySelector("#rightbar").addEventListener("click", function goToProfile() {
-   window.location = "profile.html";
+   window.location = "./profile.html";
 });
