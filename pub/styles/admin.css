@@ -86,11 +86,13 @@ input{
 
 
 .btn-edit{
-    background-color: brown;   
+    background-color: rgb(94, 180, 229);
+    color: white;   
 }
 
 .btn-save{
-    background-color: green;
+    background-color: white;
+    color: black;
 }
 .btn-container button{
     height: 47.5%;
@@ -99,6 +101,6 @@ input{
     margin: 2%;
     border-radius: 10px;
     font-size: 150%;
-    border: 2px solid blue;
+    /* border: 2px solid blue; */
 }
 
