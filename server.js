@@ -181,8 +181,23 @@ app.get('/api/item/:id', async (req, res) => {
 });
 
 // Get current User
-app.get('/api/user', authenticate, (req, res) => {
+app.get('/api/user', authenticate, async (req, res) => {
     // console.log(req.session.username)
+    try {
+        const user = User.findOne({user: req.session.username});
+        if(!user){
+            return res.sendStatus(404);
+        }
+        const items = [];
+        for(let i=0; i<user.itemsOwned.length; i++){
+            items.push(await Item.findById(user.itemsOwned[i]));
+        }
+        items.push({name: "Default", description: "This is the default item",
+            behaviourId: 0, image: "img/default.png"});
+        user.itemsOwned = items;
+    }catch(e){
+        res.status(500).send(e);
+    }
     User.findOne({user: req.session.username}).then((user) => {
         // console.log(user)
         if(user) {
