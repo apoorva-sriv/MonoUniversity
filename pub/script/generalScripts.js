@@ -75,6 +75,9 @@ if (audioIcon) {
 }
 
 // Profile navigation
-document.querySelector("#rightbar").addEventListener("click", function goToProfile() {
-   window.location = "./profile.html";
-});
+const rightbar = document.querySelector("#rightbar");
+if (rightbar) {
+    rightbar.addEventListener("click", function goToProfile() {
+        window.location = "./profile.html";
+    });
+}

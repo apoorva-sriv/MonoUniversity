@@ -108,7 +108,7 @@ for (const availableToken of availableTokens) {
 }
 
 // Admin
-if (isAdmin) {
+if (window.isAdmin) {
     const ul = document.querySelector(".fa-ul");
     ul.appendChild(document.createElement("br"));
     const li = document.createElement("li");
