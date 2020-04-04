@@ -43,3 +43,17 @@
     font-family: "Arial";
     font-size: 14px;
 }
+
+#tokens img {
+    width: 23px;
+    height: 23px;
+}
+
+.row {
+    display: inline-block;
+}
+
+.column {
+    padding: 4px;
+    display: inline-block;
+}

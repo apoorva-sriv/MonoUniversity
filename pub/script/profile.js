@@ -17,7 +17,7 @@ input.addEventListener("input", function changeInput() {
     }
 });
 
-preview.addEventListener("click", function clickPreview(){
+preview.addEventListener("click", function clickPreview() {
     input.click();
 });
 
@@ -42,8 +42,26 @@ function validFileType(file) {
 const userName = document.querySelector("#username");
 const first = userName.textContent;
 userName.addEventListener("input", function editUsername() {
-   console.log(userName.textContent);
+    console.log(userName.textContent);
     if (!userName.textContent) {
-       userName.textContent = first;
-   }
+        userName.textContent = first;
+    }
 });
+
+// Current tokens
+document.querySelector("#tokens").innerHTML =
+    "  <div class=\"column\">\n" +
+    "    <img src='img/pieces/default-black.png'>\n" +
+    "  </div>\n" +
+    "  <div class=\"column\">\n" +
+    "    <img src='img/pieces/cop-black.png'>\n" +
+    "  </div>\n" +
+    "  <div class=\"column\">\n" +
+    "    <img src='img/pieces/lawyer-black.png'>\n" +
+    "  </div>\n";
+
+const isAdmin = true;
+if (isAdmin) {
+    document.querySelector(".fa-ul").innerHTML += '<br><li><span class="fa-li"><i class="fas fa-user-shield" aria-hidden="true"></i></span><strong>Admin</strong></li>';
+    document.querySelector(".fa-ul li:last-child").style.color = "red";
+}
