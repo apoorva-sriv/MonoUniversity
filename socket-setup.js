@@ -26,7 +26,14 @@ async function socket_setup(socket){
             socket.to(room._id).emit('startGame');
             socket.emit('startGame');
         }
-    })
+    });
+    socket.on('leave', async () => {
+        room.users.remove(user._id);
+        await room.save();
+        socket.to(room._id).emit('playerLeave', user._id);
+        socket.disconnect();
+    });
+
 }
 
 module.exports = socket_setup;

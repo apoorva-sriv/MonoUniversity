@@ -14,6 +14,7 @@ const socket = io(baseUrl);
 let users = [];
 
 leaveBtn.addEventListener("click", () => {
+    socket.emit("leave");
     window.location.replace('/newgame.html');
 });
 
@@ -74,6 +75,16 @@ replaceUserWithUserName();
 
 socket.on('newUser', (user) => {
     users.push(user);
+    renderUsers();
+});
+
+socket.on('playerLeave', (pid) => {
+    for(let i=0; i<users.length; i++){
+        if(users[i]._id == pid){
+            users.pop(i);
+            break;
+        }
+    }
     renderUsers();
 });
 socket.on("startGame", () => {
