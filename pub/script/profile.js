@@ -1,7 +1,6 @@
 // Get user info from DB
 let availableTokens = ["default", "cop", "lawyer"];
 let currentToken = "default";
-let isAdmin;
 
 function getUserDetails() {
     const url = "/api/user";
@@ -19,8 +18,8 @@ function getUserDetails() {
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
             window.isAdmin = json.isAdmin;
-            userNamefromDB = json.user;
-            document.querySelector("#username").innerText = userNamefromDB;
+            window.userNamefromDB = json.user;
+            document.querySelector("#username").innerText = window.userNamefromDB;
         }).catch((error) => {
         console.log(error);
     });
@@ -72,10 +71,10 @@ function validFileType(file) {
 
 // Edit username
 const userName = document.querySelector("#username");
-userName.innerText = userNamefromDB;
+userName.innerText = window.userNamefromDB;
 userName.addEventListener("input", function editUsername() {
     if (!userName.textContent) {
-        userName.textContent = userNamefromDB;
+        userName.textContent = window.userNamefromDB;
     }
 });
 
