@@ -54,7 +54,7 @@ function getItemPaths() {
 }
 
 getUserDetails();
-getItemNames();
+getItemPaths();
 
 /*
 // Upload profile picture
