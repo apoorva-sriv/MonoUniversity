@@ -8,13 +8,15 @@
     <body>
         <!--Header should be its own component-->
         <div id="header">
-            <audio id="audio" src="music/jungleBoard.mp3" controls autoplay loop>Your browser does not support the audio element.</audio>
-            <img id="audioIcon" src="img/audioIcon.png"/>
+            <audio id="audio" src="music/jungleBoard.mp3" controls autoplay loop>
+                Your browser does not support the audio element.
+            </audio>
+            <img id="audioIcon" src="img/audioIcon.png" />
             <div id="name" class="vcenter" onclick="window.location='./newgame.html';">
-                <img class="logo" src="img/logo.png">
+                <img class="logo" src="img/logo.png" />
                 <h1>Mono University</h1>
             </div>
-            <div id="rightbar" >
+            <div id="rightbar">
                 <div id="pfp"><img src="img/tenkai.png" /></div>
                 <div id="profile" class="vcenter hcenter">Profile</div>
             </div>
@@ -23,15 +25,16 @@
             <div id="content-box">
                 <div id="contentheader" class="vcenter hcenter">Leaderboard</div>
                 <div id="leaderboard" class="hcenter">
-                <table id="userList" cellspacing="0">
-                    <tr>
-                        <th>Player</th><th>Games Won</th>
-                    </tr>
-                </table>
+                    <table id="userList" cellspacing="0">
+                        <tr>
+                            <th>Player</th>
+                            <th>Games Won</th>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
         <script src="script/generalScripts.js"></script>
-		<script src="script/leaderboard.js"></script>
+        <script src="script/leaderboard.js"></script>
     </body>
 </html>

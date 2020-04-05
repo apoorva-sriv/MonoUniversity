@@ -2,20 +2,19 @@
  * CSS for the newgame page
  */
 
-#buttons{ 
+#buttons {
     display: -webkit-flexbox;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    
-    flex-wrap: wrap;   
+
+    flex-wrap: wrap;
     justify-content: center;
     padding-bottom: 30px;
     padding-top: 20px;
 }
 
-
-button{
+button {
     width: 90%;
     font-size: 20px;
     margin-top: 15px;

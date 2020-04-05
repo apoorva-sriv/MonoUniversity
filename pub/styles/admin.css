@@ -5,8 +5,7 @@
     /* position: relative; */
 }
 
-
-.profile-card{
+.profile-card {
     position: relative;
     right: 10%;
     left: 10%;
@@ -22,38 +21,37 @@
 .profile-pic {
     width: 15%;
     height: 100%;
-    display: flex; justify-content:center;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    float:left;
+    float: left;
 }
 
-.profile-pic img{
+.profile-pic img {
     height: 92%;
     border-radius: 50%;
 }
 
-.info-container{
+.info-container {
     float: left;
     margin-left: 3%;
     height: 100%;
     align-items: center;
     width: 30%;
-    
-    
 }
 
-.info-item{
+.info-item {
     width: 100%;
     height: 50%;
     /* background-color: yellow; */
-    display: flex; 
-    justify-content:center;
+    display: flex;
+    justify-content: center;
     align-items: center;
     /* font-size: 150%;  */
     position: relative;
 }
 
-input{
+input {
     height: 80%;
     /* margin-left: 5%;  */
     position: absolute;
@@ -63,9 +61,7 @@ input{
     background-color: lightblue;
 }
 
-
-
-.info-item label{
+.info-item label {
     position: absolute;
     left: 2%;
     color: white;
@@ -73,28 +69,27 @@ input{
     font-weight: 800;
 }
 
-.active-input{
+.active-input {
     background-color: white;
 }
 
-.btn-container{
+.btn-container {
     height: 100%;
     width: 17%;
-    float:right;
+    float: right;
     position: relative;
 }
 
-
-.btn-edit{
+.btn-edit {
     background-color: rgb(94, 180, 229);
-    color: white;   
+    color: white;
 }
 
-.btn-save{
+.btn-save {
     background-color: white;
     color: black;
 }
-.btn-container button{
+.btn-container button {
     height: 47.5%;
     width: 95%;
     display: block;
@@ -117,4 +112,3 @@ audio {
     z-index: 1;
     cursor: pointer;
 }
-

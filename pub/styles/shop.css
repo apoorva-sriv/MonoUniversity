@@ -20,18 +20,18 @@
     display: flex;
     align-content: center;
 }
-.item .icon img{
+.item .icon img {
     display: block;
     margin: auto;
     border-radius: 50%;
     border: 5px solid darkblue;
 }
 
-.item .description{
+.item .description {
     text-align: center;
 }
 
-.item .buy{
+.item .buy {
     display: block;
     margin: auto;
     min-width: 60%;
@@ -39,18 +39,18 @@
     font-weight: 600;
 }
 
-.item-name{
+.item-name {
     font-size: 200%;
     font-weight: bold;
 }
 
-#shop-bottom{
+#shop-bottom {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#leave-btn{
+#leave-btn {
     width: 40%;
     height: 80px;
     margin-bottom: 2%;
@@ -59,7 +59,7 @@
     color: white;
 }
 
-#leave-btn:hover{
+#leave-btn:hover {
     background-color: rgb(7, 137, 222);
 }
 

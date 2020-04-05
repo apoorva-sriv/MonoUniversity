@@ -1,8 +1,8 @@
 body {
-    background-color: #5EB4E5;
+    background-color: #5eb4e5;
     font-family: "Oswald", "Helvetica", sans-serif;
-	margin-left: 20px;
-    zoom: 80%;  /*Added to fit the board vertically */
+    margin-left: 20px;
+    zoom: 80%; /*Added to fit the board vertically */
     overflow-y: hidden;
 }
 
@@ -20,16 +20,16 @@ audio {
 }
 
 #gameZone {
-	display: table;
-	height: auto;
-	width: auto;
-	overflow: auto;
-	position: relative;
-	margin: auto;
+    display: table;
+    height: auto;
+    width: auto;
+    overflow: auto;
+    position: relative;
+    margin: auto;
 }
 
 #board {
-    background-color: #CEE6D0;
+    background-color: #cee6d0;
     float: left;
     height: 900px;
     position: relative;
@@ -72,7 +72,7 @@ audio {
 }
 
 .propertyInfoImage {
-	display: block;
+    display: block;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -1403,13 +1403,13 @@ audio {
 }
 
 .player {
-	position: absolute;
-	width: 33px;
-	height: 33px;
-	background-size: 33px 33px;
-	transition: all ease-in-out 1000ms;
-	background-repeat: no-repeat;
-	background-position: center;
+    position: absolute;
+    width: 33px;
+    height: 33px;
+    background-size: 33px 33px;
+    transition: all ease-in-out 1000ms;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 #playerList {
@@ -1418,66 +1418,66 @@ audio {
     height: 450px;
     position: relative;
     width: 250px;
-	font-size: 20px;
-	text-align: center;
+    font-size: 20px;
+    text-align: center;
 }
 
 #playerSlot {
-	display: block;
-	position: relative;
-	margin-left: 30px;
+    display: block;
+    position: relative;
+    margin-left: 30px;
     margin-right: 30px;
-	margin-top: 20px;
-	text-align: center;
-	font-size: 20px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 20px;
 }
 
 #diceDisplay {
-  content: "";
-  clear: both;
-  display: table;
-  border: 2px solid black;
-  position: relative;
-  margin: auto;
-  margin-top: 20px;
+    content: "";
+    clear: both;
+    display: table;
+    border: 2px solid black;
+    position: relative;
+    margin: auto;
+    margin-top: 20px;
 }
 
 #dice1 {
-	float: left;
-	width: 33.33%;
-	padding: 5px;
-	margin-left: 15px;
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+    margin-left: 15px;
 }
 
 #dice2 {
-	float: left;
-	width: 33.33%;
-	padding: 5px;
+    float: left;
+    width: 33.33%;
+    padding: 5px;
 }
 
 #kickButton {
-	float: right;
-	margin-right: 20px;
+    float: right;
+    margin-right: 20px;
     cursor: pointer;
 }
 
 #resignButton {
-	float: right;
-	margin-right: 20px;
+    float: right;
+    margin-right: 20px;
 }
 
 #sidebar {
-	position: relative;
-	float: left;
-	background-color: #CEE6D0;
-	max-height: 900px;
+    position: relative;
+    float: left;
+    background-color: #cee6d0;
+    max-height: 900px;
 }
 
 #sidebarAlt {
-	position: relative;
-	float: left;
-	background-color: #CEE6D0;
-	max-height: 900px;
+    position: relative;
+    float: left;
+    background-color: #cee6d0;
+    max-height: 900px;
 }
 
 #otherInformation {
@@ -1486,8 +1486,8 @@ audio {
     height: 450px;
     position: relative;
     width: 250px;
-	font-size: 20px;
-	text-align: center;
+    font-size: 20px;
+    text-align: center;
 }
 
 #propertyInfoAlt {
@@ -1526,7 +1526,7 @@ audio {
 }
 
 .propertyInfoImageAlt {
-	display: block;
+    display: block;
     height: 100px;
     margin-left: auto;
     margin-right: auto;
@@ -1547,29 +1547,28 @@ audio {
     position: relative;
     margin: auto;
     margin-top: 70px;
-
 }
 
 .propertyInfoButtonBuild {
-	float: left;
-	padding: 5px;
-	margin-left: 15px;
+    float: left;
+    padding: 5px;
+    margin-left: 15px;
 }
 
 .propertyInfoButtonBuildDisabled {
-	float: left;
-	padding: 5px;
-	margin-left: 15px;
+    float: left;
+    padding: 5px;
+    margin-left: 15px;
 }
 
 .propertyInfoButtonBuy {
-	float: left;
-	padding: 5px;
+    float: left;
+    padding: 5px;
 }
 
 .propertyInfoButtonBuyDisabled {
-	float: left;
-	padding: 5px;
+    float: left;
+    padding: 5px;
 }
 
 #communityChestCardsContainer {

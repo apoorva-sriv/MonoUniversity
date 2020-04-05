@@ -1,8 +1,7 @@
-'use strict';
+"use strict";
 const log = console.log;
 
 function createInfoDiv(labelName, value) {
-
     value = value.toString();
 
     const infoItemDiv = document.createElement("div");
@@ -20,14 +19,12 @@ function createInfoDiv(labelName, value) {
     return infoItemDiv;
 }
 
-
 // user = mongodb user object
 function createProfileCard(user) {
-
     const profileCardDiv = document.createElement("div");
     profileCardDiv.classList.add("profile-card");
 
-    // 
+    //
 
     const profilePicDiv = document.createElement("div");
     profilePicDiv.classList.add("profile-pic");
@@ -101,58 +98,56 @@ function saveFunction() {
         username: lstInput[0].value,
         money: parseInt(lstInput[1].value),
         wins: parseInt(lstInput[2].value),
-        points: parseInt(lstInput[3].value)
+        points: parseInt(lstInput[3].value),
     };
 
     const request = new Request(url, {
-        method: 'PATCH',
+        method: "PATCH",
         body: JSON.stringify(data),
         headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
+            Accept: "application/json, text/plain, */*",
+            "Content-Type": "application/json",
         },
     });
 
     fetch(request)
         .then(function (res) {
             if (res.status === 200) {
-                console.log('Patch Success');
+                console.log("Patch Success");
             } else {
                 console.log("Patch Failed");
             }
-        }).catch((error) => {
-        log(error);
-    });
+        })
+        .catch(error => {
+            log(error);
+        });
 }
 
-
 function startup() {
-
-    const url = '/api/users';
+    const url = "/api/users";
 
     fetch(url)
-        .then((res) => {
+        .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                alert('Could not get users');
+                alert("Could not get users");
             }
         })
-        .then((json) => {
-            const profileContainer = document.querySelector('#profiles-container');
+        .then(json => {
+            const profileContainer = document.querySelector("#profiles-container");
 
-            json.map((user) => {
+            json.map(user => {
                 const profileCard = createProfileCard(user);
                 profileContainer.appendChild(profileCard);
             });
-        }).catch((error) => {
-        log(error);
-    });
-
+        })
+        .catch(error => {
+            log(error);
+        });
 }
 
 startup();
-
 
 // const infoItemDivUsername = document.createElement("div")
 // infoItemDivUsername.classList.add("info-item")

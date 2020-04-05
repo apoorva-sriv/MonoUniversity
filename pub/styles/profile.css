@@ -13,9 +13,10 @@
 }
 
 #inline-container {
-    /*cursor: pointer;*/
+    cursor: pointer;
     display: inline-block;
     height: 150px;
+    width: 150px;
 }
 
 #uploadIcon {
@@ -36,12 +37,15 @@
     position: relative;
     bottom: 100px;
     opacity: 75%;
-    left: 75px;
+    left: 50px;
 }
 
 #imageHint {
     font-family: "Arial";
     font-size: 14px;
+    text-align: center;
+    position:  relative;
+    bottom:  31px;
 }
 
 #tokens img {
@@ -63,4 +67,9 @@
     list-style-type: none;
     display: inline;
     padding: 4px;
+}
+
+button {
+    margin: auto;
+    display: block;
 }

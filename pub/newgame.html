@@ -9,31 +9,43 @@
         <!--Header should be its own component-->
 
         <div id="header">
-            <audio id="audio" src="music/mainTheme.mp3" controls autoplay loop>Your browser does not support the audio element.</audio>
-            <img id="audioIcon" src="img/audioIcon.png"/>
+            <audio id="audio" src="music/mainTheme.mp3" controls autoplay loop>
+                Your browser does not support the audio element.
+            </audio>
+            <img id="audioIcon" src="img/audioIcon.png" />
             <div id="name" class="vcenter">
-                <img class="logo" src="img/logo.png">
+                <img class="logo" src="img/logo.png" />
                 <h1>Mono University</h1>
             </div>
-            <div id="rightbar" >
+            <div id="rightbar">
                 <div id="pfp"><img src="img/tenkai.png" /></div>
                 <div id="profile" class="vcenter hcenter">Profile</div>
             </div>
         </div>
-        
+
         <div class="hcenter">
             <div id="content-box">
                 <div id="contentheader" class="vcenter hcenter">Menu</div>
                 <div id="buttons">
                     <button id="newgame">New Game</button> <br />
-                    
-                    <button id="shop" onclick="
-                        window.location='./shop.html';
-                    ">Shop</button>
 
-                    <button id="leaderboard" onclick="
+                    <button
+                        id="shop"
+                        onclick="
+                        window.location='./shop.html';
+                    "
+                    >
+                        Shop
+                    </button>
+
+                    <button
+                        id="leaderboard"
+                        onclick="
                         window.location='./leaderboard.html';
-                    ">Leaderboard</button>
+                    "
+                    >
+                        Leaderboard
+                    </button>
                     <!--
                     <button id="joingame">Join Game</button>
                     Room Number:

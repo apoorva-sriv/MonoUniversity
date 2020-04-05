@@ -6,8 +6,7 @@
 
 // Very basic user function to make this happen
 function User(username, wins) {
-    this.username = username,
-        this.wins = wins;
+    (this.username = username), (this.wins = wins);
 }
 
 // Function to add the user in question to the board
@@ -17,7 +16,7 @@ function addLeaderboardMember(user) {
     const wins = user.wins;
 
     // Definitions
-    const leaderboardList = document.querySelector('#userList');
+    const leaderboardList = document.querySelector("#userList");
     const tableRow = document.createElement("tr");
     const tableUser = document.createElement("td");
     const tableUserText = document.createTextNode(username);
@@ -41,17 +40,17 @@ function sortLeaderboard(userA, userB) {
 
 // Function to fetch user information and apply everything we need for the leaderboard
 function startup() {
-    const url = '/api/users/all';
+    const url = "/api/users/all";
 
     fetch(url)
-        .then((res) => {
+        .then(res => {
             if (res.status === 200) {
                 return res.json();
             } else {
-                alert('Could not get users');
+                alert("Could not get users");
             }
         })
-        .then((user) => {
+        .then(user => {
             // Initialize array
             let userArray = [];
 
@@ -64,14 +63,13 @@ function startup() {
             // Sort the array
             userArray.sort(sortLeaderboard);
             // Generate the top 5 people
-            for (let i = 0; (i < userArray.length && i < 5); i++) {
+            for (let i = 0; i < userArray.length && i < 5; i++) {
                 addLeaderboardMember(userArray[i]);
             }
-
-        }).catch((error) => {
-        console.log(error);
-    });
-
+        })
+        .catch(error => {
+            console.log(error);
+        });
 }
 
 // Start it up to have it be done

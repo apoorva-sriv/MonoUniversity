@@ -2,19 +2,20 @@
     margin: 20px;
 }
 
-#leaderboard table{
+#leaderboard table {
     border: 1px solid rgb(12, 123, 194);
 }
 
-#leaderboard table th{
+#leaderboard table th {
     font-size: 30px;
     background: rgb(12, 123, 194);
 }
-#leaderboard table td{
+#leaderboard table td {
     font-size: 20px;
 }
 
-#leaderboard table th, td{
+#leaderboard table th,
+td {
     padding: 5px 15px 5px 15px;
 }
 

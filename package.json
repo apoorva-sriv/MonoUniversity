@@ -1,31 +1,31 @@
 {
-  "name": "final",
-  "version": "1.0.0",
-  "description": "CSC309 Final Project",
-  "main": "server.js",
-  "dependencies": {
-    "bcrypt": "^4.0.1",
-    "crypto": "^1.0.1",
-    "express": "^4.17.1",
-    "express-session": "^1.17.0",
-    "express-socket.io-session": "^1.3.5",
-    "mongoose": "^5.9.5",
-    "readline": "^1.3.0",
-    "socket.io": "^2.3.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/csc309-winter-2020/team03.git"
-  },
-  "author": "Henry Lam, Hans Shi, Badis Limam, Apoorva Srivastava",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/csc309-winter-2020/team03/issues"
-  },
-  "homepage": "https://github.com/csc309-winter-2020/team03#readme"
+    "name": "final",
+    "version": "1.0.0",
+    "description": "CSC309 Final Project",
+    "main": "server.js",
+    "dependencies": {
+        "bcrypt": "^4.0.1",
+        "crypto": "^1.0.1",
+        "express": "^4.17.1",
+        "express-session": "^1.17.0",
+        "express-socket.io-session": "^1.3.5",
+        "mongoose": "^5.9.5",
+        "readline": "^1.3.0",
+        "socket.io": "^2.3.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/csc309-winter-2020/team03.git"
+    },
+    "author": "Henry Lam, Hans Shi, Badis Limam, Apoorva Srivastava",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/csc309-winter-2020/team03/issues"
+    },
+    "homepage": "https://github.com/csc309-winter-2020/team03#readme"
 }

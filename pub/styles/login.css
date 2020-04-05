@@ -2,12 +2,12 @@
  * CSS for the login page
  */
 
-#content-box form{
+#content-box form {
     margin: 20px;
     padding: 10px;
 }
 
-#content-box form input{
+#content-box form input {
     margin-bottom: 20px;
     margin-top: 5px;
     height: 30px;
@@ -16,15 +16,14 @@
     border: 1px solid rgb(3, 96, 156);
 }
 
-#content-box form button{
+#content-box form button {
     padding: 10px;
     border: none;
     margin: 5px;
     width: 100%;
-
 }
 
-#content-box form button:hover{
+#content-box form button:hover {
     background: lightblue;
 }
 
@@ -32,28 +31,27 @@
     color: red;
 }
 
-#content-box.login-box{
+#content-box.login-box {
     position: relative;
-    float:right;
+    float: right;
     width: 96%;
     background-color: white;
     margin: 2%;
 }
 
-#login{
+#login {
     color: white;
     background-color: rgb(3, 96, 156);
     font-size: large;
-    
 }
 
-#signup{
+#signup {
     color: white;
     font-size: large;
     background-color: rgb(94, 180, 229);
 }
 
-.left-box{
+.left-box {
     height: 90%;
     width: 75%;
     background-color: rgb(94, 180, 229);
@@ -62,21 +60,21 @@
     background-size: cover;
 }
 
-.right-box{
+.right-box {
     height: 90%;
     width: 25%;
     background-color: white;
     float: left;
 }
-#banner-container{
-    margin:10%;
-    color:white;
+#banner-container {
+    margin: 10%;
+    color: white;
 }
-#banner-text{
+#banner-text {
     font-size: 600%;
 }
 
-.dark-blue{
+.dark-blue {
     color: rgb(3, 96, 156);
 }
 
