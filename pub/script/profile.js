@@ -128,6 +128,7 @@ function validFileType(file) {
     return fileTypes.includes(file.type);
 }
 
+/*
 // Edit username
 const userName = document.querySelector("#username");
 userName.addEventListener("input", function editUsername() {
@@ -135,6 +136,7 @@ userName.addEventListener("input", function editUsername() {
         userName.textContent = window.userNameFromDB;
     }
 });
+*/
 
 // Token selector
 const tokens = document.querySelector("#tokens");
