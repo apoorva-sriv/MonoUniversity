@@ -87,8 +87,9 @@ userName.addEventListener("input", function editUsername() {
     if (!userName.textContent) {
         userName.textContent = window.userNamefromDB;
     }
-    saveUsername();
 });
+
+setInterval(saveUsername, 5000);
 
 // Token functions
 function getTokenPath(tokenName) {
@@ -139,6 +140,7 @@ function saveUsername() {
             'Content-Type': 'application/json'
         },
     });
+    console.log("Here!");
 
     fetch(request)
         .then(function (res) {
