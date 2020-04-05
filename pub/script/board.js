@@ -42,7 +42,7 @@ function fetchUserInfo()
 		for (let i = 0; i < mangoItem.itemsOwned.length; i++)
 			login.ownedPieces.push(mangoItem.itemsOwned[i].behaviourId);
 		login.selectedPiece = mangoItem.itemSelected.behaviorId;
-		window.addEventListener("load", readyBoard);
+		readyBoard();
     }).catch((error) => {
         console.log(error)
     })
