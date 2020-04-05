@@ -54,8 +54,7 @@ To get a list of the rules, click on the help button.
 Click on tiles to get their information and follow the rules of interactions as per phase 1.
 
 ## Profile
-Clicking on the top right icon will lead you to your profile, allowing you to select your piece by clicking on it,
-or uploading your custom avatar. Do note that you must own said piece in order to proceed.
+Clicking on the top right icon will lead you to your profile, allowing you to view your details and select among the tokens you have bought.
 
 # Sample Walkthrough for TA
 
