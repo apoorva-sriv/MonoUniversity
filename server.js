@@ -267,7 +267,8 @@ app.get('/board/:id', authenticate, async (req, res) => {
 app.put('/api/win', authenticate, async (req, res) => {
     const user = await User.findOne({user: req.session.username});
     user.wins += 1;
-    user.money += 100;
+    user.points += 0.2
+    user.money += 100 + (user.points * 100);
     await user.save();
     res.sendStatus(200);
 });
