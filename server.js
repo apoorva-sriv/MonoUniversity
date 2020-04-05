@@ -176,8 +176,16 @@ app.post('/api/shop/item', async (req, res) => {
 });
 
 app.get('/api/item/:id', async (req, res) => {
-    const item = await Item.findById(req.params.id);
-    await res.json(item);
+    try {
+        const item = await Item.findById(req.params.id);
+        if(!item){
+            res.sendStatus(404);
+        }else {
+            await res.json(item);
+        }
+    }catch(e){
+        res.sendStatus(404);
+    }
 });
 
 // Get current User
@@ -222,7 +230,7 @@ app.get('/api/users/all', (req, res) => {
 });
 
 // update given user's info
-app.patch('/api/user', (req, res) => {
+app.patch('/api/user', authenticate, (req, res) => {
 
     const username = req.body.username;
     const money = req.body.money;
