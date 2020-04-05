@@ -81,16 +81,6 @@ function validFileType(file) {
     return fileTypes.includes(file.type);
 }
 
-// Edit username
-const userName = document.querySelector("#username");
-userName.addEventListener("input", function editUsername() {
-    if (!userName.textContent) {
-        userName.textContent = window.userNamefromDB;
-    }
-});
-
-setInterval(saveUsername, 10000);
-
 // Token functions
 function getTokenPath(tokenName) {
     return `img/pieces/${tokenName}-black.png`;
@@ -118,38 +108,4 @@ for (const availableToken of availableTokens) {
     }
     li.appendChild(img);
     tokens.appendChild(li);
-}
-
-function saveUsername() {
-    console.log("Saving username");
-    const url = "/api/user";
-
-    let data = {
-        user: userName.textContent,
-        money: window.oldMoney,
-        wins: window.oldWins,
-        points: window.oldPoints
-    };
-    console.log(data);
-
-    const request = new Request(url, {
-        method: 'PATCH',
-        body: JSON.stringify(data),
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-    });
-    console.log("Here!");
-
-    fetch(request)
-        .then(function (res) {
-            if (res.status === 200) {
-                console.log('Patch Success');
-            } else {
-                console.log("Patch Failed");
-            }
-        }).catch((error) => {
-        console.log(error);
-    });
 }
