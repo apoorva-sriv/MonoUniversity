@@ -87,9 +87,8 @@ userName.addEventListener("input", function editUsername() {
     if (!userName.textContent) {
         userName.textContent = window.userNamefromDB;
     }
+    saveUsername();
 });
-
-setInterval(saveUsername, 5000);
 
 // Token functions
 function getTokenPath(tokenName) {
@@ -125,7 +124,7 @@ function saveUsername() {
     const url = "/api/user";
 
     let data = {
-        username: userName.textContent,
+        user: userName.textContent,
         money: window.oldMoney,
         wins: window.oldWins,
         points: window.oldPoints
