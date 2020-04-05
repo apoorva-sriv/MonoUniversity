@@ -1,7 +1,3 @@
-// Get user info from DB
-let availableTokens = ["default", "cop", "lawyer"];
-let currentToken = "default";
-
 function getUserDetails() {
     const url = "/api/user";
 
@@ -14,6 +10,7 @@ function getUserDetails() {
             }
         })
         .then((json) => {
+            window.currentToken = json.itemSelected;
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
@@ -28,8 +25,7 @@ function getUserDetails() {
                 li.style.color = "red";
                 ul.appendChild(li);
             }
-            window.userNamefromDB = json.user;
-            document.querySelector("#username").innerText = window.userNamefromDB;
+            document.querySelector("#username").innerText = json.user;
         }).catch((error) => {
         console.log(error);
     });
@@ -81,18 +77,14 @@ function validFileType(file) {
     return fileTypes.includes(file.type);
 }
 
-// Token functions
-function getTokenPath(tokenName) {
-    return `img/pieces/${tokenName}-black.png`;
-}
-
 const tokens = document.querySelector("#tokens");
 
-for (const availableToken of availableTokens) {
+let counter = 0;
+for (const availableToken of window.availableTokens) {
     const li = document.createElement("li");   // Note: "const" instead of "let" is valid inside for loops since the variable goes out of scope and is redeclared after each iteration (https://stackoverflow.com/a/50808013/4179032)!
     const img = document.createElement("img");
     img.style.cursor = "pointer";
-    img.src = getTokenPath(availableToken);
+    img.src = availableToken.image;
     img.addEventListener("click", function clickImage(e) {
         // Remove the borders from the other tokens.
         document.querySelectorAll("#tokens img").forEach(elem => {
@@ -101,9 +93,9 @@ for (const availableToken of availableTokens) {
         // Add border to current token.
         e.target.style.border = "2px solid rgb(3, 96, 156)";
         const splitArray = e.target.src.split("/");
-        currentToken = splitArray[splitArray.length - 1].split("-black.png")[0];
+        currentTokenName = splitArray[splitArray.length - 1].split("-black.png")[0];
     });
-    if (availableToken === currentToken) {
+    if (availableToken === currentTokenName) {
         img.style.border = "2px solid rgb(3, 96, 156)";
     }
     li.appendChild(img);
