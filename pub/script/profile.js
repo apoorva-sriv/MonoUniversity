@@ -140,10 +140,8 @@ for (const availableToken of window.availableTokens) {
         });
         // Add border to current token.
         e.target.style.border = "2px solid rgb(3, 96, 156)";
-        const splitArray = e.target.src.split("/");
-        currentTokenName = splitArray[splitArray.length - 1].split("-black.png")[0];
     });
-    if (availableToken === currentTokenName || counter === 0 && currentTokenName === "null") {
+    if (availableToken === window.currentToken || counter === 0 && window.currentToken === "./img/pieces/default.png") {
         img.style.border = "2px solid rgb(3, 96, 156)";
     }
     li.appendChild(img);
