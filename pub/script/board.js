@@ -1483,7 +1483,7 @@ function kickPlayer(playerNum)
 			  type: 'PUT',
 			  success: function(data) {
 				window.location.replace("./newgame.html");
-				alert("You've own and earned 100 credits!");
+				alert("You've won and earned 100 credits!");
 			  }
 			});
 		}
