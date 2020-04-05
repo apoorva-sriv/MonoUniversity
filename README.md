@@ -1,5 +1,7 @@
 # TEAM 03's MONO UNIVERSITY: TA INSTRUCTION MANUAL
 
+LINK TO APPLICATION: https://uoft-csc309-2020w-team3.herokuapp.com/
+
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 # Description of the Application
@@ -9,107 +11,79 @@ The login page for now is simple and straight forward.
 On the right of the screen, you will see the information boxes.
 To login as an admin, input "admin" as username AND password.
 To login as a user, input "user" as username AND password.
-Those users are the only hardcoded ones for now and as the signup portion
-of this is related to updating the database on the server side, it is not
-implemented yet, but will allow new "user" type users. They will have to be
-upgraded to admins by the admins on the yet to be implemented admin board later on.
+Unlike the previous version, these usernames are actually part of the databse.
+The signup button is now operational and described in its own section.
+
+## Signup
+Create a new account, input your username once and password twice, try it, it will be a normal
+account by default. If the account already exists you will be given the appropriate error message.
+To return to the login screen, press the logo on the bottom left of the screen.
 
 ## Main Page
 Once you're logged in, you will have access to the main page. A simple menu will give you
-three options. CREATE GAME, SHOP, JOIN GAME and LOGOUT. The profile icon on the top right
+three options. NEW GAME, SHOP, LEADERBOARD and LOGOUT. The profile icon on the top right
 has yet to be implemented and will allow for a user to change information about himself.
 Clicking on the logo on any of the other pages will redirect you to this main page.
+Being an admin will also grant you access to the ability to edit other profiles
 
-## Create Game
-Clicking here will lead you a menu that gives you the option of either going back to the
-previous menu or start a game. This will lead you to the board, which is further discussed in the
-BOARD section of this file. If logged as a user, the name displayed will be user, otherwise, it will be admin.
-
-## Join Game
-This will lead a list of players with the first being that of the user himself.
-If logged as a user, the name displayed will be user, otherwise, it will be admin.
-Admin will also have kick buttons next to all but themselves.
+## New Game
+Clicking here will lead you straight to the board to play against three other AI players.
+The AI players will have various profiles and the pieces.
 
 ## Shop
-This is the interface that will allow users to purchase pieces that will grant bonuses in the board.
-Users will only be able to purchase one piece.
-Admins will be able to purchase all of them.
-The price system for users has yet to be implemented.
+This is the interface that will allow users to purchase pieces that will grant bonuses in the board gameplay.
+Users will be able to purchase pieces with the money they have on their account.
+Admins will be able to purchase all of them, regardless of how much money they have.
 The button on the bottom will allow to return back to the MAIN PAGE.
 
 ## Leaderboard
 Here we list out players and their number of wins.
-No difference for user or admin.
-Click the top left logo to leave this page back to main screen
+No differences for user and admins, it will display the top 5 players by the number of their wins in descending order..
+Click the top left logo to leave this page back to main screen.
 
 ## Logout
 This button simply takes you back to the login screen.
 
+## Admin
+This only appears if you're logged in as admin and allows you to edit the stats of every other player in the database.
+Points, wins and money.
+
 ## Board
-The board is the most complex part of this project and although not complete, the basis for a playable game are laid down.
-Whenever you enter the board, you will always be facing three AI players. Named AI 1 to 3.
-The player will be named 'user' if logged in as a user and 'admin' if logged in as 'admin'.
-You will see two main sections of the board, the board and the sidebar.
-The sidebar includes the player list, which includes the dice rolling section, and the player list.
-The player list includes the names of the players and the color of their pieces. By default, you will be playing as
-the magenta bomb.
-The list of players is shuffled and is arranged from top to bottom by playing order.
-Any player who is currently playing will have their name changed to red. If the user/admin are playing, the same will
-happen but they will also get the dice rolling section highlighted in red to indicate they must click on the dice
-rolling section to throw the dice.
-The AI will automatically roll a dice and move on their own.
-All users will be able to click the resign button next to their name to leave the board and return to the main menu.
-Admins will have acess to a kick button next to the AI players' names though for now, it does not kick them, simply logs
-into the console.
+The board has been fully implemented and is now a fully functional Monopoly game.
+To get a list of the rules, click on the help button.
+Click on tiles to get their information and follow the rules of interactions as per phase 1.
 
-### Basic Rules
-Getting a double on the die will allow a player to throw the dice again. Players will move by the sum of the number
-obtained by the die.
-
-You can click on any tiles to get more information about them on the tile information bar under the player list.
-
-There is no endgame state implemented for now, it is simply an endless dice rolling session and tile moving session
-with AI players.
+## Profile
+Clicking on the top right icon will lead you to your profile, allowing you to select your piece by clicking on it,
+or uploading your custom avatar. Do note that you must own said piece in order to proceed.
 
 # Sample Walkthrough for TA
 
 1. Login with the following credentials: Login: user | Password: user
-
 2. Click on SHOP
-
-3. Click on all buttons, only one will be able changed.
-
+3. Click on all buttons, you're out of funds, you won't be able to buy any pieces
 4. Leave the SHOP by clicking on the button on the bottom of the page
+5. Click on NEW GAME. Your username should be 'user'
+6. Play the game! Chill!
+7. Resign or win, depending on how long you wish to spend testing it.
+8. Check the leaderboards and exit them by pressing the logo on the upper left corner.
+9. Click on your profile and upload a new profile picture, then return to the previous menu.
+8. Click logout.
 
-5. Click on CREATE GAME. Your username should be 'user'
+9. Login with the following credentials: Login: admin | Password: admin
+10. Click on SHOP
+11. Click on all buy buttons, all buy buttons will change and indicate the item is bought.
+12. Leave the SHOP.
+13. Select your own piece by going into your profile.
+14. Click on New Game
+15. Play the game with your newly selected.
+17. Click on resign to lose if you wish it.
+18. Otherwise kick every other player when it's turn to instantly win and have your win counter instantly incremented.
+19. Check the leaderboards for updated wins.
+21. Click on admin and edit the original user's information. Set his money to 1500, wins to 35 and leave their points as is.
+22. Check the leaderboards again.
+23. Logout
 
-6. Click Start GAME
-Roll a few dice with the AI players and click on the resign button when you've had enough.
-
-7. Click on JOIN GAME
-
-8. See if your name is 'user' and if any kick button is visible or not.
-
-9. Click create game to get on the board and resign right after.
-
-10. Click logout.
-
-11. Login with the following credentials: Login: admin | Password: admin
-
-12. Click on SHOP
-
-13. Click on all buy buttons, all buy buttons will change and indicate the item is bought.
-
-14. Leave the SHOP.
-
-15. Click on Join Game
-
-16. See if your name is admin and see if there are kick buttons next to players that aren't yourself.
-
-17. Click start game.
-
-18. See if there are any kick buttons next to AI players.
-
-19. Click on resign
-
-20. Click on logout.
+24. Log back into user
+25. Check your profile to see the changes
+26. Logout
