@@ -1,3 +1,5 @@
+window.availableTokens = ["./img/pieces/default.png"];
+
 function getUserDetails() {
     const url = "/api/user";
 
@@ -14,7 +16,7 @@ function getUserDetails() {
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
-            window.availableTokens = json.itemsOwned;
+            window.availableTokens = window.availableTokens.concat(json.itemsOwned);
             window.isAdmin = json.isAdmin;
             // Admin---needed to be put here because it didn't work down for some reason!
             if (window.isAdmin) {
@@ -31,7 +33,28 @@ function getUserDetails() {
     });
 }
 
+function getItemPaths() {
+    for (const token of window.availableTokens) {
+        let url = "/api/shop/" + token;
+        fetch(url)
+            .then((res) => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    alert('Could not get item');
+                }
+            })
+            .then((json) => {
+                window.availableTokens.push(json.image);
+            }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+}
+
 getUserDetails();
+getItemNames();
 
 /*
 // Upload profile picture
@@ -84,7 +107,7 @@ for (const availableToken of window.availableTokens) {
     const li = document.createElement("li");   // Note: "const" instead of "let" is valid inside for loops since the variable goes out of scope and is redeclared after each iteration (https://stackoverflow.com/a/50808013/4179032)!
     const img = document.createElement("img");
     img.style.cursor = "pointer";
-    img.src = availableToken.image;
+    img.src = availableToken;
     img.addEventListener("click", function clickImage(e) {
         // Remove the borders from the other tokens.
         document.querySelectorAll("#tokens img").forEach(elem => {
