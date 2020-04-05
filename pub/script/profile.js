@@ -12,11 +12,11 @@ function getUserDetails() {
             }
         })
         .then((json) => {
-            window.currentToken = json.itemSelected;
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
             window.availableTokens = window.availableTokens.concat(json.itemsOwned);
+            window.currentToken = getCurrentItemPath(json.itemSelected);
             window.isAdmin = json.isAdmin;
             // Admin---needed to be put here because it didn't work down for some reason!
             if (window.isAdmin) {
@@ -34,7 +34,13 @@ function getUserDetails() {
 }
 
 function getItemPaths() {
+    let counter = 0;
     for (const token of window.availableTokens) {
+        if (!counter) {
+            counter++;
+            continue;
+        }
+        counter++;
         let url = "/api/shop/" + token;
         fetch(url)
             .then((res) => {
@@ -50,7 +56,26 @@ function getItemPaths() {
             console.log(error);
         });
     }
+}
 
+function getCurrentItemPath(currentItem) {
+    if (!currentItem) {
+        return "./img/pieces/default.png"
+    }
+    let url = "/api/shop/" + currentItem;
+    fetch(url)
+        .then((res) => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert('Could not get item');
+            }
+        })
+        .then((json) => {
+            window.currentToken = json.image;
+        }).catch((error) => {
+        console.log(error);
+    });
 }
 
 getUserDetails();
@@ -118,10 +143,11 @@ for (const availableToken of window.availableTokens) {
         const splitArray = e.target.src.split("/");
         currentTokenName = splitArray[splitArray.length - 1].split("-black.png")[0];
     });
-    if (availableToken === currentTokenName) {
+    if (availableToken === currentTokenName || counter === 0 && currentTokenName === "null") {
         img.style.border = "2px solid rgb(3, 96, 156)";
     }
     li.appendChild(img);
     tokens.appendChild(li);
+    counter++;
 }
 
