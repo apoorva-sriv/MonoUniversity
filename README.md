@@ -56,6 +56,47 @@ Click on tiles to get their information and follow the rules of interactions as 
 ## Profile
 Clicking on the top right icon will lead you to your profile, allowing you to view your details and select among the tokens you have bought.
 
+## Multiplayer
+Multiplayer was never implemented, as Badis who wrote the board had little knowledge of backend,
+and those who knew backend did not know how the board worked as it was tightly coupled with the frontend. 
+We decided not to implement multiplayer in the end, but a lot of code exists from when we tried to.
+
+## Overview of Routes
+
+POST `/api/signup` {user: String, password: String} - signup with a username and password
+
+POST `/api/login` {user: String, password: String} - login with a usrename and password. sets a cookie
+
+GET `/api/logout` - logout. clears the login cokie
+
+GET `/api/room/:id` - Intended for multiplayer. Gets the waiting room by id.
+
+GET `/api/id/:username` - Get a user based on their username
+
+GET `/api/shop` - Get a list of all items in the shop
+
+GET `/api/shop/user` - Get a list of all items in the shop that the user has not purchased
+
+GET `/api/shop/:itemid` - Get an item from the shop by its id
+
+PUT `/api/shop/:itemid` - Buy an item from the shop. Requires authentication.
+
+POST `/api/shop/item` - Add an item to the shop. For development use only. Pretend this doesn't exist.
+
+GET `/api/item/:id` - same as GET `/api/shop/:itemid`
+
+GET `/api/user` - Get the user who is currently logged in. Requires authentication
+
+GET `/api/users` - Get all non-admin users
+
+GET `/api/users/all` - Get all users
+
+PATCH `/api/user` - Update user information
+
+GET `/api/createGame` - Intended for multiplayer, creates a game then redirects the user to a room
+
+PUT `/api/win` - Adds a win to the player's win count and gives them 100 credits 
+
 # Sample Walkthrough for TA
 
 1. Login with the following credentials: Login: user | Password: user
