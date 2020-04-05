@@ -129,6 +129,7 @@ function saveUsername() {
         wins: window.oldWins,
         points: window.oldPoints
     };
+    console.log(data);
 
     const request = new Request(url, {
         method: 'PATCH',
