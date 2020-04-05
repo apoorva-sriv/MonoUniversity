@@ -80,11 +80,11 @@ function validFileType(file) {
 
 // Edit username
 const userName = document.querySelector("#username");
-userName.innerText = window.userNamefromDB;
 userName.addEventListener("input", function editUsername() {
     if (!userName.textContent) {
         userName.textContent = window.userNamefromDB;
     }
+    saveUsername();
 });
 
 // Token functions
@@ -114,4 +114,32 @@ for (const availableToken of availableTokens) {
     }
     li.appendChild(img);
     tokens.appendChild(li);
+}
+
+function saveUsername() {
+    const url = "/api/user";
+
+    let data = {
+        username: userName.textContent
+    };
+
+    const request = new Request(url, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+        },
+    });
+
+    fetch(request)
+        .then(function (res) {
+            if (res.status === 200) {
+                console.log('Patch Success');
+            } else {
+                console.log("Patch Failed");
+            }
+        }).catch((error) => {
+        console.log(error);
+    });
 }
