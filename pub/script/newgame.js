@@ -6,10 +6,10 @@ const roomNum = document.querySelector("#room-num");
 createGameBtn.addEventListener("click", ()=>{
     window.location='/board.html';
 })
-
+/*
 joinGameBtn.addEventListener("click", ()=>{
     window.location='/room/'+roomNum.value;
-})
+})*/
 
 const profile = document.querySelector("#profile");
 
