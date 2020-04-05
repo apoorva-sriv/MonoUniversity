@@ -685,7 +685,7 @@ function initializePlayers(board, numPlayers)
 	const newPlayer = new playerClass();
 	newPlayer.user = login;
 	newPlayer.color = playerColors[0];
-	newPlayer.piece = newPlayer.user.login.selectedPiece;
+	newPlayer.piece = newPlayer.user.selectedPiece;
 	board.players.push(newPlayer);
 	board.playerTurns.push(0);
 
@@ -695,7 +695,7 @@ function initializePlayers(board, numPlayers)
 		const newAI = new playerClass();
 		newAI.color = playerColors[i];
 		newAI.aiprofile = Math.floor(Math.random() * Math.floor(3)); // 0 - 2
-		newAI.piece = newPlayer.user.login.ownedPieces[Math.floor(Math.random() * Math.floor(newPlayer.user.login.ownedPieces.length))]; 
+		newAI.piece = newPlayer.user.ownedPieces[Math.floor(Math.random() * Math.floor(newPlayer.user.ownedPieces.length))]; 
 		board.players.push(newAI);
 		board.playerTurns.push(i);
 	}
