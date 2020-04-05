@@ -25,7 +25,6 @@
     width: 0;
 }
 
-/*
 #inline-container:hover #profile-image {
     opacity: 50%;
     z-index: 1;
@@ -39,7 +38,6 @@
     opacity: 75%;
     left: 110px;
 }
-*/
 
 #imageHint {
     font-family: "Arial";
