@@ -39,6 +39,7 @@ function getUserDetails() {
 
 getUserDetails();
 
+/*
 // Upload profile picture
 // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
 const input = document.querySelector("input");
@@ -62,6 +63,7 @@ input.addEventListener("input", function changeInput() {
 preview.addEventListener("click", function clickPreview() {
     input.click();   // Send click event to input button, which has the event listener added above.
 });
+*/
 
 // Taken from https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
 const fileTypes = [

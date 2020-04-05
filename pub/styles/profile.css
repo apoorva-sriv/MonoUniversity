@@ -13,7 +13,7 @@
 }
 
 #inline-container {
-    cursor: pointer;
+    /*cursor: pointer;*/
     display: inline-block;
     height: 150px;
 }
