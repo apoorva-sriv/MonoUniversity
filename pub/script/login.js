@@ -35,28 +35,3 @@ function authenticate(user, pass){
 function errorMessage(m){
     error.innerText = m;
 }
-
-async function addItem(data){
-    const url = "/api/shop/item"
-
-    const request = new Request(url, {
-        method: 'POST', 
-        body: JSON.stringify(data), 
-        headers: {
-            'Accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-        },
-    });
-
-    await fetch(request)
-    .then(function(res) {
-        if (res.status === 200) {
-            console.log('Item Posted')           
-        } else {
-            console.log("Item Post Failed")
-        }
-    }).catch((error) => {
-        log(error)
-    })
-}
-
