@@ -17,6 +17,9 @@ function getUserDetails() {
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
+            window.oldMoney = json.money;
+            window.oldWins = json.wins;
+            window.oldPoints = json.points;
             window.isAdmin = json.isAdmin;
             // Admin---needed to be put here because it didn't work down for some reason!
             if (window.isAdmin) {
@@ -121,7 +124,10 @@ function saveUsername() {
     const url = "/api/user";
 
     let data = {
-        username: userName.textContent
+        username: userName.textContent,
+        money: window.oldMoney,
+        wins: window.oldWins,
+        points: window.oldPoints
     };
 
     const request = new Request(url, {
