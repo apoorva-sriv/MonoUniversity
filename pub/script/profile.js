@@ -17,9 +17,7 @@ function getUserDetails() {
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
-            window.oldMoney = json.money;
-            window.oldWins = json.wins;
-            window.oldPoints = json.points;
+            window.availableTokens = json.itemsOwned;
             window.isAdmin = json.isAdmin;
             // Admin---needed to be put here because it didn't work down for some reason!
             if (window.isAdmin) {
@@ -111,3 +109,4 @@ for (const availableToken of availableTokens) {
     li.appendChild(img);
     tokens.appendChild(li);
 }
+
