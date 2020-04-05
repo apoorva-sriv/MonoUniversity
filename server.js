@@ -184,7 +184,7 @@ app.get('/api/item/:id', async (req, res) => {
 app.get('/api/user', authenticate, async (req, res) => {
     // console.log(req.session.username)
     try {
-        const user = User.findOne({user: req.session.username});
+        const user = await User.findOne({user: req.session.username});
         if(!user){
             return res.sendStatus(404);
         }
