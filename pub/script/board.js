@@ -695,9 +695,10 @@ function initializePlayers(board, numPlayers)
 		const newAI = new playerClass();
 		newAI.color = playerColors[i];
 		newAI.aiprofile = Math.floor(Math.random() * Math.floor(3)); // 0 - 2
-		newAI.piece = newPlayer.user.ownedPieces[Math.floor(Math.random() * Math.floor(newPlayer.user.ownedPieces.length))]; 
+		newAI.piece = Math.floor(Math.random() * Math.floor(8));
 		board.players.push(newAI);
 		board.playerTurns.push(i);
+
 	}
 
 	// Shuffle playing order

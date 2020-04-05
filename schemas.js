@@ -42,7 +42,6 @@ const userSchema = new Schema({
         type: String,
         default: "img/tenkai.png"
     }
-
 });
 
 userSchema.pre('save', function(next) {
