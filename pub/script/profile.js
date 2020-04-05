@@ -28,7 +28,8 @@ function getUserDetails() {
                 li.style.color = "red";
                 ul.appendChild(li);
             }
-            document.querySelector("#username").innerText = json.user;
+            window.userNameFromDB = json.user;
+            document.querySelector("#username").innerText = window.userNameFromDB;
         })
         .catch(error => {
             console.log(error);
@@ -127,6 +128,15 @@ function validFileType(file) {
     return fileTypes.includes(file.type);
 }
 
+// Edit username
+const userName = document.querySelector("#username");
+userName.addEventListener("input", function editUsername() {
+    if (!userName.textContent) {
+        userName.textContent = window.userNameFromDB;
+    }
+});
+
+// Token selector
 const tokens = document.querySelector("#tokens");
 
 let counter = 0;
