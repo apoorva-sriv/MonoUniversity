@@ -117,6 +117,7 @@ for (const availableToken of availableTokens) {
 }
 
 function saveUsername() {
+    console.log("Saving username");
     const url = "/api/user";
 
     let data = {
