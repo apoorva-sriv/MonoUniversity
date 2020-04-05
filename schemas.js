@@ -84,7 +84,9 @@ const itemSchema = new Schema({
     description: String,
     image: String,
     price: Number,
-	behaviourId: Number
+	behaviourId: {
+    	type:
+	}
 });
 
 const Item = mongoose.model('Item', itemSchema);
