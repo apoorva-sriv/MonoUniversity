@@ -76,9 +76,10 @@ if (audioIcon) {
 }
 
 async function updateUsername() {
-    if (!document.querySelector("#leave-btn")) {
+    const profile = document.querySelector("#profile");
+    if (!document.querySelector("#leave-btn") && profile) {
         // This function doesn't work in shop.html for some reason, so this check
-        // is ensuring the current page is NOT shop.html (does NOT contain the "Leave Shop" button).
+        // is ensuring the current page is NOT shop.html (does NOT contain the "Leave Shop" button). Profile check for index.html
         const url = "/api/user";
 
         await fetch(url)
@@ -90,7 +91,7 @@ async function updateUsername() {
                 }
             })
             .then(json => {
-                document.querySelector("#profile").innerText = json.user;
+                profile.innerText = json.user;
             })
             .catch(error => {
                 console.log(error);
