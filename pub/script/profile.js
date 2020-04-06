@@ -1,7 +1,7 @@
-function getUserDetails() {
+async function getUserDetails() {
     const url = "/api/user";
 
-    return fetch(url)
+    await fetch(url)
         .then(res => {
             if (res.status === 200) {
                 return res.json();
@@ -69,9 +69,8 @@ function getCurrentItemPath(currentItem) {
                 alert("Could not get item");
             }
         })
-        .then(json => {
-            window.currentTokenPath = json.image;
-            resolve();
+        .then(itemJson => {
+            window.currentTokenPath = itemJson.image;
         })
         .catch(error => {
             console.log(error);
@@ -183,6 +182,7 @@ function setProfilePic() {
     });
 }
 
+/*
 async function setUsername() {
     // Edit username
     const userName = document.querySelector("#username");
@@ -192,6 +192,7 @@ async function setUsername() {
         }
     });
 }
+*/
 
 async function main() {
     window.tokenPathsToObjects = {"./img/pieces/default.png": null};

@@ -1,5 +1,25 @@
 const shop = document.getElementById("shop");
 
+async function updateUserDisplay() {
+    const url = "/api/user";
+
+    await fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get user");
+            }
+        })
+        .then(json => {
+            document.querySelector("#username").innerText = json.user;
+            document.querySelector("#userMoney").innerText = "∰" + json.money;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
 function clearItems() {
     shop.innerHTML = "";
 }
@@ -63,6 +83,7 @@ leaveBtn.addEventListener("click", e => {
 
 clearItems();
 fetchItems(addItems);
+updateUserDisplay();
 
 // function populateShop(){
 //     const url = "/api/shop/user"

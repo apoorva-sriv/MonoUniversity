@@ -27,7 +27,7 @@ body {
     display: -webkit-flexbox;
     display: -ms-flexbox;
     display: -webkit-flex;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     font-size: 150%;
 }
@@ -83,6 +83,7 @@ body {
     height: 100%;
     float: right;
     background-color: lightblue;
+    width: 50px;
 }
 
 /* #profile:hover {

@@ -4,6 +4,7 @@
 
 #leaderboard table {
     border: 1px solid rgb(12, 123, 194);
+    text-align: center;
 }
 
 #leaderboard table th {

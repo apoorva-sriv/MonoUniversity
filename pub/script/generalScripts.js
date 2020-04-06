@@ -75,10 +75,38 @@ if (audioIcon) {
     });
 }
 
+async function updateUsername() {
+    if (!document.querySelector("#leave-btn")) {
+        // This function doesn't work in shop.html for some reason, so this check
+        // is ensuring the current page is NOT shop.html (does NOT contain the "Leave Shop" button).
+        const url = "/api/user";
+
+        await fetch(url)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.json();
+                } else {
+                    alert("Could not get user");
+                }
+            })
+            .then(json => {
+                document.querySelector("#profile").innerText = json.user;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
+}
+
 // Profile navigation
 const rightbar = document.querySelector("#rightbar");
 if (rightbar) {
     rightbar.addEventListener("click", function goToProfile() {
         window.location = "./profile.html";
     });
+    // Get username
+    const username = document.querySelector("#profile");
+
 }
+
+updateUsername();

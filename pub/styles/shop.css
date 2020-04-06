@@ -80,3 +80,17 @@ audio {
     z-index: 1;
     cursor: pointer;
 }
+
+#profile {
+    display: block;
+}
+
+#username {
+    position: relative;
+    top: 10px;
+}
+
+#userMoney {
+    position: relative;
+    top: 15px;
+}
