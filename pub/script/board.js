@@ -21,6 +21,24 @@ let login = null;
 // Is the page loaded yet?
 let load = false;
 
+async function getBehaviourId(itemObjectId) {
+    let url = "/api/item/" + itemObjectId;
+    await fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get item");
+            }
+        })
+        .then(itemJson => {
+            window.behaviourId = itemJson.behaviourId;
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}
+
 // Grab user info so that we may use his shit for login
 function fetchUserInfo() {
     const url = "/api/user";
@@ -33,15 +51,19 @@ function fetchUserInfo() {
                 alert("Could not get user");
             }
         })
-        .then(user => {
+        .then(async user => {
             let mangoItem = user;
             login = new userClass(mangoItem.user, "0");
             login.isAdmin = mangoItem.isAdmin;
             login.ownedPieces.push(0);
             for (let i = 0; i < mangoItem.itemsOwned.length; i++)
                 login.ownedPieces.push(mangoItem.itemsOwned[i].behaviourId);
-            if (mangoItem.itemSelected == null) login.selectedPiece = 0;
-            else login.selectedPiece = mangoItem.itemSelected.behaviorId;
+            if (mangoItem.itemSelected == null) {
+                login.selectedPiece = 0;
+            } else {
+                await getBehaviourId(mangoItem.itemSelected);
+                login.selectedPiece = window.behaviourId;
+            }
             readyBoard();
         })
         .catch(error => {
@@ -112,7 +134,7 @@ const PIECE_TYPE_GENIUS = 5; // Unaffected by Utility and TTC tiles, pays 25% mo
 const PIECE_TYPE_BANKER = 6; // Immunity to Tax Tiles, but rents are 5% more expensive.
 const PIECE_TYPE_INVESTOR = 7; // You can buy properties early but they cost 50% more early game.
 
-const pieceGraphics = ["default", "cop", "lawyer", "veteran", "worker", "genuis", "banker", "investor"];
+const pieceGraphics = ["default", "cop", "lawyer", "veteran", "worker", "genius", "banker", "investor"];
 
 // Jail Turns
 const JAIL_TURN_NONE = 0;
@@ -179,7 +201,7 @@ const tileColorGroups = [
     [37, 39],
 ];
 
-const chanceTileImages = { 7: "bottomChance.png", 22: "topChance.png", 36: "rightChance.png" };
+const chanceTileImages = {7: "bottomChance.png", 22: "topChance.png", 36: "rightChance.png"};
 
 // Chance and community cards have specifics effects, each having their own function and description, these functions are defined here
 // shuffling these happens at the last card, the counter and shuffle order is stored in the boardClass
@@ -1265,11 +1287,11 @@ function rollTheDice() {
 
     console.log(
         "Player " +
-            gameBoard.playerTurns[gameBoard.playerTurn] +
-            " has rolled " +
-            gameBoard.dice[0] +
-            " " +
-            gameBoard.dice[1]
+        gameBoard.playerTurns[gameBoard.playerTurn] +
+        " has rolled " +
+        gameBoard.dice[0] +
+        " " +
+        gameBoard.dice[1]
     );
 
     // Delay player movement
@@ -2221,7 +2243,7 @@ function offset(el) {
     let rect = el.getBoundingClientRect(),
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+    return {top: rect.top + scrollTop, left: rect.left + scrollLeft};
 }
 
 // Get offset for each of the player pieces
