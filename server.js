@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
 const log = console.log;
-const express = require('express');
-const session = require('express-session');
-const crypto = require('crypto');
+const express = require("express");
+const session = require("express-session");
+const crypto = require("crypto");
 
 const app = express();
 
-const server = require('http').createServer(app);
+const server = require("http").createServer(app);
 // const io = require('socket.io')(server);
 
 const sessionMiddleware = session({
@@ -16,31 +16,31 @@ const sessionMiddleware = session({
     saveUninitialized: false,
     cookie: {
         expires: 60000 * 1000,
-        httpOnly: true
-    }
+        httpOnly: true,
+    },
 });
 /*
 io.use((socket, next) => {
     sessionMiddleware(socket.request, socket.request.res, next);
 });
 */
-const {User, Item, Room} = require('./schemas.js');
+const { User, Item, Room } = require("./schemas.js");
 //const socket_setup = require('./socket-setup.js');
 
-const mongoose = require('mongoose');
-const dbpath = process.env.DB_PATH || 'mongodb://localhost:27017/test';
+const mongoose = require("mongoose");
+const dbpath = process.env.DB_PATH || "mongodb://localhost:27017/test";
 mongoose.connect(dbpath);
 
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
 cloudinary.config({
     cloud_name: process.env.cloudinary_cloud_name,
     api_key: process.env.cloudinary_api_key,
-    api_secret: process.env.cloudinary_api_secret
+    api_secret: process.env.cloudinary_api_secret,
 });
 
-app.use(express.static(__dirname + '/pub'));
+app.use(express.static(__dirname + "/pub"));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(sessionMiddleware);
 
 function existsUserPass(req, res, next) {
@@ -59,19 +59,19 @@ function authenticate(req, res, next) {
     else next();
 }
 
-app.post('/api/signup', existsUserPass, async (req, res) => {
+app.post("/api/signup", existsUserPass, async (req, res) => {
     const body = req.body;
-    const docs = await User.find({user: body.user}).exec();
+    const docs = await User.find({ user: body.user }).exec();
     if (docs.length > 0) {
         res.status(400).send("Username is already taken.");
         return;
     }
-    const user = new User({user: body.user, password: body.password});
+    const user = new User({ user: body.user, password: body.password });
     await user.save();
     res.sendStatus(200);
 });
 
-app.post('/api/login', existsUserPass, async (req, res) => {
+app.post("/api/login", existsUserPass, async (req, res) => {
     try {
         const user = await User.authenticate(req.body.user, req.body.password);
         req.session.username = user.user;
@@ -82,17 +82,17 @@ app.post('/api/login', existsUserPass, async (req, res) => {
     }
 });
 
-app.get('/api/logout', (req, res) => {
-    req.session.destroy((error) => {
+app.get("/api/logout", (req, res) => {
+    req.session.destroy(error => {
         if (error) {
             res.sendStatus(500);
         } else {
-            res.redirect('/');
+            res.redirect("/");
         }
     });
 });
 
-app.get('/api/room/:id', async (req, res) => {
+app.get("/api/room/:id", async (req, res) => {
     const room = await Room.findById(req.params.id);
     for (let i = 0; i < room.users.length; i++) {
         room.users[i] = await User.findById(room.users[i]);
@@ -100,46 +100,51 @@ app.get('/api/room/:id', async (req, res) => {
     res.json(room);
 });
 
-app.get('/api/id/:username', (req, res) => {
-    User.findOne({user: req.params.username}).then((user) => {
-        if (user) res.send(user);
-        else res.sendStatus(404);
-    }, (error) => {
-        res.status(500).send(error);
-    });
+app.get("/api/id/:username", (req, res) => {
+    User.findOne({ user: req.params.username }).then(
+        user => {
+            if (user) res.send(user);
+            else res.sendStatus(404);
+        },
+        error => {
+            res.status(500).send(error);
+        }
+    );
 });
 
-app.get('/api/user/:id', (req, res) => {
+app.get("/api/user/:id", (req, res) => {
     const id = req.params.id;
 
-    User.findById(id).then((user) => {
-        if (!user) {
-            res.status(404).send();
-        } else {
-            res.send(user);
-        }
-    }).catch((e) => {
-        res.status(500).send(e);
-    });
+    User.findById(id)
+        .then(user => {
+            if (!user) {
+                res.status(404).send();
+            } else {
+                res.send(user);
+            }
+        })
+        .catch(e => {
+            res.status(500).send(e);
+        });
 });
 
-app.get('/api/shop', (req, res) => {
+app.get("/api/shop", (req, res) => {
     Item.find({}, (err, items) => {
         res.json(items);
     });
 });
 
-app.get('/api/shop/user', authenticate, async (req, res) => {
+app.get("/api/shop/user", authenticate, async (req, res) => {
     const items = await Item.find({});
-    const user = await User.findOne({user: req.session.username});
+    const user = await User.findOne({ user: req.session.username });
     if (!user) {
         res.sendStatus(404);
         return;
     }
-    await res.json(items.filter((x) => !user.itemsOwned.includes(x._id)));
+    await res.json(items.filter(x => !user.itemsOwned.includes(x._id)));
 });
 
-app.get('/api/shop/:itemid', async (req, res) => {
+app.get("/api/shop/:itemid", async (req, res) => {
     let item;
     try {
         item = await Item.findById(req.params.itemid);
@@ -154,11 +159,11 @@ app.get('/api/shop/:itemid', async (req, res) => {
     await res.json(item);
 });
 
-app.put('/api/shop/:itemid', authenticate, async (req, res) => {
+app.put("/api/shop/:itemid", authenticate, async (req, res) => {
     let user;
     let item;
     try {
-        user = await User.findOne({user: req.session.username});
+        user = await User.findOne({ user: req.session.username });
         item = await Item.findById(req.params.itemid);
     } catch (e) {
         res.sendStatus(403);
@@ -179,18 +184,18 @@ app.put('/api/shop/:itemid', authenticate, async (req, res) => {
 });
 
 // Post item
-app.post('/api/shop/item', async (req, res) => {
+app.post("/api/shop/item", async (req, res) => {
     const item = new Item({
         name: req.body.name,
         description: req.body.description,
         image: req.body.image,
-        price: req.body.price
+        price: req.body.price,
     });
     await item.save();
     res.sendStatus(200);
 });
 
-app.get('/api/item/:id', async (req, res) => {
+app.get("/api/item/:id", async (req, res) => {
     try {
         const item = await Item.findById(req.params.id);
         if (!item) {
@@ -204,10 +209,10 @@ app.get('/api/item/:id', async (req, res) => {
 });
 
 // Get current User
-app.get('/api/user', authenticate, async (req, res) => {
+app.get("/api/user", authenticate, async (req, res) => {
     // console.log(req.session.username)
     try {
-        const user = await User.findOne({user: req.session.username});
+        const user = await User.findOne({ user: req.session.username });
         if (!user) {
             return res.sendStatus(404);
         }
@@ -216,8 +221,10 @@ app.get('/api/user', authenticate, async (req, res) => {
             items.push(await Item.findById(user.itemsOwned[i]));
         }
         items.push({
-            name: "Default", description: "This is the default item",
-            behaviourId: 0, image: "img/default.png"
+            name: "Default",
+            description: "This is the default item",
+            behaviourId: 0,
+            image: "img/default.png",
         });
         user.itemsOwned = items;
         user.itemSelected = await Item.findById(user.itemSelected);
@@ -228,22 +235,28 @@ app.get('/api/user', authenticate, async (req, res) => {
 });
 
 // Get list of all existing (non-admin) users
-app.get('/api/users', (req, res) => {
-    User.find().then((users) => {
-        users = users.filter(user => !user.isAdmin);
-        res.send(users);
-    }, (error) => {
-        res.status(500).send(error);
-    });
+app.get("/api/users", (req, res) => {
+    User.find().then(
+        users => {
+            users = users.filter(user => !user.isAdmin);
+            res.send(users);
+        },
+        error => {
+            res.status(500).send(error);
+        }
+    );
 });
 
 // Get list of all existing users (including admin)
-app.get('/api/users/all', (req, res) => {
-    User.find().then((users) => {
-        res.send(users);
-    }, (error) => {
-        res.status(500).send(error);
-    });
+app.get("/api/users/all", (req, res) => {
+    User.find().then(
+        users => {
+            res.send(users);
+        },
+        error => {
+            res.status(500).send(error);
+        }
+    );
 });
 
 // update given user's info
@@ -276,33 +289,29 @@ app.patch("/api/user", authenticate, (req, res) => {
     });
 });
 
-app.get('/api/createGame', authenticate, async (req, res) => {
-    const user = await User.findOne({user: req.session.username});
+app.get("/api/createGame", authenticate, async (req, res) => {
+    const user = await User.findOne({ user: req.session.username });
     if (!user) return res.sendStatus(404);
-    const room = new Room({users: [user._id]});
+    const room = new Room({ users: [user._id] });
     await room.save();
-    return res.redirect('/room/' + room._id);
+    return res.redirect("/room/" + room._id);
 });
 
-app.get('/room/:id', authenticate, async (req, res) => {
-    if (await Room.findById(req.params.id))
-        res.sendFile('./pub/room.html', {root: __dirname});
-    else
-        res.sendStatus(404);
+app.get("/room/:id", authenticate, async (req, res) => {
+    if (await Room.findById(req.params.id)) res.sendFile("./pub/room.html", { root: __dirname });
+    else res.sendStatus(404);
 });
 
-app.get('/board/:id', authenticate, async (req, res) => {
-    if (await Board.findById(req.params.id))
-        res.sendFile('./pub/board.html', {root: __dirname});
-    else
-        res.sendStatus(404);
+app.get("/board/:id", authenticate, async (req, res) => {
+    if (await Board.findById(req.params.id)) res.sendFile("./pub/board.html", { root: __dirname });
+    else res.sendStatus(404);
 });
 
-app.put('/api/win', authenticate, async (req, res) => {
-    const user = await User.findOne({user: req.session.username});
+app.put("/api/win", authenticate, async (req, res) => {
+    const user = await User.findOne({ user: req.session.username });
     user.wins += 1;
     user.points += 0.2;
-    user.money += 100 + (user.points * 100);
+    user.money += 100 + user.points * 100;
     await user.save();
     res.sendStatus(200);
 });
@@ -319,17 +328,17 @@ io.on('connection', (socket) => {
 
 app.get("/signature", function getCallback(req, res) {
     const time = Date.now();
-    const crypto = require('crypto');
+    const crypto = require("crypto");
     const str = `public_id=${req.session.username}&source=uw&timestamp=${time}&upload_preset=ml_default${process.env.cloudinary_api_secret}`;
-    const shasum = crypto.createHash('sha1');
+    const shasum = crypto.createHash("sha1");
     shasum.update(str);
-    const shastr = shasum.digest('hex');
+    const shastr = shasum.digest("hex");
 
     res.json({
-        "shastr": shastr,
-        "time": time,
-        "api_key": process.env.cloudinary_api_key,
-        "cloud_name": process.env.cloudinary_cloud_name
+        shastr: shastr,
+        time: time,
+        api_key: process.env.cloudinary_api_key,
+        cloud_name: process.env.cloudinary_cloud_name,
     });
 });
 

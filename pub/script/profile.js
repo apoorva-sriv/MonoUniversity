@@ -88,7 +88,7 @@ function saveUserInfo() {
         wins: document.querySelector("#gamesWon").innerText,
         points: 0,
         itemSelected: window.tokenPathsToObjects["./img" + window.currentTokenPath.split("/img")[1]],
-        image: document.querySelector("#profile-image").src
+        image: document.querySelector("#profile-image").src,
     };
 
     const request = new Request(url, {
@@ -122,6 +122,7 @@ async function displayTokens() {
         const li = document.createElement("li"); // Note: "const" instead of "let" is valid inside for loops since the variable goes out of scope and is redeclared after each iteration (https://stackoverflow.com/a/50808013/4179032)!
         const img = document.createElement("img");
         img.style.cursor = "pointer";
+        img.class = "tooltip";
         img.src = tokenPath;
         img.addEventListener("click", async function clickImage(e) {
             // Remove the borders from the other tokens.
@@ -153,7 +154,7 @@ function validFileType(file) {
         "image/svg+xml",
         "image/tiff",
         "image/webp",
-        "image/x-icon"
+        "image/x-icon",
     ];
 
     return fileTypes.includes(file.type);
@@ -162,7 +163,7 @@ function validFileType(file) {
 function setProfilePic() {
     const preview = document.querySelector("#inline-container");
 
-    const url = '/signature';
+    const url = "/signature";
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -173,15 +174,17 @@ function setProfilePic() {
         })
         .then(res => res.json())
         .then(json => {
-            const myWidget = cloudinary.createUploadWidget({
+            const myWidget = cloudinary.createUploadWidget(
+                {
                     cloudName: json.cloud_name,
                     multiple: false,
                     publicId: window.userNameFromDB,
-                    uploadPreset: 'ml_default',
+                    uploadPreset: "ml_default",
                     uploadSignature: json.shastr,
                     uploadSignatureTimestamp: Number(json.time),
                     apiKey: json.api_key,
-                }, (error, result) => {
+                },
+                (error, result) => {
                     if (!error && result && result.event === "success") {
                         document.querySelector("#pfp img").src = result.info.secure_url;
                         document.querySelector("#profile-image").src = result.info.secure_url;
@@ -189,9 +192,13 @@ function setProfilePic() {
                     }
                 }
             );
-            preview.addEventListener("click", function openWidget() {
-                myWidget.open();
-            }, false);
+            preview.addEventListener(
+                "click",
+                function openWidget() {
+                    myWidget.open();
+                },
+                false
+            );
         })
         .catch(error => {
             console.error(error);
@@ -211,8 +218,8 @@ async function setUsername() {
 */
 
 async function main() {
-    window.tokenPathsToObjects = {"./img/pieces/default.png": null};
-    window.availableTokenPaths = ["./img/pieces/default.png"];     // ultimately, available tokens = default + bought tokens
+    window.tokenPathsToObjects = { "./img/pieces/default.png": null };
+    window.availableTokenPaths = ["./img/pieces/default.png"]; // ultimately, available tokens = default + bought tokens
     await getUserDetails();
     setProfilePic();
     // await setUsername();

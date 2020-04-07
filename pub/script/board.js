@@ -201,7 +201,7 @@ const tileColorGroups = [
     [37, 39],
 ];
 
-const chanceTileImages = {7: "bottomChance.png", 22: "topChance.png", 36: "rightChance.png"};
+const chanceTileImages = { 7: "bottomChance.png", 22: "topChance.png", 36: "rightChance.png" };
 
 // Chance and community cards have specifics effects, each having their own function and description, these functions are defined here
 // shuffling these happens at the last card, the counter and shuffle order is stored in the boardClass
@@ -1287,11 +1287,11 @@ function rollTheDice() {
 
     console.log(
         "Player " +
-        gameBoard.playerTurns[gameBoard.playerTurn] +
-        " has rolled " +
-        gameBoard.dice[0] +
-        " " +
-        gameBoard.dice[1]
+            gameBoard.playerTurns[gameBoard.playerTurn] +
+            " has rolled " +
+            gameBoard.dice[0] +
+            " " +
+            gameBoard.dice[1]
     );
 
     // Delay player movement
@@ -2243,7 +2243,7 @@ function offset(el) {
     let rect = el.getBoundingClientRect(),
         scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
         scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    return {top: rect.top + scrollTop, left: rect.left + scrollLeft};
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
 }
 
 // Get offset for each of the player pieces

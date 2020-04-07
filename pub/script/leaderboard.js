@@ -5,8 +5,8 @@
 // We do not need to fetch the current user, all we need is to fetch the entire userbase, and display the thing
 
 // Very basic user function to make this happen
-function User(username, wins) {
-    (this.username = username), (this.wins = wins);
+function User(image, username, wins) {
+    (this.image = image), (this.username = username), (this.wins = wins);
 }
 
 // Function to add the user in question to the board
@@ -14,6 +14,7 @@ function addLeaderboardMember(user) {
     // Get info from param
     const username = user.username;
     const wins = user.wins;
+    const image = user.image;
 
     // Definitions
     const leaderboardList = document.querySelector("#userList");
@@ -22,10 +23,15 @@ function addLeaderboardMember(user) {
     const tableUserText = document.createTextNode(username);
     const tableWins = document.createElement("td");
     const tableWinsText = document.createTextNode(wins);
+    const tableUserImage = document.createElement("td");
+    const tableUserImageSource = document.createElement("img");
+    tableUserImageSource.src = image;
 
     // Additions
     tableUser.appendChild(tableUserText);
     tableWins.appendChild(tableWinsText);
+    tableUserImage.appendChild(tableUserImageSource);
+    tableRow.appendChild(tableUserImage);
     tableRow.appendChild(tableUser);
     tableRow.appendChild(tableWins);
     leaderboardList.appendChild(tableRow);
@@ -56,7 +62,7 @@ function startup() {
 
             // Get all the users and store them
             for (let i = 0; i < user.length; i++) {
-                const newUser = new User(user[i].user, user[i].wins);
+                const newUser = new User(user[i].image, user[i].user, user[i].wins);
                 userArray.push(newUser);
             }
 
