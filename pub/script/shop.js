@@ -14,9 +14,10 @@ async function updateUserDisplay() {
         .then(json => {
             document.querySelector("#username").innerText = json.user;
             document.querySelector("#userMoney").innerText = "∰" + json.money;
+            document.querySelector("#pfp img").src = json.image;
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         });
 }
 

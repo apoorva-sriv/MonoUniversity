@@ -35,7 +35,7 @@ async function getBehaviourId(itemObjectId) {
             window.behaviourId = itemJson.behaviourId;
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         });
 }
 
@@ -67,7 +67,7 @@ function fetchUserInfo() {
             readyBoard();
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         });
 }
 

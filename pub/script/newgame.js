@@ -25,7 +25,6 @@ function checkAdmin() {
             }
         })
         .then(json => {
-            console.log("CHECK");
             if (json.isAdmin) {
                 const btnDiv = document.querySelector("#buttons");
                 const btnAdmin = document.createElement("button");
@@ -37,7 +36,7 @@ function checkAdmin() {
             }
         })
         .catch(error => {
-            log(error);
+            console.error(error);
         });
 }
 

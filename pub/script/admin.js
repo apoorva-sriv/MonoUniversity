@@ -119,7 +119,7 @@ function saveFunction() {
             }
         })
         .catch(error => {
-            log(error);
+            console.error(error);
         });
 }
 
@@ -143,7 +143,7 @@ function startup() {
             });
         })
         .catch(error => {
-            log(error);
+            console.error(error);
         });
 }
 

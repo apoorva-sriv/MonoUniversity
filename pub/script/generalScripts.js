@@ -75,29 +75,33 @@ if (audioIcon) {
     });
 }
 
-async function updateUsername() {
+async function displayUserInfo() {
     const profile = document.querySelector("#profile");
+    const pfpimg = document.querySelector("#pfp img");
     if (!document.querySelector("#leave-btn") && profile) {
         // This function doesn't work in shop.html for some reason, so this check
-        // is ensuring the current page is NOT shop.html (does NOT contain the "Leave Shop" button). Profile check for index.html
-        const url = "/api/user";
+        // is ensuring the current page is NOT shop.html (does NOT contain the "Leave Shop" button). Profile check for NOT index.html
 
+        const url = "/api/user";
         await fetch(url)
             .then(res => {
                 if (res.status === 200) {
                     return res.json();
                 } else {
-                    alert("Could not get user");
+                    alert("Could not get username");
                 }
             })
             .then(json => {
                 profile.innerText = json.user;
+                pfpimg.src = json.image;
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
             });
     }
 }
+
+displayUserInfo();
 
 // Profile navigation
 const rightbar = document.querySelector("#rightbar");
@@ -105,9 +109,4 @@ if (rightbar) {
     rightbar.addEventListener("click", function goToProfile() {
         window.location = "./profile.html";
     });
-    // Get username
-    const username = document.querySelector("#profile");
-
 }
-
-updateUsername();

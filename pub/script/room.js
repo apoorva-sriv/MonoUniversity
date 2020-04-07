@@ -110,6 +110,6 @@ socket.on("identifyAccept", res => {
             renderUsers();
         })
         .catch(err => {
-            console.log(err);
+            console.error(err);
         });
 });

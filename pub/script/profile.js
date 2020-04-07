@@ -10,6 +10,8 @@ async function getUserDetails() {
             }
         })
         .then(json => {
+            document.querySelector("#pfp img").src = json.image;
+            document.querySelector("#profile-image").src = json.image;
             document.querySelector("#gamesWon").innerText = json.wins;
             // document.querySelector("#rank").innerText = 1;
             document.querySelector("#shopMoney").innerText = json.money;
@@ -30,7 +32,7 @@ async function getUserDetails() {
             document.querySelector("#username").innerText = window.userNameFromDB;
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         });
 }
 
@@ -51,7 +53,7 @@ async function getBoughtItemPaths() {
                 window.tokenPathsToObjects[itemJson.image] = itemJson._id;
             })
             .catch(error => {
-                console.log(error);
+                console.error(error);
             });
     }
 }
@@ -73,11 +75,11 @@ function getCurrentItemPath(currentItem) {
             window.currentTokenPath = itemJson.image;
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         });
 }
 
-function saveCurrentToken() {
+function saveUserInfo() {
     const url = "/api/user/";
 
     let data = {
@@ -85,7 +87,8 @@ function saveCurrentToken() {
         money: document.querySelector("#shopMoney").innerText,
         wins: document.querySelector("#gamesWon").innerText,
         points: 0,
-        itemSelected: window.tokenPathsToObjects["./img" + window.currentTokenPath.split("/img")[1]]
+        itemSelected: window.tokenPathsToObjects["./img" + window.currentTokenPath.split("/img")[1]],
+        image: document.querySelector("#profile-image").src
     };
 
     const request = new Request(url, {
@@ -106,7 +109,7 @@ function saveCurrentToken() {
             }
         })
         .catch(error => {
-            console.log(error);
+            console.error(error);
         });
 }
 
@@ -128,7 +131,7 @@ async function displayTokens() {
             // Add border to current token.
             e.target.style.border = "2px solid rgb(3, 96, 156)";
             window.currentTokenPath = img.src;
-            await saveCurrentToken();
+            await saveUserInfo();
         });
         if (tokenPath === window.currentTokenPath) {
             img.style.border = "2px solid rgb(3, 96, 156)";
@@ -157,29 +160,42 @@ function validFileType(file) {
 }
 
 function setProfilePic() {
-    // Upload profile picture
-    // See https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#Examples
-    const input = document.querySelector("input");
     const preview = document.querySelector("#inline-container");
 
-    // This will be called when the user has chosen a file, NOT when input is 'click'ed (otherwise
-    // input.files will be empty when run immediately after just clicking and before the user has chosen anything)!
-    input.addEventListener("input", function changeInput() {
-        const curFiles = input.files;
-        if (curFiles.length === 1) {
-            const file = curFiles[0];
-
-            if (validFileType(file)) {
-                const imgURL = URL.createObjectURL(file);
-                document.querySelector("#profile-image").src = imgURL;
-                document.querySelector("#pfp img").src = imgURL;
+    const url = '/signature';
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res;
+            } else {
+                alert("Could not get signature");
             }
-        }
-    });
-
-    preview.addEventListener("click", function clickPreview() {
-        input.click(); // Send click event to input button, which has the event listener added above.
-    });
+        })
+        .then(res => res.json())
+        .then(json => {
+            const myWidget = cloudinary.createUploadWidget({
+                    cloudName: json.cloud_name,
+                    multiple: false,
+                    publicId: window.userNameFromDB,
+                    uploadPreset: 'ml_default',
+                    uploadSignature: json.shastr,
+                    uploadSignatureTimestamp: Number(json.time),
+                    apiKey: json.api_key,
+                }, (error, result) => {
+                    if (!error && result && result.event === "success") {
+                        document.querySelector("#pfp img").src = result.info.secure_url;
+                        document.querySelector("#profile-image").src = result.info.secure_url;
+                        saveUserInfo();
+                    }
+                }
+            );
+            preview.addEventListener("click", function openWidget() {
+                myWidget.open();
+            }, false);
+        })
+        .catch(error => {
+            console.error(error);
+        });
 }
 
 /*
