@@ -186,7 +186,7 @@ const tileNames = [
     ["CHANCE", "Chance"],
     ["EX", "Exam Center"],
     ["INCOME TAX", "Income Tax"],
-    ["AH", "Alumni Hall"],
+    ["AH", "Alumni Hall"]
 ];
 
 // Used for determining whether or not you own all tiles of the same color
@@ -198,7 +198,7 @@ const tileColorGroups = [
     [21, 23, 24],
     [26, 27, 29],
     [31, 32, 34],
-    [37, 39],
+    [37, 39]
 ];
 
 const chanceTileImages = { 7: "bottomChance.png", 22: "topChance.png", 36: "rightChance.png" };
@@ -211,98 +211,98 @@ const chanceDetails = [
         "Advance to Innis. If you pass GO, collect $200.",
         function (playerNum) {
             chInnisMove(playerNum);
-        },
+        }
     ],
     [
         "Advance token to the nearest TTC and pay the owner the rental to which they are entitled. If TTC is unowned, you may buy it from the Bank.",
         function (playerNum) {
             chTTCDouble(playerNum);
-        },
+        }
     ],
     [
         "Take a ride on TTC South. If you pass GO, collect $200.",
         function (playerNum) {
             chTTCSouth(playerNum);
-        },
+        }
     ],
     [
         "Advance to GO. (Collect $400.)",
         function (playerNum) {
             chDirectGO(playerNum);
-        },
+        }
     ],
     [
         "Your building and loan matures. Collect $150.",
         function (playerNum) {
             chLoanMature(playerNum);
-        },
+        }
     ],
     [
         "You have been elected President of the UTSU. Pay each player $50.",
         function (playerNum) {
             chPayEach(playerNum);
-        },
+        }
     ],
     [
         "Go directly to jail. Do not pass GO; do not collect $200.",
         function (playerNum) {
             chJail(playerNum);
-        },
+        }
     ],
     [
         "Pay poor tax of $15.",
         function (playerNum) {
             chPoorTax(playerNum);
-        },
+        }
     ],
     [
         "Talk a walk in Alumni Hall. Advance token to Alumni Hall.",
         function (playerNum) {
             chAlumniMove(playerNum);
-        },
+        }
     ],
     [
         "Make general repairs on all your property. For each building, pay $25.",
         function (playerNum) {
             chRepairs(playerNum);
-        },
+        }
     ],
     [
         "Advance token to nearest library (RL or CL). If UNOWNED, you may buy it from the Bank.",
         function (playerNum) {
             chMoveUtility(playerNum);
-        },
+        }
     ],
     [
         "Bank pays you dividend of $50",
         function (playerNum) {
             chBankDividend(playerNum);
-        },
+        }
     ],
     [
         "Advance to Bancroft Building (BC)",
         function (playerNum) {
             chBancroftMove(playerNum);
-        },
+        }
     ],
     [
         "Go back 3 tiles.",
         function (playerNum) {
             chThreeStepsBack(playerNum);
-        },
+        }
     ],
     [
         "Add a get out of jail free card, may be used at any time.",
         function (playerNum) {
             chGOOJFC(playerNum);
-        },
+        }
     ],
     [
         "Advance token to the nearest TTC and pay the owner the rental to which they are entitled. If TTC is unowned, you may buy it from the Bank.",
         function (playerNum) {
             chTTCDouble(playerNum);
-        },
-    ],
+        }
+    ]
 ];
 
 function chInnisMove(playerNum) {
@@ -430,98 +430,98 @@ const communityChestDetails = [
         "Doctor's fee. Pay $50.",
         function (playerNum) {
             cmDoctor(playerNum);
-        },
+        }
     ],
     [
         "UTSU Fund matures. Collect $100.",
         function (playerNum) {
             cmFundMature(playerNum);
-        },
+        }
     ],
     [
         "Add a get out of jail free card, may be used at any time.",
         function (playerNum) {
             cmGOOJFC(playerNum);
-        },
+        }
     ],
     [
         "Skule Nite Opening: Collect $50 from every player for opening night seats.",
         function (playerNum) {
             cmSkuleNite(playerNum);
-        },
+        }
     ],
     [
         "You inherit $200.",
         function (playerNum) {
             cmInherit(playerNum);
-        },
+        }
     ],
     [
         "Receive $25 for services.",
         function (playerNum) {
             cmServices(playerNum);
-        },
+        }
     ],
     [
         "Income tax refund: collect $20.",
         function (playerNum) {
             cmTaxRefund(playerNum);
-        },
+        }
     ],
     [
         "From sale of stock, you get $45.",
         function (playerNum) {
             cmStockSale(playerNum);
-        },
+        }
     ],
     [
         "Pay non-opt out ancillary fees of $150.",
         function (playerNum) {
             cmNonOpt(playerNum);
-        },
+        }
     ],
     [
         "You are assessed for campus repairs: $40 per building.",
         function (playerNum) {
             cmRepairs(playerNum);
-        },
+        }
     ],
     [
         "Bank error in your favor: collect $250",
         function (playerNum) {
             cmBankError(playerNum);
-        },
+        }
     ],
     [
         "Advance to GO. (Collect $400.)",
         function (playerNum) {
             cmDirectGO(playerNum);
-        },
+        }
     ],
     [
         "Life insurance matures: collect $150",
         function (playerNum) {
             cmLifeIn(playerNum);
-        },
+        }
     ],
     [
         "Pay hospital $100",
         function (playerNum) {
             cmHospital(playerNum);
-        },
+        }
     ],
     [
         "You have won second prize in Orientation Week. Collect $10.",
         function (playerNum) {
             cmSecond(playerNum);
-        },
+        }
     ],
     [
         "Go directly to jail. Do not pass GO. Do not collect $200.",
         function (playerNum) {
             cmJail(playerNum);
-        },
-    ],
+        }
+    ]
 ];
 
 function cmDoctor(playerNum) {
@@ -1524,7 +1524,7 @@ function kickPlayer(playerNum) {
                 success: function (data) {
                     window.location.replace("./newgame.html");
                     alert("You've won and earned 100 credits!");
-                },
+                }
             });
         }
     }

@@ -7,41 +7,41 @@ const userSchema = new Schema({
     user: {
         type: String,
         unique: true,
-        minLength: 1,
+        minLength: 1
     },
     password: String,
     games: {
         type: [String],
-        default: [],
+        default: []
     },
     isAdmin: {
         type: Boolean,
-        default: false,
+        default: false
     },
     money: {
         type: Number,
-        default: 500,
+        default: 500
     },
     itemsOwned: {
         type: [mongoose.Types.ObjectId],
-        default: [],
+        default: []
     },
     itemSelected: {
         type: mongoose.Types.ObjectId,
-        default: null,
+        default: null
     },
     wins: {
         type: Number,
-        default: 0,
+        default: 0
     },
     points: {
         type: Number,
-        default: 0,
+        default: 0
     },
     image: {
         type: String,
-        default: "img/tenkai.png",
-    },
+        default: "img/tenkai.png"
+    }
 });
 
 userSchema.pre("save", function (next) {
@@ -83,7 +83,7 @@ const itemSchema = new Schema({
     description: String,
     image: String,
     price: Number,
-    behaviourId: Number,
+    behaviourId: Number
 });
 
 const Item = mongoose.model("Item", itemSchema);
@@ -92,8 +92,8 @@ const roomSchema = mongoose.Schema({
     users: [mongoose.Types.ObjectId],
     isPlaying: {
         type: Boolean,
-        default: false,
-    },
+        default: false
+    }
 });
 
 const Room = mongoose.model("Room", roomSchema);
@@ -101,189 +101,189 @@ const Room = mongoose.model("Room", roomSchema);
 module.exports = {
     User: User,
     Item: Item,
-    Room: Room,
+    Room: Room
 };
 
 // Tile schema for tiles
 const tileSchema = mongoose.Schema({
     name: {
         type: String,
-        default: "",
+        default: ""
     },
 
     fullname: {
         type: String,
-        default: "",
+        default: ""
     },
 
     desc: {
         type: String,
-        default: "",
+        default: ""
     },
 
     image: {
         type: String,
-        default: null,
+        default: null
     },
 
     tileflags: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     purchaseable: {
         type: Boolean,
-        default: false,
+        default: false
     },
 
     price: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     owner: {
         type: Number,
-        default: null,
+        default: null
     },
 
     building: {
         type: Boolean,
-        default: false,
-    },
+        default: false
+    }
 });
 
 const playerSchema = mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
-        default: null,
+        default: null
     },
 
     piece: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     color: {
         type: String,
-        default: "",
+        default: ""
     },
 
     money: {
         type: Number,
-        default: 1500,
+        default: 1500
     },
 
     jailed: {
         type: Boolean,
-        default: false,
+        default: false
     },
 
     jailturns: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     jailcards: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     pastfirst: {
         type: Boolean,
-        default: false,
+        default: false
     },
 
     passedgo: {
         type: Boolean,
-        default: false,
+        default: false
     },
 
     gorestrict: {
         type: Boolean,
-        default: false,
+        default: false
     },
 
     oldposition: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     position: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     aiprofile: {
         type: Number,
-        default: 0,
-    },
+        default: 0
+    }
 });
 
 const boardSchema = mongoose.Schema({
     tiles: {
         type: [tileSchema],
-        default: [],
+        default: []
     },
 
     players: {
         type: [playerSchema],
-        default: [],
+        default: []
     },
 
     playerTurns: {
         type: [Number],
-        default: [],
+        default: []
     },
 
     playerTurn: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     gameState: {
         type: Number,
-        default: 0,
+        default: 0
     },
 
     dice: {
         type: [Number],
-        default: [1, 1],
+        default: [1, 1]
     },
 
     timeOutId: {
         type: Number,
-        default: null,
+        default: null
     },
 
     chanceCards: {
         type: [String],
-        default: null,
+        default: null
     },
 
     communityCards: {
         type: [String],
-        default: null,
+        default: null
     },
 
     chanceCount: {
         type: Number,
-        default: -1,
+        default: -1
     },
 
     communityCount: {
         type: Number,
-        default: -1,
+        default: -1
     },
 
     gametype: {
         type: Number,
-        default: null,
+        default: null
     },
 
     diceRolling: {
         type: Boolean,
-        default: false,
-    },
+        default: false
+    }
 });
 
 module.exports.Board = mongoose.model("Board", boardSchema);

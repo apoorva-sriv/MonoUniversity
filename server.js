@@ -16,8 +16,8 @@ const sessionMiddleware = session({
     saveUninitialized: false,
     cookie: {
         expires: 60000 * 1000,
-        httpOnly: true,
-    },
+        httpOnly: true
+    }
 });
 /*
 io.use((socket, next) => {
@@ -35,7 +35,7 @@ const cloudinary = require("cloudinary").v2;
 cloudinary.config({
     cloud_name: process.env.cloudinary_cloud_name,
     api_key: process.env.cloudinary_api_key,
-    api_secret: process.env.cloudinary_api_secret,
+    api_secret: process.env.cloudinary_api_secret
 });
 
 app.use(express.static(__dirname + "/pub"));
@@ -189,7 +189,7 @@ app.post("/api/shop/item", async (req, res) => {
         name: req.body.name,
         description: req.body.description,
         image: req.body.image,
-        price: req.body.price,
+        price: req.body.price
     });
     await item.save();
     res.sendStatus(200);
@@ -224,7 +224,7 @@ app.get("/api/user", authenticate, async (req, res) => {
             name: "Default",
             description: "This is the default item",
             behaviourId: 0,
-            image: "img/default.png",
+            image: "img/default.png"
         });
         user.itemsOwned = items;
         user.itemSelected = await Item.findById(user.itemSelected);
@@ -326,7 +326,7 @@ io.on('connection', (socket) => {
 });
 */
 
-app.get("/signature", function getCallback(req, res) {
+app.get("/signature", function signatureCallback(req, res) {
     const time = Date.now();
     const crypto = require("crypto");
     const str = `public_id=${req.session.username}&source=uw&timestamp=${time}&upload_preset=ml_default${process.env.cloudinary_api_secret}`;
@@ -338,7 +338,7 @@ app.get("/signature", function getCallback(req, res) {
         shastr: shastr,
         time: time,
         api_key: process.env.cloudinary_api_key,
-        cloud_name: process.env.cloudinary_cloud_name,
+        cloud_name: process.env.cloudinary_cloud_name
     });
 });
 

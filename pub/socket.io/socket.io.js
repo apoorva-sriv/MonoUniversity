@@ -92,7 +92,7 @@
                     "directory",
                     "file",
                     "query",
-                    "anchor",
+                    "anchor"
                 ];
             t.exports = function (t) {
                 var e = t,
@@ -284,7 +284,7 @@
                         "#FF9900",
                         "#FF9933",
                         "#FFCC00",
-                        "#FFCC33",
+                        "#FFCC33"
                     ]),
                     (t.exports = n(5)(e));
                 var h = t.exports.formatters;
@@ -943,7 +943,7 @@
                         "#FF9900",
                         "#FF9933",
                         "#FFCC00",
-                        "#FFCC33",
+                        "#FFCC33"
                     ]),
                     (e.formatters.j = function (t) {
                         try {
@@ -1278,7 +1278,7 @@
                     (this.backoff = new f({
                         min: this.reconnectionDelay(),
                         max: this.reconnectionDelayMax(),
-                        jitter: this.randomizationFactor(),
+                        jitter: this.randomizationFactor()
                     })),
                     this.timeout(null == e.timeout ? 2e4 : e.timeout),
                     (this.readyState = "closed"),
@@ -1376,7 +1376,7 @@
                         this.subs.push({
                             destroy: function () {
                                 clearTimeout(u);
-                            },
+                            }
                         });
                     }
                     return this.subs.push(i), this.subs.push(s), this;
@@ -1498,7 +1498,7 @@
                         this.subs.push({
                             destroy: function () {
                                 clearTimeout(n);
-                            },
+                            }
                         });
                     }
                 }),
@@ -1642,7 +1642,7 @@
                         localAddress: n.localAddress || this.localAddress,
                         requestTimeout: n.requestTimeout || this.requestTimeout,
                         protocols: n.protocols || void 0,
-                        isReactNative: this.isReactNative,
+                        isReactNative: this.isReactNative
                     });
                     return r;
                 }),
@@ -3216,7 +3216,7 @@
                     reconnect_error: 1,
                     reconnecting: 1,
                     ping: 1,
-                    pong: 1,
+                    pong: 1
                 },
                 l = i.prototype.emit;
             i(r.prototype),
@@ -3226,7 +3226,7 @@
                         this.subs = [
                             a(t, "open", c(this, "onopen")),
                             a(t, "packet", c(this, "onpacket")),
-                            a(t, "close", c(this, "onclose")),
+                            a(t, "close", c(this, "onclose"))
                         ];
                     }
                 }),
@@ -3248,7 +3248,7 @@
                     var e = s(arguments),
                         n = {
                             type: (void 0 !== this.flags.binary ? this.flags.binary : h(e)) ? o.BINARY_EVENT : o.EVENT,
-                            data: e,
+                            data: e
                         };
                     return (
                         (n.options = {}),
@@ -3381,7 +3381,7 @@
                     {
                         destroy: function () {
                             t.removeListener(e, n);
-                        },
+                        }
                     }
                 );
             }
@@ -3429,7 +3429,7 @@
                 (n.prototype.setJitter = function (t) {
                     this.jitter = t;
                 });
-        },
+        }
     ]);
 });
 //# sourceMappingURL=socket.io.js.map

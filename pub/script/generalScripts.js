@@ -27,7 +27,7 @@ function getUserId() {
 function setUser(username) {
     const url = "/api/id/" + username;
     const request = new Request(url, {
-        method: "get",
+        method: "get"
     });
 
     fetch(request)

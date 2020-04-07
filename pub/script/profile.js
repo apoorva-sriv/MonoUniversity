@@ -88,7 +88,7 @@ function saveUserInfo() {
         wins: document.querySelector("#gamesWon").innerText,
         points: 0,
         itemSelected: window.tokenPathsToObjects["./img" + window.currentTokenPath.split("/img")[1]],
-        image: document.querySelector("#profile-image").src,
+        image: document.querySelector("#profile-image").src
     };
 
     const request = new Request(url, {
@@ -96,8 +96,8 @@ function saveUserInfo() {
         body: JSON.stringify(data),
         headers: {
             Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-        },
+            "Content-Type": "application/json"
+        }
     });
 
     fetch(request)
@@ -154,7 +154,7 @@ function validFileType(file) {
         "image/svg+xml",
         "image/tiff",
         "image/webp",
-        "image/x-icon",
+        "image/x-icon"
     ];
 
     return fileTypes.includes(file.type);
@@ -182,7 +182,7 @@ function setProfilePic() {
                     uploadPreset: "ml_default",
                     uploadSignature: json.shastr,
                     uploadSignatureTimestamp: Number(json.time),
-                    apiKey: json.api_key,
+                    apiKey: json.api_key
                 },
                 (error, result) => {
                     if (!error && result && result.event === "success") {

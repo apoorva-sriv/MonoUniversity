@@ -73,7 +73,7 @@ function buyItem(e, div, item) {
         },
         error: err => {
             window.alert(err.responseText);
-        },
+        }
     });
 }
 

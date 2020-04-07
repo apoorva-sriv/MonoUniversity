@@ -98,7 +98,7 @@ function saveFunction() {
         username: lstInput[0].value,
         money: parseInt(lstInput[1].value),
         wins: parseInt(lstInput[2].value),
-        points: parseInt(lstInput[3].value),
+        points: parseInt(lstInput[3].value)
     };
 
     const request = new Request(url, {
@@ -106,8 +106,8 @@ function saveFunction() {
         body: JSON.stringify(data),
         headers: {
             Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
-        },
+            "Content-Type": "application/json"
+        }
     });
 
     fetch(request)
