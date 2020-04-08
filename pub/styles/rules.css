@@ -6,13 +6,15 @@ body {
     cursor: auto;
 }
 
-.sub-heading {
+.hcenter {
     font-family: "Oswald", "Helvetica", sans-serif;
+}
+
+.sub-heading {
     text-align: center;
 }
 
 .text {
-    font-family: "Oswald", "Helvetica", sans-serif;
     text-align: center;
     font-size: 22px;
 }
@@ -21,6 +23,54 @@ body {
     text-align: left;
 }
 
-#contentheader {
-    font-family: "Oswald", "Helvetica", sans-serif;
+/*.token {
+    width: 23px;
+    height: 23px;
+}
+*/
+
+#tokens img {
+    /*list-style-image: url('../img/pieces/default.png');*/
+    width: 23px;
+    height: 23px;
+}
+
+#tokens {
+    list-style-type: none;
+}
+
+#tokens li {
+    margin-top: 10px;
+}
+
+#default {
+    list-style-image: url("../img/pieces/resizedForRulesList/default_23x23.png");
+}
+
+#cop {
+    list-style-image: url("../img/pieces/resizedForRulesList/cop_23x23.png");
+}
+
+#lawyer {
+    list-style-image: url("../img/pieces/resizedForRulesList/lawyer_23x23.png");
+}
+
+#veteran {
+    list-style-image: url("../img/pieces/resizedForRulesList/veteran_23x23.png");
+}
+
+#worker {
+    list-style-image: url("../img/pieces/resizedForRulesList/worker_23x23.png");
+}
+
+#genius {
+    list-style-image: url("../img/pieces/resizedForRulesList/genius_23x23.png");
+}
+
+#banker {
+    list-style-image: url("../img/pieces/resizedForRulesList/banker_23x23.png");
+}
+
+#investor {
+    list-style-image: url("../img/pieces/resizedForRulesList/investor_23x23.png");
 }

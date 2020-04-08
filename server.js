@@ -328,7 +328,6 @@ io.on('connection', (socket) => {
 
 app.get("/signature", function signatureCallback(req, res) {
     const time = Date.now();
-    const crypto = require("crypto");
     const str = `public_id=${req.session.username}&source=uw&timestamp=${time}&upload_preset=ml_default${process.env.cloudinary_api_secret}`;
     const shasum = crypto.createHash("sha1");
     shasum.update(str);
