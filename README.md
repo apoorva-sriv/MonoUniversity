@@ -105,6 +105,8 @@ GET `/api/createGame` - Intended for multiplayer, creates a game then redirects 
 
 PUT `/api/win` - Adds a win to the player's win count and gives them 100 credits
 
+GET `/api/signature` - Generates Cloudinary signature, needed for signed uploads of profile pictures
+
 # Sample Walkthrough for TA
 
 1. Login with the following credentials: Login: user | Password: user
