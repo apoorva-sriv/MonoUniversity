@@ -1,7 +1,6 @@
 const shop = document.getElementById("shop");
 
 async function updateUserDisplay() {
-    console.log("Here!");
     const url = "/api/user";
 
     await fetch(url)
@@ -16,6 +15,7 @@ async function updateUserDisplay() {
             document.querySelector("#username").innerText = json.user;
             document.querySelector("#userMoney").innerText = "∰" + json.money;
             document.querySelector("#pfp img").src = json.image;
+            window.isAdmin = json.isAdmin;
         })
         .catch(error => {
             console.error(error);
@@ -54,7 +54,7 @@ function addItem(item) {
         buyItem(e, div, item);
         // Update user money display (not patched to DB yet--> done later somewhere?!))
         let userMoneyNumber = Number(document.querySelector("#userMoney").innerText.substr(1));
-        if (userMoneyNumber >= 500) {
+        if (window.isAdmin || userMoneyNumber >= 500) {
             document.querySelector("#userMoney").innerText = `∰${userMoneyNumber - 500}`;
         }
     });
