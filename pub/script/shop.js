@@ -1,6 +1,7 @@
 const shop = document.getElementById("shop");
 
 async function updateUserDisplay() {
+    console.log("Here!");
     const url = "/api/user";
 
     await fetch(url)
@@ -49,7 +50,14 @@ function addItem(item) {
     div.appendChild(buy);
     shop.appendChild(div);
 
-    buy.addEventListener("click", e => buyItem(e, div, item));
+    buy.addEventListener("click", e => {
+        buyItem(e, div, item);
+        // Update user money display (not patched to DB yet--> done later somewhere?!))
+        let userMoneyNumber = Number(document.querySelector("#userMoney").innerText.substr(1));
+        if (userMoneyNumber >= 500) {
+            document.querySelector("#userMoney").innerText = `∰${userMoneyNumber - 500}`;
+        }
+    });
 }
 
 function fetchItems(cb) {
