@@ -1,3 +1,15 @@
+// To be refactored into one place across all the files (e.g. rules.html)!
+const tokenDetails = {
+    "Default": "No special abilities",
+    "Banker": "Immune to Tax Tiles, but rents are 5% more expensive",
+    "Cop": "Only get two turns in Jail for being sent by a tile, four if by Chance or Community Chest cards",
+    "Genius": "Unaffected by Utility and TTC tiles but pay 25% more on tax tiles",
+    "Investor": "Buy properties early but they cost 50% more early game",
+    "Lawyer": "Earn three times the Get Out of Jail cards but all expenses increased by 10%",
+    "Veteran": "Reduction on money spent on normal tiles by 10% but collect only $150 when crossing GO",
+    "Worker": "Get $250 by passing GO or $500 by landing on it. By cards and tax tiles, add $25 and $50 respectively"
+};
+
 async function getUserDetails() {
     const url = "/api/user";
 
@@ -113,16 +125,24 @@ function saveUserInfo() {
         });
 }
 
+function getTokenNameFromPath(path) {
+    const list = path.split("/");
+    const imageWithExtension = list[list.length - 1];
+    const tokenName = imageWithExtension.replace(/\.[^/.]+$/, "");     // https://stackoverflow.com/a/4250408/4179032
+    return `${tokenName[0].toUpperCase()}${tokenName.substring(1)}`;   // capitalize first letter
+}
+
 async function displayTokens() {
     // Token selector
     const tokens = document.querySelector("#tokens");
 
     for (let counter = 0; counter < window.availableTokenPaths.length; counter++) {
-        tokenPath = window.availableTokenPaths[counter];
+        const tokenPath = window.availableTokenPaths[counter];
         const li = document.createElement("li"); // Note: "const" instead of "let" is valid inside for loops since the variable goes out of scope and is redeclared after each iteration (https://stackoverflow.com/a/50808013/4179032)!
         const img = document.createElement("img");
         img.style.cursor = "pointer";
-        img.class = "tooltip";
+        const tokenName = getTokenNameFromPath(tokenPath)
+        img.title = `${tokenName}: ${tokenDetails[tokenName]}`;    // tooltip
         img.src = tokenPath;
         img.addEventListener("click", async function clickImage(e) {
             // Remove the borders from the other tokens.
@@ -200,7 +220,7 @@ async function setUsername() {
 */
 
 async function main() {
-    window.tokenPathsToObjects = { "./img/pieces/default.png": null };
+    window.tokenPathsToObjects = {"./img/pieces/default.png": null};
     window.availableTokenPaths = ["./img/pieces/default.png"]; // ultimately, available tokens = default + bought tokens
     await getUserDetails();
     setProfilePic();
