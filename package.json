@@ -4,7 +4,7 @@
     "description": "CSC309 Final Project",
     "main": "server.js",
     "dependencies": {
-        "bcrypt": "^4.0.1",
+        "bcrypt": "^5.0.0",
         "cloudinary": "^1.21.0",
         "crypto": "^1.0.1",
         "express": "^4.17.1",
